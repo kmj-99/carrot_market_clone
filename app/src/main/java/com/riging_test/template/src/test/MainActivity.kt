@@ -1,6 +1,9 @@
 package com.riging_test.template.src.test
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,6 +20,11 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //상태바 투명하게 만드는 코드
+        window?.decorView?.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = Color.TRANSPARENT
 
         translateLeftAnim=AnimationUtils.loadAnimation(this,R.anim.translate_left)
         translateRightAnim=AnimationUtils.loadAnimation(this,R.anim.translate_right)
