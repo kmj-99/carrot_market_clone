@@ -10,11 +10,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityMainBinding
+import com.riging_test.template.databinding.TestActivityMainBinding
 import com.riging_test.template.src.test.grow.GrowFragment
 import com.riging_test.template.src.test.image_search.ImageSearchFragment
 import com.riging_test.template.src.test.search.SearchFragment
 
-class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate){
+class TestMainActivity :BaseActivity<TestActivityMainBinding>(TestActivityMainBinding::inflate){
     private lateinit var translateLeftAnim:Animation
     private lateinit var translateRightAnim:Animation
 

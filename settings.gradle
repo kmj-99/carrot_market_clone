@@ -4,6 +4,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+
+        //Naver Maps Api를 위한 저장소 등록, 즉 Maps관련 데이터를 이 저장소(아파치)에서 가져온다는 뜻
+        maven {
+            url 'https://naver.jfrog.io/artifactory/maven/'
+        }
     }
 }
 rootProject.name = "Template"

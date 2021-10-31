@@ -1,19 +1,34 @@
 package com.riging_test.template.src.sign_up.second
 
+import android.app.Activity
+import android.app.FragmentManager
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.geometry.Tm128
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.LocationTrackingMode
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.util.FusedLocationSource
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentSignupSecondBinding
+import com.riging_test.template.src.sign_up.SignActivity
 import com.riging_test.template.src.sign_up.second.models.LocationResponse
 import com.riging_test.template.src.sign_up.third.SignThirdFragment
 
 class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSignupSecondBinding::bind, R.layout.fragment_signup_second),SignupSecondFragmentView {
     private var TestList=ArrayList<SignupRvDataClass>()
     private lateinit var recyclerViewState:Parcelable
+
+    private val PERMISSION_REQUEST_CODE=100
+    private var Current_Location=""
 
     private var ThirdFragment=SignThirdFragment()
 
@@ -31,13 +46,12 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
         //binding.searchImageSearch.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY
 
 
-        var Loading=SignupSecondLoadingDialog(requireContext())
         var Rv=binding.signupSecondRv
         var Rv_Adapter=SignupRvAdapter(TestList)
 
         binding.signupSecondResultNo.visibility=View.VISIBLE
         binding.signupSecondRv.visibility=View.INVISIBLE
-        Loading.show()
+
 
         TestList.add(SignupRvDataClass("경기도"))
         TestList.add(SignupRvDataClass("서울"))
@@ -56,9 +70,6 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
 //        recyclerViewState=Rv.layoutManager!!.onSaveInstanceState()!!
         Rv.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         Rv.adapter=Rv_Adapter
-
-
-        Loading.dismiss()
 
         // 리사이클러뷰의 마지막 위치감지를 위한 코드
         Rv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -95,8 +106,50 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
         binding.signupSecondRv.visibility=View.VISIBLE
         binding.signupSecondResultNo.visibility=View.INVISIBLE
 
+        // 현재 위치 받아오는 api
+        val mapFragment= requireFragmentManager().findFragmentById(R.id.Map1) as MapFragment?
+            ?: MapFragment.newInstance().also{
+                requireFragmentManager().beginTransaction().add(R.id.Map1,it).commit()
+            }
+        val Test_Location= LatLng(37.56661020000001,126.97838810000002)
+
+
+        mapFragment.getMapAsync{
+            val marker= Marker()
+            marker.position= Test_Location
+            marker.map=it
+
+            val cameraUpdata= CameraUpdate.scrollTo(Test_Location)
+            it.moveCamera(cameraUpdata)
+
+            var mLocationSource= FusedLocationSource(context as Activity,PERMISSION_REQUEST_CODE)
+
+            var PERMISSIONS= arrayOf<String>(android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.ACCESS_COARSE_LOCATION)
+
+            it.locationSource=mLocationSource
+
+            ActivityCompat.requestPermissions(context as Activity, PERMISSIONS,PERMISSION_REQUEST_CODE)
+
+            it.locationTrackingMode= LocationTrackingMode.Follow
+            var locationOverlay=it.locationOverlay
+            locationOverlay.isVisible=true
+
+
+            it.addOnLocationChangeListener { location ->
+                Log.d( "Current_Location","${location.latitude}, ${location.longitude}")
+                Current_Location="${location.latitude},${location.longitude}"
+            }
+
+        }
+        //
+
+        // 죄표를 지역으로 바꾸는 api
         SignupSecondService(this).TryGetLocation(Client_Id,Client_Pw,Test_request,Test_coords,Test_sourcecrs ,Test_output , Test_orders)
 
+        binding.signupSecondCurrentLocationFind.setOnClickListener {
+            showCustomToast(Current_Location)
+
+        }
 
     }
 

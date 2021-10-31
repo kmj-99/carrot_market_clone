@@ -74,6 +74,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         >
+        <fragment
+            android:id="@+id/Map1"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:name="com.naver.maps.map.MapFragment"
+            />
+
         <LinearLayout
             android:id="@+id/signup_second_result"
             android:layout_width="match_parent"

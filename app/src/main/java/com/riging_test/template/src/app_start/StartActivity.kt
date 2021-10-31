@@ -1,14 +1,10 @@
 package com.riging_test.template.src.app_start
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import com.riging_test.template.config.BaseActivity
-import com.riging_test.template.databinding.ActivityMainBinding
 import com.riging_test.template.databinding.ActivityStartBinding
 import com.riging_test.template.src.sign_up.SignActivity
-import com.riging_test.template.src.test.MainActivity
 
 class StartActivity : BaseActivity<ActivityStartBinding>(ActivityStartBinding::inflate) {
 

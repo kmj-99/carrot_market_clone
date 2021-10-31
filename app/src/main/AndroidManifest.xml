@@ -3,6 +3,10 @@
     package="com.riging_test.template">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:name=".config.ApplicationClass"
@@ -26,12 +30,16 @@
             android:name=".src.test.Test"/>
 
         <activity
-            android:name=".src.test.MainActivity"
+            android:name=".src.test.TestMainActivity"
             />
 
         <activity
             android:name=".src.sign_up.SignActivity"
             android:windowSoftInputMode="adjustResize"
+            />
+
+        <activity
+            android:name=".src.main.MainActivity"
             />
     </application>
 

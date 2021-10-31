@@ -72,6 +72,7 @@
         android:hint="@string/SignThird_Edit_PhoneNumberInsert"
         android:paddingLeft="10dp"
         android:inputType="number"
+        android:maxLength="13"
         app:layout_constraintWidth_percent="0.92"
         app:layout_constraintHeight_percent="0.07"
         app:layout_constraintTop_toBottomOf="@id/signup_third_info"
@@ -161,6 +162,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
                 android:inputType="number"
+                android:maxLength="4"
                 app:layout_constraintTop_toBottomOf="@id/signup_third_info"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>

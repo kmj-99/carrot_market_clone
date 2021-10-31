@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.riging_test.template.src.sign_up.second.SignupSecondLoadingDialog
 import com.riging_test.template.util.LoadingDialog
 
 abstract class BaseFragment<B: ViewBinding>(
@@ -18,6 +19,7 @@ abstract class BaseFragment<B: ViewBinding>(
 
     private var _binding:B?=null
     lateinit var mLoadingDialog:LoadingDialog
+    lateinit var Loading:SignupSecondLoadingDialog
 
     protected val binding get()=_binding!!
 
@@ -48,6 +50,17 @@ abstract class BaseFragment<B: ViewBinding>(
     fun dismissLoadingDialog(){
         if(mLoadingDialog.isShowing){
             mLoadingDialog.dismiss()
+        }
+    }
+
+    fun showLoading(context:Context){
+        Loading=SignupSecondLoadingDialog(context)
+        Loading.show()
+
+    }
+    fun dismissLoading(){
+        if(Loading.isShowing){
+            Loading.dismiss()
         }
     }
 
