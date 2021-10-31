@@ -19,7 +19,7 @@
         android:id="@+id/BottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_bar_menu"
+        app:menu="@menu/test_bottom_bar_menu"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
