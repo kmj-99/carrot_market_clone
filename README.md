@@ -20,12 +20,41 @@
 밑에 코드를 이용해서 해결
 - `android:textColorHighlight="@color/edit_drag_color"` : 드래그 할 때 색깔을 정하는 코드
 - `android:textCursorDrawable="@drawable/cursor"`        : 드래그가 되었을때 밑에 두개의 아이콘의 색깔을 정하는 코드
-##### @drawable/cursor
-`<?xml version="1.0" encoding="utf-8"?>
-  <shape
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:shape="rectangle">
-  <solid android:color="@color/carrot_color" />
-  <size android:width="1.5dp" />
-  </shape>
-`
+##### @drawable/cursor  
+`<?xml version="1.0" encoding="utf-8"?>`  
+  `<shape`  
+  `xmlns:android="http://schemas.android.com/apk/res/android"`  
+  `android:shape="rectangle">`  
+  `<solid android:color="@color/carrot_color" />`  
+  `<size android:width="1.5dp" />`  
+`</shape>`  
+
+
+
+
+# 2021-10-31 진행상황
+- 회원가입과 관련한 레이아웃을 완성
+- 네이버 map api , 네이버 Rc api를 이용해서 현재 위치의 좌표를 따서 지역으로 변환하여 서버로 전달할 준비 완료
+- 아직 서버쪽에서 api가 완성이 되지않아서 일단 더미데이터를 넣어놨고 , api가 완성이 되면 바로 적용할 수 있게끔 코드를 작성해놨다.
+
+## 2021-10-31 클라이언트 개발자 or 서버 개발자와의 회의에 따른 회의록
+### 현재 위치를 접근해서 주변반경에 있는 지역을 보여주는 기능에 대한 합의점
+- 클라이언트에서 현재 위치에 대한 좌표,지역(ex- 서울 성북구)을 보내주면 서버에서는 주변반경에 대한 데이터를 보내주는 걸로 합의점을 찾음
+
+## 1주차 피드백까지의 진행율
+- 회원가입/ 로그인 API 연동 : 30%(아직 api완성이 안됨)
+- 로그인/회원가입 화면 : 100%
+- 뼈대 레이아웃 구성(네비게이션, 탭, 등) : 10% 
+
+## 현재 구현중인 기능
+- 전체적인 레이아웃 뼈대 구성
+
+
+## 개발 도중에 발생한 이슈
+- 이번엔 이슈라기보단 꽤 삽질을 했던 부분이 있었다.
+#### 삽질한 부분
+- 현재 위치좌표를 얻어서 주소로 변환해야 하기위해 네이버 map api를 계속 건드려봤다. 하지만 풀리지 않았다.
+#### 해결방법
+- 지오코딩이라는 네이버 좌표->주소 변환 api가 있었다. 이 api를 이용해서 바로 해결했다.
+
+
