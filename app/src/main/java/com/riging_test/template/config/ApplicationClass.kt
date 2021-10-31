@@ -10,7 +10,10 @@ import java.util.concurrent.TimeUnit
 
 class ApplicationClass :Application() {
 
-    val API_UTL="https://openapi.naver.com/"
+    val API_URL="https://openapi.naver.com/"
+    val NAVER_GEO_API_URL="https://naveropenapi.apigw.ntruss.com/"
+//    val API_URL=""
+//    val API_UTL=""   //Test Url
 
     companion object{
 
@@ -19,6 +22,7 @@ class ApplicationClass :Application() {
         val X_ACCESS_TOKEN="X-ACCESS-TOKEN"
 
         lateinit var sRetrofit: Retrofit
+        lateinit var NaverGeoRetrofit:Retrofit
 
     }
 
@@ -39,7 +43,13 @@ class ApplicationClass :Application() {
             .build()
 
         sRetrofit=Retrofit.Builder()
-            .baseUrl(API_UTL)
+            .baseUrl(API_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        NaverGeoRetrofit=Retrofit.Builder()
+            .baseUrl(NAVER_GEO_API_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

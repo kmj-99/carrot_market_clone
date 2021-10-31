@@ -5,7 +5,7 @@ import android.view.View
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentSignupFirstBinding
-import com.riging_test.template.src.sign_up.second.SignSecondFragment
+import com.riging_test.template.src.sign_up.second.SignupSecondFragment
 
 class SignFirstFragment:BaseFragment<FragmentSignupFirstBinding>(FragmentSignupFirstBinding::bind, R.layout.fragment_signup_first) {
 
@@ -15,7 +15,7 @@ class SignFirstFragment:BaseFragment<FragmentSignupFirstBinding>(FragmentSignupF
 
         binding.signupFirstButtonStart.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.signup_layout,SignSecondFragment())
+                ?.replace(R.id.signup_layout,SignupSecondFragment())
                 ?.commitAllowingStateLoss()
 
         }

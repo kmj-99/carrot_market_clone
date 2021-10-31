@@ -7,7 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.WindowManager
 import com.riging_test.template.R
 
-class SignSecondLoadingDialog(context: Context):Dialog(context) {
+class SignupSecondLoadingDialog(context: Context):Dialog(context) {
 
     init{
         setCanceledOnTouchOutside(false) // 외부에서 클릭을 해도 로딩창이 안 없어지게 하는 코드

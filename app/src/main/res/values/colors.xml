@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="carrot_color">#FFFE7E35</color>
     <color name="light_gray">#FFDDDEE0</color>
+    <color name="dark_gray">#FF4D515A</color>
     <color name="edit_drag_color">#FFFECBAE</color>
 </resources>
