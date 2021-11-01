@@ -3,6 +3,8 @@ package com.riging_test.template.src.main._2life
 import android.os.Bundle
 import android.view.MenuInflater
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +25,11 @@ class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        var icon_down= AnimationUtils.loadAnimation(requireContext(),R.anim.icon_rotate_down)
+        var icon_up= AnimationUtils.loadAnimation(requireContext(),R.anim.icon_rotate_up)
+        icon_up.fillAfter=true
+        icon_down.fillAfter=true // 애니매이션 후 고정
 
         defalt_Location="소흘읍"
         add_Location="내 동네 추가하기"
@@ -51,7 +58,39 @@ class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind,
         binding.lifeRv2.adapter=LifePostingAdapter(requireContext(),TestItemList2)
 
 
+
+        icon_down.setAnimationListener(object: Animation.AnimationListener{
+            override fun onAnimationStart(animation: Animation?) {
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                binding.lifeIconBottomUp.setImageResource(R.drawable.bottom_icon)
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+
+        })
+
+        icon_up.setAnimationListener(object: Animation.AnimationListener{
+            override fun onAnimationStart(animation: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                binding.lifeIconBottomUp.setImageResource(R.drawable.bottom_icon)
+
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+
+        })
+
         binding.lifeLocationAdd.setOnClickListener {
+
+                binding.lifeIconBottomUp.startAnimation(icon_down)
+
 
             var popupMenu= PopupMenu(requireContext(),it)
             MenuInflater(requireContext()).inflate(R.menu.home_popup,popupMenu.menu)
@@ -59,6 +98,7 @@ class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind,
             popupMenu.menu.findItem(R.id.menu_home_location_add).title=add_Location
             popupMenu.setOnMenuItemClickListener{item->
                 when(item.itemId){
+
                     R.id.menu_home_location_current ->{
 
                         showCustomToast("${item.itemId}")
@@ -68,10 +108,16 @@ class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind,
 
                     }
 
+
                 }
                 false
             }
+            popupMenu.setOnDismissListener {
+                binding.lifeIconBottomUp.startAnimation(icon_up)
+
+            }
             popupMenu.show()
+
         }
     }
 }

@@ -12,6 +12,8 @@ import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentGrowBinding
 import com.riging_test.template.databinding.FragmentSignupThirdBinding
 import com.riging_test.template.src.main.MainActivity
+import com.riging_test.template.src.sign_up.first.SignFirstFragment
+import com.riging_test.template.src.sign_up.zfourth.SignFourthFragment
 
 class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignupThirdBinding::bind, R.layout.fragment_signup_third) {
 
@@ -94,11 +96,16 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
         }
 
         binding.signupThirdCertificationConfirm.setOnClickListener {
-            //전화번호 인증이 되면 토큰을 받아서 SharedPreference에 저장을 하고 다시 앱을 시작할 때 해당 토큰이 확인 되면 바로 홈 화면으로 넘어갈 수 있게해야한다.
+            //해당 전화번호에 대한 토큰(sharepreference)이 있다면 바로 다음 화면으로 넘어감
+            //해당 전화번호에 대한 토큰이 없다면 프로필설정화면으로 넘어 감
             //아직 api가 안 나왔기에 보류
 
-            startActivity(Intent(activity,MainActivity::class.java))
-            requireActivity().finish()
+            //startActivity(Intent(activity,MainActivity::class.java)) // 토큰이 있을 때
+            //requireActivity().finish()
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.signup_layout, SignFourthFragment())
+                .commitAllowingStateLoss()
         }
     }
 }

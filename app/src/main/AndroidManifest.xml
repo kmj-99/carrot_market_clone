@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Template">
         <activity
-            android:name=".src.main.MainActivity"
+            android:name=".src.app_start.StartActivity"
 
             android:exported="true">
             <intent-filter>
@@ -43,7 +43,8 @@
 
         <!-- app_start -->
         <activity
-            android:name=".src.app_start.StartActivity"
+            android:name=".src.main.MainActivity"
+
             />
 
         <!-- search -->

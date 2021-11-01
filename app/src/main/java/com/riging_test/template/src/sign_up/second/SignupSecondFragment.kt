@@ -160,7 +160,9 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
     }
 
     override fun TryGetLocationFailue(message: String) {
-        showCustomToast(message)
+        if(message!=null) {
+            showCustomToast(message)
+        }
 
     }
 

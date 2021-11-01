@@ -4,8 +4,10 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuInflater
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +35,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         var fab_open=AnimationUtils.loadAnimation(requireContext(),R.anim.fab_open)
         var fab_close=AnimationUtils.loadAnimation(requireContext(),R.anim.fab_close)
+
+        var icon_down=AnimationUtils.loadAnimation(requireContext(),R.anim.icon_rotate_down)
+        var icon_up=AnimationUtils.loadAnimation(requireContext(),R.anim.icon_rotate_up)
+        icon_up.fillAfter=true
+        icon_down.fillAfter=true // 애니매이션 후 고정
+
+
+
 
         for(i in 0..10) {
             TestItemList.add(HomeDataClass(null, "Rocky$i", "서울$i", i, "30,000", i, i))
@@ -71,7 +81,37 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         }
 
+
+
+        icon_down.setAnimationListener(object: Animation.AnimationListener{
+            override fun onAnimationStart(animation: Animation?) {
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                binding.homeIconBottomUp.setImageResource(R.drawable.bottom_icon)
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+
+        })
+
+        icon_up.setAnimationListener(object:Animation.AnimationListener{
+            override fun onAnimationStart(animation: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                binding.homeIconBottomUp.setImageResource(R.drawable.bottom_icon)
+
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+
+        })
         binding.homeLocationAdd.setOnClickListener {
+            binding.homeIconBottomUp.startAnimation(icon_down)
 
             var popupMenu=PopupMenu(requireContext(),it)
             MenuInflater(requireContext()).inflate(R.menu.home_popup,popupMenu.menu)
@@ -90,6 +130,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
                 }
                 false
+            }
+            popupMenu.setOnDismissListener {
+                binding.homeIconBottomUp.startAnimation(icon_up)
             }
             popupMenu.show()
         }
