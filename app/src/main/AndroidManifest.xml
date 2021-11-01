@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Template">
         <activity
-            android:name=".src.app_start.StartActivity"
+            android:name=".src.main.MainActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,13 +34,31 @@
             android:name=".src.test.TestMainActivity"
             />
 
+
+        <!-- sign_up-->
         <activity
             android:name=".src.sign_up.SignActivity"
             android:windowSoftInputMode="adjustResize"
             />
 
+        <!-- app_start -->
         <activity
-            android:name=".src.main.MainActivity"
+            android:name=".src.app_start.StartActivity"
+            />
+
+        <!-- search -->
+        <activity
+            android:name=".src.search.SearchActivity"
+            />
+
+        <!-- home_category -->
+        <activity
+            android:name=".src.home_category.HomeCategoryActivity"
+            />
+
+        <!-- alarm -->
+        <activity
+            android:name=".src.alarm.AlarmActivity"
             />
     </application>
 

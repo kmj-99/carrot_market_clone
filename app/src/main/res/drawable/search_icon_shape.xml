@@ -4,4 +4,5 @@
         android:width="20dp"
         android:height="20dp"
         android:drawable="@drawable/search_icon" />
+
 </layer-list>

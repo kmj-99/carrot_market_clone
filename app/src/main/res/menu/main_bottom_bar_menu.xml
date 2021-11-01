@@ -4,37 +4,37 @@
 
     <item
         android:id="@+id/menu_main_button_home"
-        android:icon="@drawable/search_icon"
+        android:icon="@drawable/select_home"
         app:showAsAction="always"
-        android:title="search"
+        android:title="홈"
         />
 
     <item
         android:id="@+id/menu_main_button_life"
-        android:icon="@drawable/grow_icon"
+        android:icon="@drawable/select_no_life"
         app:showAsAction="always"
-        android:title="grow"
+        android:title="동네생활"
         />
 
     <item
         android:id="@+id/menu_main_button_around"
-        android:icon="@drawable/image_search_icon"
+        android:icon="@drawable/select_no_around"
         app:showAsAction="always"
-        android:title="image"
+        android:title="내 근처"
         />
 
     <item
         android:id="@+id/menu_main_button_chat"
-        android:icon="@drawable/image_search_icon"
+        android:icon="@drawable/select_no_chat"
         app:showAsAction="always"
-        android:title="image"
+        android:title="채팅"
         />
 
     <item
         android:id="@+id/menu_main_button_my_carrot"
-        android:icon="@drawable/image_search_icon"
+        android:icon="@drawable/select_no_my_carrot"
         app:showAsAction="always"
-        android:title="image"
+        android:title="나의 당근"
         />
 
 </menu>
