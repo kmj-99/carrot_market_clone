@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.riging_test.template.R
+import com.riging_test.template.src.sign_up.second.SignupRvAdapter
 import kotlinx.android.synthetic.main.rv_fragment_home.view.*
 
 class HomeAdapter(val context: Context,val ItemList:ArrayList<HomeDataClass>): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+    private lateinit var itemClickListener: HomeAdapter.OnItemClickListener
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -18,14 +20,27 @@ class HomeAdapter(val context: Context,val ItemList:ArrayList<HomeDataClass>): R
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(context,ItemList[position])
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it,position)
+        }
     }
 
     override fun getItemCount(): Int {
         return ItemList.size
     }
 
+    interface OnItemClickListener {
+        fun onClick(v: View, position:Int)
+    }
 
-    inner class HomeViewHolder(ItemView: View):RecyclerView.ViewHolder(ItemView){
+    fun setItemClickListener(onItemClickListener:OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+
+
+
+        inner class HomeViewHolder(ItemView: View):RecyclerView.ViewHolder(ItemView){
         private var Image=ItemView.Rv_Home_Image
         private var Name=ItemView.Rv_Home_Name
         private var Location=ItemView.Rv_Home_Location

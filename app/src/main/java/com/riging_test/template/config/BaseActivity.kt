@@ -4,8 +4,11 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
@@ -43,6 +46,15 @@ abstract class BaseActivity<B: ViewBinding>(private val inflate:(LayoutInflater)
         window?.decorView?.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         window.statusBarColor = Color.TRANSPARENT
+
+    }
+
+
+    fun TextUnderBar(view: TextView){
+        var content = SpannableString(view.text.toString())
+        content.setSpan(UnderlineSpan(),0,content.length,0)
+        view.text=content
+
 
     }
 }

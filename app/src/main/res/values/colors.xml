@@ -12,4 +12,5 @@
     <color name="light_light_gray">#F2F3F7</color>
     <color name="dark_gray">#FF4D515A</color>
     <color name="edit_drag_color">#FFFECBAE</color>
+    <color name="green">#FF38B24D</color>
 </resources>

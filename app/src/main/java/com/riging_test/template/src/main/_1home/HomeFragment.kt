@@ -18,9 +18,11 @@ import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentHomeBinding
 import com.riging_test.template.src.alarm.AlarmActivity
 import com.riging_test.template.src.home_category.HomeCategoryActivity
+import com.riging_test.template.src.home_product.ProductActivity
 import com.riging_test.template.src.main._1home.Rv.HomeAdapter
 import com.riging_test.template.src.main._1home.Rv.HomeDataClass
 import com.riging_test.template.src.search.SearchActivity
+import com.riging_test.template.src.sign_up.second.SignupRvAdapter
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
     private var TestItemList=ArrayList<HomeDataClass>()
@@ -45,6 +47,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         icon_up.fillAfter=true
         icon_down.fillAfter=true // 애니매이션 후 고정
 
+        var Home_Rv_Adapter=HomeAdapter(requireContext(),TestItemList)
+
 
 
 
@@ -54,7 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         }
         binding.homeRv.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
-        binding.homeRv.adapter= HomeAdapter(requireContext(),TestItemList)
+        binding.homeRv.adapter= Home_Rv_Adapter
 
         binding.homeSearch.setOnClickListener {
             startActivity(Intent(requireContext(),SearchActivity::class.java))
@@ -85,6 +89,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             }
 
         }
+
+
+        Home_Rv_Adapter.setItemClickListener(object: HomeAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+
+                var bundle=Bundle()
+                bundle.putString("Location",TestItemList[position].Location.toString())
+
+                startActivity(Intent(requireActivity(), ProductActivity::class.java))
+
+            }
+
+        })
+
+
+
+
 
 
 
