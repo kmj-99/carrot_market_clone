@@ -35,7 +35,7 @@ class ProductRvAdapter(val context: Context, val ItemList:ArrayList<ProductRvDat
 
         fun bind(context:Context,Item:ProductRvDataClass){
 
-            Glide.with(context).load(Item.Image).into(Image)
+            Glide.with(context).load(Item.Image).centerCrop().into(Image)
             Name.text=Item.Name
             Price.text=Item.Price
         }

@@ -3,6 +3,8 @@ package com.riging_test.template.src.home_product
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
+import android.view.MenuInflater
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -49,6 +51,36 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
         binding.productRv2.adapter=ProductRvAdapter(this,TestItemList2)
 
 
+        binding.productButtonBack.setOnClickListener {
+            finish()
+        }
+        binding.productButtonHome.setOnClickListener {
+            finish()
+        }
+
+
+        binding.productButtonReport.setOnClickListener {
+            var popupMenu= PopupMenu(this,it)
+            MenuInflater(this).inflate(R.menu.home_popup,popupMenu.menu)
+            popupMenu.menu.findItem(R.id.menu_home_location_current).title="신고하기"
+            popupMenu.menu.findItem(R.id.menu_home_location_add).title="이 사용자의 글 보지 않기"
+            popupMenu.setOnMenuItemClickListener{item->
+                when(item.itemId){
+                    R.id.menu_home_location_current ->{
+
+                        showCustomToast("${item.itemId}")
+                    }
+                    R.id.menu_home_location_add ->{
+                        showCustomToast("${item.itemId}")
+
+                    }
+
+                }
+                false
+            }
+
+            popupMenu.show()
+        }
 
 
     }

@@ -11,6 +11,7 @@
         android:id="@+id/Rv_Product_Image"
         android:layout_width="200dp"
         android:layout_height="100dp"
+        android:paddingHorizontal="15dp"
         android:src="@drawable/test_image"
         app:layout_constraintBottom_toTopOf="@id/Rv_Product_Name"
         app:layout_constraintTop_toTopOf="parent"

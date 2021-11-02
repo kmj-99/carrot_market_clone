@@ -56,18 +56,21 @@
                         -->
 
                     <ImageView
+                        android:id="@+id/product_button_back"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginRight="12dp"
                         android:src="@drawable/left_icon"/>
 
                     <ImageView
+                        android:id="@+id/product_button_home"
                         android:layout_width="30dp"
                         android:layout_height="20dp"
                         android:src="@drawable/select_no_home"
                         />
 
                     <ImageView
+                        android:id="@+id/product_button_report"
                         android:layout_width="30dp"
                         android:layout_height="20dp"
                         android:src="@drawable/action_list_icon"
@@ -531,10 +534,10 @@
 
         <TextView
             android:layout_width="120dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:background="@drawable/button_circle_shape"
             android:layout_gravity="center"
-            android:layout_marginLeft="75dp"
+            android:layout_marginLeft="120dp"
             android:gravity="center"
             android:text="채팅으로 거래하기"
             android:textSize="12sp"
