@@ -17,7 +17,6 @@ class StartActivity : BaseActivity<ActivityStartBinding>(ActivityStartBinding::i
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         Thread {
             Thread.sleep(3000)
             var Main_Intent = Intent(applicationContext, SignActivity::class.java)

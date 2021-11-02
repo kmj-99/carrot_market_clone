@@ -1,6 +1,8 @@
 package com.riging_test.template.src.main._home
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
@@ -28,8 +30,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     private var Close=true
 
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         defalt_Location="서울"
         add_Location="내 동네 설정"
 
@@ -40,6 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         var icon_up=AnimationUtils.loadAnimation(requireContext(),R.anim.icon_rotate_up)
         icon_up.fillAfter=true
         icon_down.fillAfter=true // 애니매이션 후 고정
+
 
 
 

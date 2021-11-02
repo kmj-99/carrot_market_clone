@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <!-- 외부 사진을 가져다 쓰기때문에 외부 저장소 접근권한이 필요함-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:name=".config.ApplicationClass"
@@ -27,6 +30,10 @@
             </intent-filter>
         </activity>
 
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="etlmjycr7q" />
         <activity
             android:name=".src.test.Test"/>
 

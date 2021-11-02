@@ -35,7 +35,7 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
     private val Client_Id="etlmjycr7q"
     private val Client_Pw="UjxCnfxNahnQM9sQN5TFOYn4F9qrYaogNB3RND3D"
     private val Test_request="coordsToaddr"
-    private val Test_coords="127.1408536,37.8295577"
+    private var Test_coords="127.1408536,37.8295577"
     private val Test_sourcecrs="epsg:4326"
     private val Test_output="json"
     private val Test_orders="legalcode"
@@ -137,17 +137,19 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
 
             it.addOnLocationChangeListener { location ->
                 Log.d( "Current_Location","${location.latitude}, ${location.longitude}")
-                Current_Location="${location.latitude},${location.longitude}"
+                Current_Location="${location.longitude},${location.latitude}"
             }
 
         }
-        //
 
         // 죄표를 지역으로 바꾸는 api
-        SignupSecondService(this).TryGetLocation(Client_Id,Client_Pw,Test_request,Test_coords,Test_sourcecrs ,Test_output , Test_orders)
-
         binding.signupSecondCurrentLocationFind.setOnClickListener {
-            showCustomToast(Current_Location)
+            Log.d("Test_coords",Test_coords)
+            //Test_coords가 현재 위치이고 이걸 서버쪽에 보내서 주변 반경에 있는 지역을 받으면된다.
+
+            SignupSecondService(this).TryGetLocation(Client_Id,Client_Pw,Test_request,Current_Location,Test_sourcecrs ,Test_output , Test_orders)
+
+            showCustomToast(Test_coords)
 
         }
 
@@ -156,7 +158,9 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
 
 
     override fun TryGetLocationSuccess(response: LocationResponse) {
-        showCustomToast(response.results[0].region.area1.name)
+        Test_coords=response.results[0].region.area1.name+" "+response.results[0].region.area2.name+" "+response.results[0].region.area3.name
+
+        Log.d("TryGetLocationSuccess",Test_coords)
     }
 
     override fun TryGetLocationFailue(message: String) {
