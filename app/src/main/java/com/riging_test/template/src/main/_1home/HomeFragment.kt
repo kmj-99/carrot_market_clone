@@ -1,12 +1,7 @@
 package com.riging_test.template.src.main._home
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuInflater
 import android.view.View
 import android.view.animation.Animation
@@ -15,14 +10,16 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseFragment
+import com.riging_test.template.databinding.ActivityPostingBinding
 import com.riging_test.template.databinding.FragmentHomeBinding
 import com.riging_test.template.src.alarm.AlarmActivity
+import com.riging_test.template.src.app_start.StartActivity
 import com.riging_test.template.src.home_category.HomeCategoryActivity
-import com.riging_test.template.src.home_product.ProductActivity
+import com.riging_test.template.src.product.ProductActivity
 import com.riging_test.template.src.main._1home.Rv.HomeAdapter
 import com.riging_test.template.src.main._1home.Rv.HomeDataClass
+import com.riging_test.template.src.posting.PostingActivity
 import com.riging_test.template.src.search.SearchActivity
-import com.riging_test.template.src.sign_up.second.SignupRvAdapter
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
     private var TestItemList=ArrayList<HomeDataClass>()
@@ -87,6 +84,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
                 Close=true
             }
+
+        }
+
+        binding.homeButtonMarketing.setOnClickListener {
+            showCustomToast("Marketing")
+            binding.homeButtonMarketing.startAnimation(fab_close)
+            binding.homeButtonPosting.startAnimation(fab_close)
+            Close=true
+        }
+        binding.homeButtonPosting.setOnClickListener {
+            startActivity(Intent(requireContext(),PostingActivity::class.java))
+
+            binding.homeButtonMarketing.startAnimation(fab_close)
+            binding.homeButtonPosting.startAnimation(fab_close)
+            Close=true
 
         }
 

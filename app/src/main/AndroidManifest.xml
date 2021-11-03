@@ -22,6 +22,7 @@
         <activity
             android:name=".src.main.MainActivity"
 
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -70,7 +71,26 @@
             />
         <!-- product -->
         <activity
-            android:name=".src.home_product.ProductActivity"
+            android:name=".src.product.ProductActivity"
+            />
+
+        <!-- product_deal -->
+        <activity
+            android:name=".src.product_deal.ProductDealChatActivity"
+            />
+
+        <!-- posting -->
+        <activity
+            android:name=".src.posting.PostingActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
+
+        <activity
+            android:name=".src.product_deal_time_setting.TimeSettingActivity"
+            />
+
+        <activity
+            android:name=".src.Test_Test"
             />
     </application>
 

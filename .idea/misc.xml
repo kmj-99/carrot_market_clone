@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/drawable-v24/layout_custom.xml" value="0.1798611111111111" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/drawable/button_circle_shape.xml" value="0.17685185185185184" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/drawable/cursor.xml" value="0.22136752136752136" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/drawable/floating_button_open.xml" value="0.2" />
@@ -15,16 +16,22 @@
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/drawable/signup_third_certification_response_shape.xml" value="0.22136752136752136" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/drawable/signup_third_certification_shape.xml" value="0.21856540084388185" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/drawable/signup_third_edit_shape.xml" value="0.21856540084388185" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/drawable/text_circle_shape.xml" value="0.1798611111111111" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_alarm.xml" value="0.190234375" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_home_list.xml" value="0.190234375" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_posting.xml" value="0.176" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_product.xml" value="0.264" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_product_deal.xml" value="0.176" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_search.xml" value="0.190234375" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_signup.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_signup_second_loading.xml" value="0.264" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_start.xml" value="0.152" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_time_setting.xml" value="0.264" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/dialog_loading.xml" value="0.1" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_around.xml" value="0.190234375" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_caleder.xml" value="0.16909722222222223" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_calender.xml" value="0.176" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_chat.xml" value="0.190234375" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_grow.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_home.xml" value="0.176" />
@@ -44,9 +51,12 @@
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/rv_fragment_signup_second.xml" value="0.264" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/test.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/test_activity_main.xml" value="0.190234375" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/test_test.xml" value="0.16799999999999998" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/test_tset.xml" value="0.128" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/menu/bottom_bar_menu.xml" value="0.2" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/menu/home_popup.xml" value="0.1" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/menu/main_bottom_bar_menu.xml" value="0.190234375" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/menu/popup_product_deal_list.xml" value="0.16909722222222223" />
       </map>
     </option>
   </component>

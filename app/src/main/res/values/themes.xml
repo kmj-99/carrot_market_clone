@@ -15,4 +15,25 @@
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
     </style>
+
+
+    <style name="MyDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <!-- dialog의 위쪽 색상 -->
+        <item name="colorAccent">@color/carrot_color</item>
+
+        <!-- 취소/확인버튼 색상 -->
+        <item name="android:color">@color/carrot_color</item>
+
+    </style>
+
+    <style name="MyTimePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <!-- dialog의 위쪽 색상 -->
+        <item name="colorAccent">@color/carrot_color</item>
+
+        <!-- 취소/확인버튼 색상 -->
+        <item name="android:textColor">@color/carrot_color</item>x
+
+    </style>
+
+
 </resources>
