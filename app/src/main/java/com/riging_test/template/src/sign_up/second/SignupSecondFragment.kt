@@ -2,6 +2,8 @@ package com.riging_test.template.src.sign_up.second
 
 import android.app.Activity
 import android.app.FragmentManager
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -40,11 +42,14 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
     private val Test_output="json"
     private val Test_orders="legalcode"
 
+    private lateinit var sharedPreferences: SharedPreferences
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //binding.searchImageSearch.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY
 
+        sharedPreferences=requireActivity().getSharedPreferences("Token", MODE_PRIVATE)
 
         var Rv=binding.signupSecondRv
         var Rv_Adapter=SignupRvAdapter(TestList)

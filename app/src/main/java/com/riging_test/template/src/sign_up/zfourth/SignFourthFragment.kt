@@ -64,6 +64,9 @@ class SignFourthFragment:
         })
 
         binding.signupFourthButtonNext.setOnClickListener {
+            var name=binding.signupFourthEditNickname
+
+
             startActivity(Intent(activity, MainActivity::class.java))
             requireActivity().finish()
 
@@ -103,7 +106,6 @@ class SignFourthFragment:
                     MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, image)
                 Log.d("Profile_Imaga", bitmap.toString())
                 Log.d("Profiloe_Image_Data",image.toString())
-
                 //saveBitmapToJpeg(bitmap,"profile_image")// 캐시에 이미지를 저장
                 //var read_image=readCache() // 캐시에 이미지가 저장이 되어 있으면 캐시에서 이미지를 가져오는 메서드
 

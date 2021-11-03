@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 class ApplicationClass :Application() {
 
-    val API_URL="https://openapi.naver.com/"
+    val API_URL="https://skrrr.shop/"
     val NAVER_GEO_API_URL="https://naveropenapi.apigw.ntruss.com/"
 //    val API_URL=""
 //    val API_UTL=""   //Test Url

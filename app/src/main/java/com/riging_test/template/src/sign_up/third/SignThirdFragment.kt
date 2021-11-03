@@ -1,6 +1,8 @@
 package com.riging_test.template.src.sign_up.third
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableString
@@ -13,13 +15,26 @@ import com.riging_test.template.databinding.FragmentGrowBinding
 import com.riging_test.template.databinding.FragmentSignupThirdBinding
 import com.riging_test.template.src.main.MainActivity
 import com.riging_test.template.src.sign_up.first.SignFirstFragment
+import com.riging_test.template.src.sign_up.third.models.PostSignUpRequest
+import com.riging_test.template.src.sign_up.third.models.PostSignUpResponse
 import com.riging_test.template.src.sign_up.zfourth.SignFourthFragment
+import kotlinx.android.synthetic.main.fragment_signup_fourth.*
 
-class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignupThirdBinding::bind, R.layout.fragment_signup_third) {
+class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignupThirdBinding::bind, R.layout.fragment_signup_third),SignThirdFragmentView {
+
+    private val phoneNumber="01012326955"
+    private val certificationNum="018099"
+
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor:SharedPreferences.Editor
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedPreferences=requireActivity().getSharedPreferences("Token", Context.MODE_PRIVATE)
+        editor=sharedPreferences.edit()
+
         //TextView 밑줄 추가하는 코드
         var content =SpannableString(binding.signupThirdEmailFind.text.toString())
         content.setSpan(UnderlineSpan(),0,content.length,0)
@@ -89,6 +104,7 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
         binding.signupThirdCertification.setOnClickListener {
             binding.signupThirdCertificationResponse.text="인증문자 다시 받기"
             binding.signupThirdCertificationInsert.visibility=View.VISIBLE
+
         }
 
         binding.signupThirdBack.setOnClickListener {
@@ -102,10 +118,28 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
 
             //startActivity(Intent(activity,MainActivity::class.java)) // 토큰이 있을 때
             //requireActivity().finish()
+            SignThirdService(this).PostCertification(PostSignUpRequest(phoneNumber=phoneNumber,certificationNum=certificationNum))
 
+        }
+    }
+
+    override fun onPostCertificationSuccess(response: PostSignUpResponse) {
+        if(response.code==1000){
+            startActivity(Intent(requireActivity(),MainActivity::class.java))
+
+            requireActivity().finish()
+
+            //인증이 안 된 핸드폰번호면 서버에서 jwt를 보내줌 그래서 그걸 저장
+        }else if(response.code==2020){
+            //editor.putString("phoneNumber",phoneNumber)
+            //editor.apply()
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.signup_layout, SignFourthFragment())
                 .commitAllowingStateLoss()
         }
+    }
+
+    override fun onPostCertificationFailure(message: String) {
+        showCustomToast("오류 : $message")
     }
 }

@@ -20,8 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Template">
         <activity
-            android:name=".src.main.MainActivity"
-
+            android:name=".src.app_start.StartActivity"
 
             android:exported="true">
             <intent-filter>
@@ -49,9 +48,10 @@
             android:windowSoftInputMode="adjustResize"
             />
 
-        <!-- app_start -->
+        <!-- main -->
         <activity
-            android:name=".src.app_start.StartActivity"
+            android:name=".src.main.MainActivity"
+
 
             />
 
