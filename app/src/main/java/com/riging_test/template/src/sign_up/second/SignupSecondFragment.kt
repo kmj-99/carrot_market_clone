@@ -22,8 +22,10 @@ import com.riging_test.template.R
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentSignupSecondBinding
 import com.riging_test.template.src.sign_up.SignActivity
+import com.riging_test.template.src.sign_up.second.models.ArroundLocationResponse
 import com.riging_test.template.src.sign_up.second.models.LocationResponse
 import com.riging_test.template.src.sign_up.third.SignThirdFragment
+import com.riging_test.template.src.test.Test
 
 class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSignupSecondBinding::bind, R.layout.fragment_signup_second),SignupSecondFragmentView {
     private var TestList=ArrayList<SignupRvDataClass>()
@@ -42,7 +44,13 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
     private val Test_output="json"
     private val Test_orders="legalcode"
 
+    private val Jwt="eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjIxLCJpYXQiOjE2MzU5NTUyMDQsImV4cCI6MTYzNzQyNjQzM30.ZLVXRR6MZO3d9P0oyWMXJnPhdQ-H9xyGHwfCsgT-vZI"
+    private val TownId=5200
+
     private lateinit var sharedPreferences: SharedPreferences
+
+    private lateinit var Rv:View
+    private lateinit var Rv_Adapter:SignupRvAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,33 +59,19 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
 
         sharedPreferences=requireActivity().getSharedPreferences("Token", MODE_PRIVATE)
 
-        var Rv=binding.signupSecondRv
-        var Rv_Adapter=SignupRvAdapter(TestList)
+
+
+
+        Rv=binding.signupSecondRv
+        Rv_Adapter=SignupRvAdapter(TestList)
 
         binding.signupSecondResultNo.visibility=View.VISIBLE
         binding.signupSecondRv.visibility=View.INVISIBLE
 
 
-        TestList.add(SignupRvDataClass("경기도"))
-        TestList.add(SignupRvDataClass("서울"))
-        TestList.add(SignupRvDataClass("충남"))
-        TestList.add(SignupRvDataClass("충북"))
-        TestList.add(SignupRvDataClass("전남"))
-        TestList.add(SignupRvDataClass("전북"))
-        TestList.add(SignupRvDataClass("제주"))
-        TestList.add(SignupRvDataClass("울산"))
-        TestList.add(SignupRvDataClass("인천"))
-        TestList.add(SignupRvDataClass("부산"))
-        TestList.add(SignupRvDataClass("광주"))
-        TestList.add(SignupRvDataClass("수원"))
-
-
-//        recyclerViewState=Rv.layoutManager!!.onSaveInstanceState()!!
-        Rv.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        Rv.adapter=Rv_Adapter
 
         // 리사이클러뷰의 마지막 위치감지를 위한 코드
-        Rv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        (Rv as RecyclerView).addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
@@ -108,8 +102,7 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
         })
 
 
-        binding.signupSecondRv.visibility=View.VISIBLE
-        binding.signupSecondResultNo.visibility=View.INVISIBLE
+
 
         // 현재 위치 받아오는 api
         val mapFragment= requireFragmentManager().findFragmentById(R.id.Map1) as MapFragment?
@@ -151,10 +144,9 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
         binding.signupSecondCurrentLocationFind.setOnClickListener {
             Log.d("Test_coords",Test_coords)
             //Test_coords가 현재 위치이고 이걸 서버쪽에 보내서 주변 반경에 있는 지역을 받으면된다.
-
+            showLoading(requireContext())
             SignupSecondService(this).TryGetLocation(Client_Id,Client_Pw,Test_request,Current_Location,Test_sourcecrs ,Test_output , Test_orders)
 
-            showCustomToast(Test_coords)
 
         }
 
@@ -163,7 +155,11 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
 
 
     override fun TryGetLocationSuccess(response: LocationResponse) {
-        Test_coords=response.results[0].region.area1.name+" "+response.results[0].region.area2.name+" "+response.results[0].region.area3.name
+        Test_coords=response.results[0].region.area3.name
+        Log.d("Arround_Location",Test_coords)
+
+
+        SignupSecondService(this).tryGetAroundLocation(Jwt,Test_coords,TownId)
 
         Log.d("TryGetLocationSuccess",Test_coords)
     }
@@ -172,6 +168,48 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
         if(message!=null) {
             showCustomToast(message)
         }
+
+    }
+
+    override fun TryGetAroundLocationSuccss(response: ArroundLocationResponse) {
+        var location_stream=""
+
+        //받아온 데이터 파싱작업
+        for(i in response.result[0].etc){
+            if(i.toString()=="," || i.toString()==" ") {
+
+                if(location_stream.length!=0) {
+                    TestList.add(SignupRvDataClass(location_stream))
+                    location_stream=""
+                }
+            }
+
+            if(i.toString()!=","&& i.toString()!=" ") {
+                location_stream=location_stream+"$i"
+            }
+        }
+
+        for(i in TestList){
+            Log.d("Arround_Location",i.Location.toString())
+        }
+
+
+
+
+
+        (Rv as RecyclerView).layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        (Rv as RecyclerView).adapter=Rv_Adapter
+
+        binding.signupSecondRv.visibility=View.VISIBLE
+        binding.signupSecondResultNo.visibility=View.INVISIBLE
+
+
+
+        dismissLoading()
+
+    }
+
+    override fun TryGetAroundLocationFailue(message: String) {
 
     }
 

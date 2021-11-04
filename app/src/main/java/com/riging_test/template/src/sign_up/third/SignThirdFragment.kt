@@ -8,6 +8,7 @@ import android.text.Editable
 import android.text.SpannableString
 import android.text.TextWatcher
 import android.text.style.UnderlineSpan
+import android.util.Log
 import android.view.View
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseFragment
@@ -118,7 +119,12 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
 
             //startActivity(Intent(activity,MainActivity::class.java)) // 토큰이 있을 때
             //requireActivity().finish()
-            SignThirdService(this).PostCertification(PostSignUpRequest(phoneNumber=phoneNumber,certificationNum=certificationNum))
+
+            var phone_number=binding.signupThirdEditPhoneNumber.text.toString()
+            var certification_number=binding.signupThirdCertificationNumber.text.toString()
+            phone_number=phone_number.replace(" ","")
+
+            SignThirdService(this).PostCertification(PostSignUpRequest(phoneNumber=phone_number,certificationNum=certification_number))
 
         }
     }

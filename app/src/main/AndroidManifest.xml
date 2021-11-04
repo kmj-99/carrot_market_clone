@@ -52,7 +52,6 @@
         <activity
             android:name=".src.main.MainActivity"
 
-
             />
 
         <!-- search -->
@@ -88,6 +87,8 @@
         <activity
             android:name=".src.product_deal_time_setting.TimeSettingActivity"
             />
+
+
 
         <activity
             android:name=".src.Test_Test"

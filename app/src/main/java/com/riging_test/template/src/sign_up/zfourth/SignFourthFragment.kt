@@ -99,22 +99,27 @@ class SignFourthFragment:
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==REQUEST_CODE){
-            var image=data?.data
-            // 가져온 사진을 이미지뷰에 띄우기 위해서는 비트맵으로 변환하는 과정이 필요함
-            try {
-                var bitmap =
-                    MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, image)
-                Log.d("Profile_Imaga", bitmap.toString())
-                Log.d("Profiloe_Image_Data",image.toString())
-                //saveBitmapToJpeg(bitmap,"profile_image")// 캐시에 이미지를 저장
-                //var read_image=readCache() // 캐시에 이미지가 저장이 되어 있으면 캐시에서 이미지를 가져오는 메서드
+            if(data!=null) {
+                var image = data?.data
+                // 가져온 사진을 이미지뷰에 띄우기 위해서는 비트맵으로 변환하는 과정이 필요함
+                try {
+                    var bitmap =
+                        MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, image)
+                    Log.d("Profile_Imaga", bitmap.toString())
+                    Log.d("Profiloe_Image_Data", image.toString())
+                    //saveBitmapToJpeg(bitmap,"profile_image")// 캐시에 이미지를 저장
+                    //var read_image=readCache() // 캐시에 이미지가 저장이 되어 있으면 캐시에서 이미지를 가져오는 메서드
 
-                Glide.with(requireContext()).load(bitmap).circleCrop().into(Profile_image)
-                binding.signupFourthIconCamara.visibility=View.INVISIBLE
-            }catch (e: IOException){ // 에러가 났을 때 강제로 종료가 되지 않도록 처리
-                e.printStackTrace()
+                    Glide.with(requireContext()).load(bitmap).circleCrop().into(Profile_image)
+                    binding.signupFourthIconCamara.visibility = View.INVISIBLE
+                } catch (e: IOException) { // 에러가 났을 때 강제로 종료가 되지 않도록 처리
+                    e.printStackTrace()
+                }
+            }else{
+                showCustomToast("어떠한 이미지도 선택하지 않으셨습니다")
             }
         }
+
     }
 
     override fun onRequestPermissionsResult(
