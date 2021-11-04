@@ -1,10 +1,9 @@
 package com.riging_test.template.src.sign_up.second
 
-import android.util.Log
 import com.riging_test.template.config.ApplicationClass
-import com.riging_test.template.src.sign_up.second.models.ArroundLocationResponse
+import com.riging_test.template.src.sign_up.second.models.AroundLocationResponse
+import com.riging_test.template.src.sign_up.second.models.ArroundLocationTownId
 import com.riging_test.template.src.sign_up.second.models.LocationResponse
-import com.riging_test.template.src.test.search.models.SearchResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,28 +33,48 @@ class SignupSecondService(val view:SignupSecondFragmentView) {
 
     }
 
-    fun tryGetAroundLocation(Jwt:String,Location:String,TownId:Int){
-        val locationRetrofitInterface= ApplicationClass.sRetrofit.create(SignupSecondArroundLocationInterface::class.java)
-        locationRetrofitInterface.getAroundLocation(Jwt,Location,TownId).enqueue(object:
-            Callback<ArroundLocationResponse> {
+    fun tryGetTownId(City:String,District:String,TownName:String){
+        val locationRetrofitInterface= ApplicationClass.sRetrofit.create(SignupSecondTownIdInterface::class.java)
+        locationRetrofitInterface.getTownId(City,District,TownName).enqueue(object:
+            Callback<ArroundLocationTownId> {
             override fun onResponse(
-                call: Call<ArroundLocationResponse>,
-                response: Response<ArroundLocationResponse>
+                call: Call<ArroundLocationTownId>,
+                response: Response<ArroundLocationTownId>
             ) {
                 if(response.body()!=null) {
-                    view.TryGetAroundLocationSuccss(response.body() as ArroundLocationResponse)
+                    view.TryGetTownIdSuccss(response.body() as ArroundLocationTownId)
                 }
             }
 
-            override fun onFailure(call: Call<ArroundLocationResponse>, t: Throwable) {
-                view.TryGetAroundLocationFailue(t.message?:"통신오류")
+            override fun onFailure(call: Call<ArroundLocationTownId>, t: Throwable) {
+                view.TryGetTownFailue(t.message?:"통신오류")
 
             }
 
 
         })
 
+    }
 
+
+    fun tryGetArroundLocation(TownId:Int){
+
+        val locationRetrofitInterface= ApplicationClass.sRetrofit.create(SignupSecondAroundLocationInterface::class.java)
+        locationRetrofitInterface.getAroundLocation(TownId).enqueue(object:
+            Callback<AroundLocationResponse> {
+            override fun onResponse(
+                call: Call<AroundLocationResponse>,
+                response: Response<AroundLocationResponse>
+            ) {
+
+            }
+
+            override fun onFailure(call: Call<AroundLocationResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+
+        })
 
     }
 }

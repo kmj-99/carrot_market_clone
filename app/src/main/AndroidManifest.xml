@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Template">
         <activity
-            android:name=".src.app_start.StartActivity"
+            android:name=".src.main.MainActivity"
 
             android:exported="true">
             <intent-filter>
@@ -50,7 +50,7 @@
 
         <!-- main -->
         <activity
-            android:name=".src.main.MainActivity"
+            android:name=".src.app_start.StartActivity"
 
             />
 
@@ -76,14 +76,17 @@
         <!-- product_deal -->
         <activity
             android:name=".src.product_deal.ProductDealChatActivity"
+            android:windowSoftInputMode="adjustResize"
+
             />
+
 
         <!-- posting -->
         <activity
             android:name=".src.posting.PostingActivity"
             android:windowSoftInputMode="adjustResize"
             />
-
+        <!-- product_deal_time_setting-->
         <activity
             android:name=".src.product_deal_time_setting.TimeSettingActivity"
             />

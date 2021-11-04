@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/posting_button_back"
                 android:layout_width="30dp"
                 android:layout_height="20dp"
                 android:src="@drawable/left_icon"/>

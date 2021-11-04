@@ -68,6 +68,10 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
             startActivityForResult(image_intent,REQUEST_CODE)
         }
 
+        binding.postingButtonBack.setOnClickListener {
+            finish()
+        }
+
 
     }
 

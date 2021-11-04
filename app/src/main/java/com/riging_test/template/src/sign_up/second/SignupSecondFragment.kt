@@ -1,7 +1,6 @@
 package com.riging_test.template.src.sign_up.second
 
 import android.app.Activity
-import android.app.FragmentManager
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -12,7 +11,6 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.geometry.Tm128
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
@@ -21,11 +19,10 @@ import com.naver.maps.map.util.FusedLocationSource
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentSignupSecondBinding
-import com.riging_test.template.src.sign_up.SignActivity
-import com.riging_test.template.src.sign_up.second.models.ArroundLocationResponse
+import com.riging_test.template.src.sign_up.second.models.AroundLocationResponse
+import com.riging_test.template.src.sign_up.second.models.ArroundLocationTownId
 import com.riging_test.template.src.sign_up.second.models.LocationResponse
 import com.riging_test.template.src.sign_up.third.SignThirdFragment
-import com.riging_test.template.src.test.Test
 
 class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSignupSecondBinding::bind, R.layout.fragment_signup_second),SignupSecondFragmentView {
     private var TestList=ArrayList<SignupRvDataClass>()
@@ -155,11 +152,12 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
 
 
     override fun TryGetLocationSuccess(response: LocationResponse) {
-        Test_coords=response.results[0].region.area3.name
+        Test_coords=response.results[0].region.area1.name+response.results[0].region.area2.name+response.results[0].region.area3.name
         Log.d("Arround_Location",Test_coords)
 
 
-        SignupSecondService(this).tryGetAroundLocation(Jwt,Test_coords,TownId)
+        SignupSecondService(this).tryGetTownId(response.results[0].region.area1.name,
+            response.results[0].region.area2.name,response.results[0].region.area3.name)
 
         Log.d("TryGetLocationSuccess",Test_coords)
     }
@@ -171,31 +169,48 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
 
     }
 
-    override fun TryGetAroundLocationSuccss(response: ArroundLocationResponse) {
+    override fun TryGetTownIdSuccss(response: ArroundLocationTownId) {
+        SignupSecondService(this).tryGetArroundLocation(response.result)
+
+    }
+
+    override fun TryGetTownFailue(message: String) {
+
+    }
+
+
+    override fun TryGetAroundLocationSuccss(response: AroundLocationResponse){
+
         var location_stream=""
 
         //받아온 데이터 파싱작업
-        for(i in response.result[0].etc){
-            if(i.toString()=="," || i.toString()==" ") {
+        for(j in 0 until response.result.size) {
+            var City= response.result[j].city
+            var District=response.result[j].district
+            var TownName=response.result[j].townName
 
-                if(location_stream.length!=0) {
-                    TestList.add(SignupRvDataClass(location_stream))
-                    location_stream=""
-                }
-            }
 
-            if(i.toString()!=","&& i.toString()!=" ") {
-                location_stream=location_stream+"$i"
-            }
         }
 
         for(i in TestList){
             Log.d("Arround_Location",i.Location.toString())
         }
 
-
-
-
+        //etc 파싱 코드
+        //for (i in response.result[0].etc) {
+        //    if (i.toString() == "," || i.toString() == " ") {
+//
+        //        if (location_stream.length != 0) {
+        //            TestList.add(SignupRvDataClass(location_stream))
+        //            location_stream = ""
+        //        }
+        //    }
+//
+        //    if (i.toString() != "," && i.toString() != " ") {
+        //        location_stream = location_stream + "$i"
+        //    }
+        //}
+//
 
         (Rv as RecyclerView).layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         (Rv as RecyclerView).adapter=Rv_Adapter
@@ -208,9 +223,9 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
         dismissLoading()
 
     }
-
-    override fun TryGetAroundLocationFailue(message: String) {
+    override fun TryGetAroundLocationFailue(message: String){
 
     }
+
 
 }
