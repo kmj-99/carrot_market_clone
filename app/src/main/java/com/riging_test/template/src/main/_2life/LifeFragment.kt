@@ -17,6 +17,7 @@ import com.riging_test.template.src.main._2life.Rv1.LifeKeywordAdapter
 import com.riging_test.template.src.main._2life.Rv1.LifeKeywordDataClass
 import com.riging_test.template.src.main._2life.Rv2.LifePostingAdapter
 import com.riging_test.template.src.main._2life.Rv2.LifePostingDataClass
+import com.riging_test.template.src.search.SearchActivity
 
 class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind, R.layout.fragment_life) {
     private var TestItemList=ArrayList<LifeKeywordDataClass>()
@@ -139,6 +140,10 @@ class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind,
 
         binding.lifeButtonWriting.setOnClickListener {
             startActivity(Intent(requireActivity(),LifePostingActivity::class.java))
+        }
+
+        binding.lifeSearch.setOnClickListener {
+            startActivity(Intent(requireActivity(),SearchActivity::class.java))
         }
     }
 }

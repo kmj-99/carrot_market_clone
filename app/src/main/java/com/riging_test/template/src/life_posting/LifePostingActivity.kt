@@ -11,6 +11,7 @@ import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityLifePostingBinding
 import com.riging_test.template.src.life_posting.Rv.LifePostingAdapter
 import com.riging_test.template.src.life_posting.Rv.LifePostingDataClass
+import com.riging_test.template.src.life_posting_topics.LifePostingTopicsActivity
 
 class LifePostingActivity: BaseActivity<ActivityLifePostingBinding>(ActivityLifePostingBinding::inflate) {
     private var ImageList=ArrayList<LifePostingDataClass>()
@@ -34,6 +35,12 @@ class LifePostingActivity: BaseActivity<ActivityLifePostingBinding>(ActivityLife
 
         binding.lifePostingImageLocation.setOnClickListener {
             showCustomToast("아직 구현 안함")
+        }
+
+        binding.lifePostingLayoutTopic.setOnClickListener {
+            startActivity(Intent(this,LifePostingTopicsActivity::class.java))
+
+
         }
 
     }

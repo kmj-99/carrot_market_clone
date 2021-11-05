@@ -97,6 +97,11 @@
             android:windowSoftInputMode="adjustResize"
             />
 
+        <!-- life_posting_topics-->
+        <activity
+            android:name=".src.life_posting_topics.LifePostingTopicsActivity"
+            />
+
 
         <activity
             android:name=".src.Test_Test"
