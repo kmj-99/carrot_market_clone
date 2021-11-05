@@ -138,12 +138,14 @@
                        app:layout_constraintBottom_toBottomOf="parent">
 
                        <TextView
+                           android:id="@+id/product_text_nickname"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="써니"
                            android:textColor="@color/black"
                            android:textStyle="bold"/>
                        <TextView
+                           android:id="@+id/product_text_location"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_marginTop="3dp"
@@ -513,6 +515,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical">
             <TextView
+                android:id="@+id/product_text_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="200,000원"

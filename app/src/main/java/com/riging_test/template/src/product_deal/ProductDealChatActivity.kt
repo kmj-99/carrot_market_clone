@@ -3,17 +3,13 @@ package com.riging_test.template.src.product_deal
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuInflater
-import android.view.WindowManager
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseActivity
-import com.riging_test.template.databinding.ActivityProductBinding
 import com.riging_test.template.databinding.ActivityProductDealBinding
-import com.riging_test.template.src.AndroidBug5497Workaround
 import com.riging_test.template.src.product_deal.Rv.ProductDealAdapter
 import com.riging_test.template.src.product_deal.Rv.ProductDealDataClass
 import com.riging_test.template.src.product_deal.Rv.ViewType
@@ -39,6 +35,13 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //AndroidBug5497Workaround().assistActivity(this)
+
+        val NickName=intent.getStringExtra("NickName")
+        val Price=intent.getStringExtra("Price")
+
+        binding.productDealTextNickname.text=NickName
+        binding.productDealTextPrice.text=Price
+
 
 
         var calender=Calendar.getInstance()

@@ -41,8 +41,9 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
     private val Test_output="json"
     private val Test_orders="legalcode"
 
-    private val Jwt="eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjIxLCJpYXQiOjE2MzU5NTUyMDQsImV4cCI6MTYzNzQyNjQzM30.ZLVXRR6MZO3d9P0oyWMXJnPhdQ-H9xyGHwfCsgT-vZI"
-    private val TownId=5200
+    //private val Jwt="eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjIxLCJpYXQiOjE2MzU5NTUyMDQsImV4cCI6MTYzNzQyNjQzM30.ZLVXRR6MZO3d9P0oyWMXJnPhdQ-H9xyGHwfCsgT-vZI"
+    private var TownId=0
+    private var PasingNumber=0
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -66,7 +67,7 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
         binding.signupSecondRv.visibility=View.INVISIBLE
 
 
-
+        val view_=this  //리사이클러뷰에 현재 activity에 정보를 담아야 하는데 addOnScrollListener에
         // 리사이클러뷰의 마지막 위치감지를 위한 코드
         (Rv as RecyclerView).addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -76,6 +77,8 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
                 var itemTotalCount = recyclerView.getAdapter()!!.getItemCount() - 1;
 
                 if(lastVisibleItemPosition==itemTotalCount){
+                    showLoading(requireContext())
+                    SignupSecondService(view_).tryGetAroundLocation(TownId)
                     showCustomToast("Last")
                 }
 
@@ -142,7 +145,12 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
             Log.d("Test_coords",Test_coords)
             //Test_coords가 현재 위치이고 이걸 서버쪽에 보내서 주변 반경에 있는 지역을 받으면된다.
             showLoading(requireContext())
-            SignupSecondService(this).TryGetLocation(Client_Id,Client_Pw,Test_request,Current_Location,Test_sourcecrs ,Test_output , Test_orders)
+
+            if(TownId==0){
+                SignupSecondService(this).TryGetLocation(Client_Id,Client_Pw,Test_request,Current_Location,Test_sourcecrs ,Test_output , Test_orders)
+            }else{
+                SignupSecondService(this).tryGetAroundLocation(TownId)
+            }
 
 
         }
@@ -153,7 +161,6 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
 
     override fun TryGetLocationSuccess(response: LocationResponse) {
         Test_coords=response.results[0].region.area1.name+response.results[0].region.area2.name+response.results[0].region.area3.name
-        Log.d("Arround_Location",Test_coords)
 
 
         SignupSecondService(this).tryGetTownId(response.results[0].region.area1.name,
@@ -170,7 +177,9 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
     }
 
     override fun TryGetTownIdSuccss(response: ArroundLocationTownId) {
-        SignupSecondService(this).tryGetArroundLocation(response.result)
+        Log.d("TownId",response.result.toString())
+        TownId=response.result
+        SignupSecondService(this).tryGetAroundLocation(response.result)
 
     }
 
@@ -182,39 +191,45 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
     override fun TryGetAroundLocationSuccss(response: AroundLocationResponse){
 
         var location_stream=""
+        Log.d("Coount","${response.result.size}")
 
         //받아온 데이터 파싱작업
-        for(j in 0 until response.result.size) {
+        for(j in PasingNumber until PasingNumber+10) {
             var City= response.result[j].city
             var District=response.result[j].district
             var TownName=response.result[j].townName
+            TestList.add(SignupRvDataClass("$City $District $TownName"))
+
+            if(response.result[j].etc!=null){
+                //etc 파싱 코드
+                for (i in response.result[j].etc) {
+                    if (i.toString() == "," || i.toString() == " ") {
+
+                        if (location_stream.length != 0) {
+                            TestList.add(SignupRvDataClass("$City $District $TownName $location_stream"))
+                            location_stream = ""
+                        }
+                    }
+
+                    if (i.toString() != "," && i.toString() != " ") {
+                        location_stream = location_stream + "$i"
+                    }
+                }
+            }
 
 
         }
 
         for(i in TestList){
-            Log.d("Arround_Location",i.Location.toString())
+            Log.d("Around_Location",i.Location.toString())
         }
 
-        //etc 파싱 코드
-        //for (i in response.result[0].etc) {
-        //    if (i.toString() == "," || i.toString() == " ") {
-//
-        //        if (location_stream.length != 0) {
-        //            TestList.add(SignupRvDataClass(location_stream))
-        //            location_stream = ""
-        //        }
-        //    }
-//
-        //    if (i.toString() != "," && i.toString() != " ") {
-        //        location_stream = location_stream + "$i"
-        //    }
-        //}
-//
 
+        PasingNumber+=10
         (Rv as RecyclerView).layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         (Rv as RecyclerView).adapter=Rv_Adapter
 
+        (Rv as RecyclerView).scrollToPosition(Rv_Adapter.itemCount-24)
         binding.signupSecondRv.visibility=View.VISIBLE
         binding.signupSecondResultNo.visibility=View.INVISIBLE
 

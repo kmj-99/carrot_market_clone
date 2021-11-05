@@ -54,7 +54,7 @@ class HomeAdapter(val context: Context,val ItemList:ArrayList<HomeDataClass>): R
 
         fun bind(context:Context,Item:HomeDataClass){
             Glide.with(context).load(Item.ImageUrl).into(Image)
-            Name.text=Item.Name
+            Name.text=Item.Title
             Location.text=Item.Location
             Time.text=Item.Time.toString()
             Price.text=Item.Price

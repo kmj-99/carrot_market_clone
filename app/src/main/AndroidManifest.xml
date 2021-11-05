@@ -91,6 +91,11 @@
             android:name=".src.product_deal_time_setting.TimeSettingActivity"
             />
 
+        <!-- life_posting-->
+        <activity
+            android:name=".src.life_posting.LifePostingActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
 
 
         <activity

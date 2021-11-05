@@ -34,10 +34,21 @@ class SignFourthFragment:
     private val REQUEST_CODE=1001
     private val REQUEST_EXTERNAL_STORAGE_PERMISSION=1002
 
+    private lateinit var current_location:String
+    private lateinit var phoneNumber:String
+
     private lateinit var Profile_image: ImageView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        phoneNumber=arguments?.getString("phoneNumber")!!
+        current_location=arguments?.getString("location")!!
+
+        showCustomToast(phoneNumber+current_location)
+
+
+
 
 
         Profile_image=binding.signupFourthImageProfile

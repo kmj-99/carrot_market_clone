@@ -57,7 +57,7 @@ class SignupSecondService(val view:SignupSecondFragmentView) {
     }
 
 
-    fun tryGetArroundLocation(TownId:Int){
+    fun tryGetAroundLocation(TownId:Int){
 
         val locationRetrofitInterface= ApplicationClass.sRetrofit.create(SignupSecondAroundLocationInterface::class.java)
         locationRetrofitInterface.getAroundLocation(TownId).enqueue(object:
@@ -66,11 +66,11 @@ class SignupSecondService(val view:SignupSecondFragmentView) {
                 call: Call<AroundLocationResponse>,
                 response: Response<AroundLocationResponse>
             ) {
-
+                    view.TryGetAroundLocationSuccss(response.body() as AroundLocationResponse)
             }
 
             override fun onFailure(call: Call<AroundLocationResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                view.TryGetAroundLocationFailue(t.message?:"통신오류")
             }
 
 

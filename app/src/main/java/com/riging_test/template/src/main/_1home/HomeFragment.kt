@@ -20,6 +20,7 @@ import com.riging_test.template.src.main._1home.Rv.HomeAdapter
 import com.riging_test.template.src.main._1home.Rv.HomeDataClass
 import com.riging_test.template.src.posting.PostingActivity
 import com.riging_test.template.src.search.SearchActivity
+import com.riging_test.template.src.test.Test
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
     private var TestItemList=ArrayList<HomeDataClass>()
@@ -39,6 +40,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         var fab_open=AnimationUtils.loadAnimation(requireContext(),R.anim.fab_open)
         var fab_close=AnimationUtils.loadAnimation(requireContext(),R.anim.fab_close)
 
+
         var icon_down=AnimationUtils.loadAnimation(requireContext(),R.anim.icon_rotate_down)
         var icon_up=AnimationUtils.loadAnimation(requireContext(),R.anim.icon_rotate_up)
         icon_up.fillAfter=true
@@ -51,7 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
 
         for(i in 0..10) {
-            TestItemList.add(HomeDataClass(null, "Rocky$i", "서울$i", i, "30,000", i, i))
+            TestItemList.add(HomeDataClass(R.drawable.bottom_icon, "Rocky$i", "서울$i", i, "12,000", i, i))
         }
         binding.homeRv.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
@@ -105,11 +107,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         Home_Rv_Adapter.setItemClickListener(object: HomeAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
+                var Product_Intent=Intent(requireActivity(),ProductActivity::class.java)
 
-                var bundle=Bundle()
-                bundle.putString("Location",TestItemList[position].Location.toString())
+                Product_Intent.putExtra("Location",TestItemList[position].Location.toString())
+                Product_Intent.putExtra("Title",TestItemList[position].Title.toString())
+                Product_Intent.putExtra("Image",TestItemList[position].ImageUrl)
+                Product_Intent.putExtra("Price",TestItemList[position].Price)
 
-                startActivity(Intent(requireActivity(), ProductActivity::class.java))
+
+                startActivity(Product_Intent)
 
             }
 

@@ -1,7 +1,6 @@
 package com.riging_test.template.src.product_deal.Rv
 
 import android.content.Context
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

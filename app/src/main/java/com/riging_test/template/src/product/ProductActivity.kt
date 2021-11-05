@@ -34,7 +34,15 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Glide.with(this).load(R.drawable.test_image).centerCrop().into(binding.productProductImage)
+        val Current_location=intent.getStringExtra("Location")
+        val Name=intent.getStringExtra("Name")
+        val image=intent.getIntExtra("Image",R.drawable.carrot_image)
+        val Price=intent.getStringExtra("Price")
+
+        binding.productTextLocation.text=Current_location
+        binding.productTextTitle.text=Name
+        binding.productTextPrice.text=Price
+        Glide.with(this).load(image).centerCrop().into(binding.productProductImage)
 
         for(i in 1..4) {
             TestItemList.add(ProductRvDataClass(R.drawable.test_image, "Rocky$i", "$i,000원"))
@@ -83,7 +91,16 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
         }
 
         binding.productButtonDeal.setOnClickListener {
-            startActivity(Intent(this, ProductDealChatActivity::class.java))
+            var ProductDealChat_Intent=Intent(this,ProductDealChatActivity::class.java)
+
+            val Price=binding.productTextPrice.text
+            val NickName=binding.productTextNickname.text
+
+            ProductDealChat_Intent.putExtra("Price",Price)
+            ProductDealChat_Intent.putExtra("NickName",NickName)
+
+
+            startActivity(ProductDealChat_Intent)
         }
 
 

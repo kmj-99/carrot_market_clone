@@ -162,7 +162,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
                 android:inputType="number"
-                android:maxLength="5"
+                android:maxLength="6"
                 app:layout_constraintTop_toBottomOf="@id/signup_third_info"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>

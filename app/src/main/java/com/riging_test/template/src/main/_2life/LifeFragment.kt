@@ -1,5 +1,6 @@
 package com.riging_test.template.src.main._2life
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentLifeBinding
+import com.riging_test.template.src.life_posting.LifePostingActivity
 import com.riging_test.template.src.main._2life.Rv1.LifeKeywordAdapter
 import com.riging_test.template.src.main._2life.Rv1.LifeKeywordDataClass
 import com.riging_test.template.src.main._2life.Rv2.LifePostingAdapter
@@ -36,9 +38,24 @@ class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind,
 
 
         TestItemList.add(LifeKeywordDataClass(R.drawable.share_icon,null))
-        for(i in 0..10) {
-            TestItemList.add(LifeKeywordDataClass(null, "TestKeyword$i"))
-        }
+
+        TestItemList.add(LifeKeywordDataClass(null, "우리동네질문"))
+        TestItemList.add(LifeKeywordDataClass(null, "동네맛짐"))
+        TestItemList.add(LifeKeywordDataClass(null, "해주세요"))
+        TestItemList.add(LifeKeywordDataClass(null, "동네소식"))
+        TestItemList.add(LifeKeywordDataClass(null, "분실/실종센터"))
+        TestItemList.add(LifeKeywordDataClass(null, "동네사건사고"))
+        TestItemList.add(LifeKeywordDataClass(null, "일상"))
+        TestItemList.add(LifeKeywordDataClass(null, "취미생활"))
+        TestItemList.add(LifeKeywordDataClass(null, "고양이"))
+        TestItemList.add(LifeKeywordDataClass(null, "강아지"))
+        TestItemList.add(LifeKeywordDataClass(null, "건강"))
+        TestItemList.add(LifeKeywordDataClass(null, "살림"))
+        TestItemList.add(LifeKeywordDataClass(null, "인테리어"))
+        TestItemList.add(LifeKeywordDataClass(null, "교육/학원"))
+        TestItemList.add(LifeKeywordDataClass(null, "동네사진전"))
+        TestItemList.add(LifeKeywordDataClass(null, "출산/육아"))
+        TestItemList.add(LifeKeywordDataClass(null, "기타"))
 
         binding.lifeRv1.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         binding.lifeRv1.adapter= LifeKeywordAdapter(requireContext(),TestItemList)
@@ -118,6 +135,10 @@ class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind,
             }
             popupMenu.show()
 
+        }
+
+        binding.lifeButtonWriting.setOnClickListener {
+            startActivity(Intent(requireActivity(),LifePostingActivity::class.java))
         }
     }
 }
