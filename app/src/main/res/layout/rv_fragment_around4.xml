@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="260dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="270dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="10dp"
+        android:elevation="2dp"
+        android:background="@drawable/layout_custom2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <LinearLayout
+            android:id="@+id/Around_Rv4_Layout_Image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+            <ImageView
+                android:id="@+id/Around_Rv4_ProductImage1"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:src="@drawable/test_image"
+                />
+            <ImageView
+                android:id="@+id/Around_Rv4_ProductImage2"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_marginLeft="2dp"
+                android:src="@drawable/test_image"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/Around_Rv4_Text_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="궁사부"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/Around_Rv4_Layout_Image"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+        <TextView
+            android:id="@+id/Around_Rv4_Text_Content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="하루 2-3마리의 슈페리얼 등급 연어를 직.."
+            android:textColor="@color/black"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/Around_Rv4_Text_Name"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Around_Rv4_Layout_Info"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/Around_Rv4_Text_Content"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+            <TextView
+                android:id="@+id/Around_Rv4_Text_Comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="후기"
+                android:textColor="@color/carrot_color"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                android:id="@+id/Around_Rv4_Text_Comment_Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:textColor="@color/carrot_color"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/Around_Rv4_Text_Comment"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                android:id="@+id/Around_Rv4_Text_Custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="단골"
+                app:layout_constraintRight_toLeftOf="@+id/Around_Rv4_Text_Custom_Number"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                android:id="@+id/Around_Rv4_Text_Custom_Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="187"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/Around_Rv4_Text_Other_Comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_custom"
+            android:padding="10dp"
+            android:layout_marginTop="5dp"
+            android:text="쇼핑퀸미세스초이 아이들이 우동을 \n 좋아하는데"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintTop_toBottomOf="@+id/Around_Rv4_Layout_Info"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

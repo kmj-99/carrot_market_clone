@@ -49,5 +49,10 @@ class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotB
         binding.myCarrotRv4.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.myCarrotRv4.adapter=MyCarrotAdapter(requireContext(),TestList4)
 
+
+        binding.myCarrotLayoutProfile.setOnClickListener {
+
+        }
+
     }
 }

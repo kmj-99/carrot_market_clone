@@ -13,4 +13,6 @@
     <color name="dark_gray">#FF4D515A</color>
     <color name="edit_drag_color">#FFFECBAE</color>
     <color name="green">#FF38B24D</color>
+    <color name="beads_background">#FFECF7FB</color>
+    <color name="beads_text">#FF1983AA</color>
 </resources>

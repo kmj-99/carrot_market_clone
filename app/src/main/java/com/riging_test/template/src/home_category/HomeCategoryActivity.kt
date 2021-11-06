@@ -1,9 +1,12 @@
 package com.riging_test.template.src.home_category
 
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityHomeCategoryBinding
+import com.riging_test.template.src.home_category.Rv.HomeCategoryAdpater
 import com.riging_test.template.src.home_category.Rv.HomeCategoryDataClass
 
 class HomeCategoryActivity: BaseActivity<ActivityHomeCategoryBinding>(ActivityHomeCategoryBinding::inflate) {
@@ -19,6 +22,10 @@ class HomeCategoryActivity: BaseActivity<ActivityHomeCategoryBinding>(ActivityHo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        init()
+        binding.homeCategoryRv.layoutManager=GridLayoutManager(this,3,LinearLayoutManager.VERTICAL,false)
+        binding.homeCategoryRv.adapter=HomeCategoryAdpater(this,CategoryList)
+
 
 
 
@@ -27,7 +34,7 @@ class HomeCategoryActivity: BaseActivity<ActivityHomeCategoryBinding>(ActivityHo
 
     fun init(){
         CategoryList.add(HomeCategoryDataClass(R.drawable.category_tv_icon,"디지털기기"))
-        CategoryList.add(HomeCategoryDataClass(R.drawable.category_favorite_Icon,"인기매물"))
+        CategoryList.add(HomeCategoryDataClass(R.drawable.category_star_icon,"인기매물"))
         CategoryList.add(HomeCategoryDataClass(R.drawable.category_life_product_icon,"생활가전"))
         CategoryList.add(HomeCategoryDataClass(R.drawable.interior_icon,"가구/인테리어"))
         CategoryList.add(HomeCategoryDataClass(R.drawable.category_chid_icon,"유아동"))

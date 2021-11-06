@@ -18,11 +18,11 @@ class HomeCategoryAdpater(val context: Context, var ItemList:ArrayList<HomeCateg
     }
 
     override fun onBindViewHolder(holder: HomeCategoryViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(context,ItemList[position])
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return ItemList.size
     }
 
     inner class HomeCategoryViewHolder(ItemView: View):RecyclerView.ViewHolder(ItemView){
