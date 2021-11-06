@@ -102,6 +102,11 @@
             android:name=".src.life_posting_topics.LifePostingTopicsActivity"
             />
 
+        <!-- my_profile-->
+        <activity
+            android:name=".src.my_profile.MyProfileActivity"
+            />
+
 
         <activity
             android:name=".src.Test_Test"

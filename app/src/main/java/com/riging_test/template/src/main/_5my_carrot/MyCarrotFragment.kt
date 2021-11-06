@@ -1,5 +1,6 @@
 package com.riging_test.template.src.main._5my_carrot
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +11,7 @@ import com.riging_test.template.databinding.FragmentMyCarrotBinding
 import com.riging_test.template.src.main._5my_carrot.Rv.MyCarrotAdapter
 import com.riging_test.template.src.main._5my_carrot.Rv.MyCarrotDataClass
 import com.riging_test.template.src.main._5my_carrot.Rv.MyCarrotViewType
+import com.riging_test.template.src.my_profile.MyProfileActivity
 import kotlinx.android.synthetic.main.fragment_signup_second.*
 
 class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotBinding::bind, R.layout.fragment_my_carrot){
@@ -51,6 +53,7 @@ class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotB
 
 
         binding.myCarrotLayoutProfile.setOnClickListener {
+            startActivity(Intent(requireActivity(),MyProfileActivity::class.java))
 
         }
 

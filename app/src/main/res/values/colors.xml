@@ -11,6 +11,7 @@
     <color name="light_gray">#FFDDDEE0</color>
     <color name="light_light_gray">#F2F3F7</color>
     <color name="dark_gray">#FF4D515A</color>
+    <color name="gray">#6D6E70</color>
     <color name="edit_drag_color">#FFFECBAE</color>
     <color name="green">#FF38B24D</color>
     <color name="beads_background">#FFECF7FB</color>
