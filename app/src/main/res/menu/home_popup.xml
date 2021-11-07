@@ -9,6 +9,7 @@
     <item
         android:id="@+id/menu_home_location_add"
         android:title="내 동네 설정"
+
         />
 
 </menu>

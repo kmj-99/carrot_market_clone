@@ -3,15 +3,9 @@ package com.riging_test.template.src.product_deal_time_setting
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.view.View
-import android.widget.TimePicker
 import com.riging_test.template.config.BaseActivity
-import com.riging_test.template.databinding.ActivityProductDealBinding
 import com.riging_test.template.databinding.ActivityTimeSettingBinding
-import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import com.riging_test.template.R
-import com.riging_test.template.src.main._home.HomeFragment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

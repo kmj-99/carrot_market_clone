@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/my_location_setting_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="bottom"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+
+
+            <ImageView
+                android:id="@+id/my_location_setting_back"
+                android:layout_width="25dp"
+                android:layout_height="50dp"
+                android:src="@drawable/left_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="내 동네 설정"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:id="@+id/my_location_setting_layout_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintTop_toBottomOf="@+id/my_location_setting_app_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="동네 선택"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="지역은 최소 1개 이상 최대 2개까지 설정 가능해요"/>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_location_setting_layout_locations"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintTop_toBottomOf="@+id/my_location_setting_layout_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_location_setting_layout_name1"
+            android:layout_width="190dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingHorizontal="10dp"
+            android:background="@drawable/my_location_setting_button_shape"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <TextView
+                android:id="@+id/my_location_setting_text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="소흘읍"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:id="@+id/my_location_setting_button_delete"
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:src="@drawable/my_location_setting_select_x_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <FrameLayout
+            android:layout_width="190dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/my_location_setting_button_shape"
+                android:paddingHorizontal="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/my_location_setting_text_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="소흘읍"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:id="@+id/my_location_setting_button_delete2"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/my_location_setting_select_x_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/my_location_setting_line1"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/light_light_gray"
+        android:layout_marginTop="10dp"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintTop_toBottomOf="@+id/my_location_setting_layout_locations"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/my_location_setting_layout_around_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_location_setting_line1">
+
+        <TextView
+            android:id="@+id/my_location_setting_text_major_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="소흘읍과"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="19sp"/>
+
+        <TextView
+            android:id="@+id/my_location_setting_text_around_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="근처 동내 22개"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="19sp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/my_location_setting_text_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="선택한 범위의 게시글만 볼 수 있어요."
+        app:layout_constraintTop_toBottomOf="@+id/my_location_setting_layout_around_location"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <SeekBar
+        android:id="@+id/my_location_setting_seekbar"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:progressDrawable="@drawable/seekbar_progress"
+        android:thumb="@drawable/seekbar_thumbs_icon"
+        app:layout_constraintWidth_percent="0.94"
+        app:layout_constraintTop_toBottomOf="@+id/my_location_setting_text_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

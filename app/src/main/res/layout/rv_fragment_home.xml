@@ -77,6 +77,7 @@
                 android:id="@+id/Rv_Home_ChatLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="20dp"

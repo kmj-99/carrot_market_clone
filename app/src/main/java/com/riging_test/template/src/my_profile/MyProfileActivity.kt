@@ -22,6 +22,9 @@ class MyProfileActivity: BaseActivity<ActivityMyProfileBinding>(ActivityMyProfil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val nickName=intent.getStringExtra("NickName")
+        binding.myProfileTextName.text=nickName
+
 
         for(i in CategoryList){
             Log.d("CategoryList","$i")

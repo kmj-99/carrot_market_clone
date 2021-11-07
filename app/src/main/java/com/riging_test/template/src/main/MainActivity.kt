@@ -9,14 +9,18 @@ import com.riging_test.template.src.main._2life.LifeFragment
 import com.riging_test.template.src.main._3around.AroundFragment
 import com.riging_test.template.src.main._4chat.ChatFragment
 import com.riging_test.template.src.main._5my_carrot.MyCarrotFragment
-import com.riging_test.template.src.main._home.HomeFragment
+import com.riging_test.template.src.main._1home.HomeFragment
 import com.riging_test.template.src.test.grow.GrowFragment
-import com.riging_test.template.src.test.image_search.ImageSearchFragment
-import com.riging_test.template.src.test.search.SearchFragment
 import android.view.Menu as Menu
 
 class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var menu:Menu
+
+
+
+    private var myCarrotFragment=MyCarrotFragment()
+
+    private var send=false
 
     override fun onStart() {
         super.onStart()
@@ -25,8 +29,19 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var nickName=intent.getStringExtra("NickName")
+        var phoneNumber=intent.getStringExtra("PhoneNumber")
+        var location=intent.getStringExtra("Location")
+        var profile_Image=intent.getStringExtra("Profile_Image")
+
+        showCustomToast(nickName+phoneNumber+location)
+
+
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, HomeFragment())
             .commitAllowingStateLoss()
@@ -109,10 +124,22 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
                         return@OnNavigationItemSelectedListener true
 
                     }
+
                     R.id.menu_main_button_my_carrot -> {
+                        if(send) {
+                            var bundle = Bundle()
+                            bundle.putString("NickName", nickName)
+                            bundle.putString("PhoneNumber", phoneNumber)
+                            bundle.putString("Location", location)
+                            bundle.putString("ProfileImage", profile_Image)
+
+                            myCarrotFragment = MyCarrotFragment()
+                            myCarrotFragment.arguments = bundle
+                            send=true
+                        }
 
                         supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_container, MyCarrotFragment())
+                            .replace(R.id.main_container, myCarrotFragment)
                             .commitAllowingStateLoss()
 
                         item.setIcon(R.drawable.select_my_carrot)

@@ -39,11 +39,14 @@ class SignFourthFragment:
 
     private lateinit var Profile_image: ImageView
 
+
+    private val Test_Image_Url="http://post.phinf.naver.net/MjAyMTA5MDJfMjg3/MDAxNjMwNTYyNjc3OTUx.eUoey7erD2ZlW6TfA5sHseMrfjMhBAMY2cDTbsnjyJYg.I9R1N3Qithxv-x2qjacdRW1Qwixg953FZLlHjASgNcwg.JPEG/I3YZLE8p_1d-lCGeU8Ijzg1Ry9YU.jpg"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         phoneNumber=arguments?.getString("phoneNumber")!!
         current_location=arguments?.getString("location")!!
+
 
         showCustomToast(phoneNumber+current_location)
 
@@ -75,10 +78,14 @@ class SignFourthFragment:
         })
 
         binding.signupFourthButtonNext.setOnClickListener {
-            var name=binding.signupFourthEditNickname
+            var Main_Intent=Intent(activity,MainActivity::class.java)
+            var NickName=binding.signupFourthEditNickname.text.toString()
+            Main_Intent.putExtra("NickName",NickName)
+            Main_Intent.putExtra("PhoneNumber",phoneNumber)
+            Main_Intent.putExtra("Location",current_location)
+            Main_Intent.putExtra("Profile_Image",Test_Image_Url)
 
-
-            startActivity(Intent(activity, MainActivity::class.java))
+            startActivity(Main_Intent)
             requireActivity().finish()
 
         }

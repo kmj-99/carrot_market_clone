@@ -107,6 +107,10 @@
             android:name=".src.my_profile.MyProfileActivity"
             />
 
+        <!-- my_carrot_sales_history-->
+        <activity
+            android:name=".src.my_carrot_sales_history.SalesHistoryActivity"
+            />
 
         <activity
             android:name=".src.Test_Test"

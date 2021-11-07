@@ -15,9 +15,11 @@ import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityPostingBinding
 import com.riging_test.template.src.posting.Rv.PostingImageAdapter
 import com.riging_test.template.src.posting.Rv.PostingImageDataClass
+import com.riging_test.template.src.posting.models.PostingRequest
+import com.riging_test.template.src.posting.models.PostingResponse
 import com.riging_test.template.src.sign_up.second.SignupRvAdapter
 
-class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBinding::inflate) {
+class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBinding::inflate),PostingActivityView {
     private var REQUEST_CODE=2222
 
     private var ImageList=ArrayList<PostingImageDataClass>()
@@ -72,6 +74,11 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
             finish()
         }
 
+        binding.postingButtonFinish.setOnClickListener {
+            PostingService(this).TryPostPoting(PostingRequest(userId = 20,townId = 3919,title="abc",
+            categoryId = 1,cost = 500,content = "abc"))
+        }
+
 
     }
 
@@ -115,6 +122,20 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
 
             }
         }
+    }
+
+    override fun TryPostPostingSuccess(response: PostingResponse) {
+        if(response.code==1000) {
+            showCustomToast("게시물 추가가 되었습니다.")
+        }else{
+            showCustomToast("알수없는 오류가 발생했습니다.")
+        }
+
+    }
+
+    override fun TryPostPostingFailue(message: String) {
+        showCustomToast(message)
+
     }
 
 
