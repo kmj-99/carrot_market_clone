@@ -112,6 +112,11 @@
             android:name=".src.my_carrot_sales_history.SalesHistoryActivity"
             />
 
+        <!--my_location_setting-->
+        <activity
+            android:name=".src.my_location_setting.MyLocationSettingAcvitiy"
+            />
+
         <activity
             android:name=".src.Test_Test"
             />

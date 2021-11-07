@@ -1,15 +1,45 @@
 {
   "project_info": {
     "project_number": "503148629905",
+    "firebase_url": "https://riging-751d4-default-rtdb.firebaseio.com",
     "project_id": "riging-751d4",
     "storage_bucket": "riging-751d4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:503148629905:android:7ea7f770e36ae20086d430",
+        "mobilesdk_app_id": "1:503148629905:android:3756dbc2f1e1b84086d430",
         "android_client_info": {
-          "package_name": "com.riging_test.template.src.test"
+          "package_name": "com.riging_test.template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503148629905-41vuvjvgrq5jcanci5hbesm9v1s84gbg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDehk8aviwh85mmuKvhSlMrxR-Xo80g-bs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503148629905-41vuvjvgrq5jcanci5hbesm9v1s84gbg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503148629905:android:e742bf6d9a48018b86d430",
+        "android_client_info": {
+          "package_name": "com.riging_test.test_firbase"
         }
       },
       "oauth_client": [

@@ -1,7 +1,10 @@
 package com.riging_test.template.src.main
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityMainBinding
@@ -16,7 +19,8 @@ import android.view.Menu as Menu
 class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var menu:Menu
 
-
+    private lateinit var storage: FirebaseStorage
+    private lateinit var storageRef: StorageReference
 
     private var myCarrotFragment=MyCarrotFragment()
 
@@ -33,12 +37,17 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        storage= FirebaseStorage.getInstance("gs://riging-751d4.appspot.com")
+        storageRef=storage.getReference()
+
         var nickName=intent.getStringExtra("NickName")
         var phoneNumber=intent.getStringExtra("PhoneNumber")
         var location=intent.getStringExtra("Location")
-        var profile_Image=intent.getStringExtra("Profile_Image")
+        var profile_Image=storageRef.child("profile_image/profile1").toString()
 
-        showCustomToast(nickName+phoneNumber+location)
+
+        showCustomToast(nickName+phoneNumber+location+profile_Image)
 
 
 

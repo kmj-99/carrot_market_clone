@@ -17,6 +17,7 @@ import com.riging_test.template.src.home_category.HomeCategoryActivity
 import com.riging_test.template.src.product.ProductActivity
 import com.riging_test.template.src.main._1home.Rv.HomeAdapter
 import com.riging_test.template.src.main._1home.Rv.HomeDataClass
+import com.riging_test.template.src.my_location_setting.MyLocationSettingAcvitiy
 import com.riging_test.template.src.posting.PostingActivity
 import com.riging_test.template.src.search.SearchActivity
 
@@ -146,7 +147,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
                         showCustomToast("${item.itemId}")
                     }
                     R.id.menu_home_location_add ->{
-                        startActivity(Intent())
+                        startActivity(Intent(requireContext(),MyLocationSettingAcvitiy::class.java))
 
                     }
 

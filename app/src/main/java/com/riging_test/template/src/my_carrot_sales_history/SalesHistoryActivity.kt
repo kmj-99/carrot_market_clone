@@ -1,7 +1,9 @@
 package com.riging_test.template.src.my_carrot_sales_history
 
 import android.os.Bundle
+import androidx.annotation.Px
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivitySalesHistoryBinding
@@ -63,6 +65,26 @@ class SalesHistoryActivity: BaseActivity<ActivitySalesHistoryBinding>(ActivitySa
             }
 
         })
+
+
+
+        View_Pager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+
+            override fun onPageScrolled(
+                position: Int, positionOffset: Float,
+                @Px positionOffsetPixels: Int
+            ) {
+            }
+            //뷰페이저가 변할때마다 탭 레이아웃의 포지션이 바뀌도록 설정
+            override fun onPageSelected(position: Int) {
+                binding.salesHistoryTabLayout.setScrollPosition(position,0f,true)
+                showCustomToast("$position")
+            }
+
+            override fun onPageScrollStateChanged(@ViewPager2.ScrollState state: Int) {}
+
+        })
+
 
 
 

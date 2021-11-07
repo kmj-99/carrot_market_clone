@@ -16,10 +16,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentSignupFourthBinding
 import com.riging_test.template.src.main.MainActivity
+import retrofit2.http.Url
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -39,10 +42,17 @@ class SignFourthFragment:
 
     private lateinit var Profile_image: ImageView
 
+    private lateinit var storage: FirebaseStorage
+    private lateinit var storageRef:StorageReference
+
 
     private val Test_Image_Url="http://post.phinf.naver.net/MjAyMTA5MDJfMjg3/MDAxNjMwNTYyNjc3OTUx.eUoey7erD2ZlW6TfA5sHseMrfjMhBAMY2cDTbsnjyJYg.I9R1N3Qithxv-x2qjacdRW1Qwixg953FZLlHjASgNcwg.JPEG/I3YZLE8p_1d-lCGeU8Ijzg1Ry9YU.jpg"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        storage= FirebaseStorage.getInstance("gs://riging-751d4.appspot.com")
+        storageRef=storage.getReference()
+
+
 
         phoneNumber=arguments?.getString("phoneNumber")!!
         current_location=arguments?.getString("location")!!
@@ -80,10 +90,12 @@ class SignFourthFragment:
         binding.signupFourthButtonNext.setOnClickListener {
             var Main_Intent=Intent(activity,MainActivity::class.java)
             var NickName=binding.signupFourthEditNickname.text.toString()
+
+
+
             Main_Intent.putExtra("NickName",NickName)
             Main_Intent.putExtra("PhoneNumber",phoneNumber)
             Main_Intent.putExtra("Location",current_location)
-            Main_Intent.putExtra("Profile_Image",Test_Image_Url)
 
             startActivity(Main_Intent)
             requireActivity().finish()
@@ -119,6 +131,9 @@ class SignFourthFragment:
         if(requestCode==REQUEST_CODE){
             if(data!=null) {
                 var image = data?.data
+                var riverRef=storageRef.child("profile_image/profile1")
+                var uploadTask=riverRef.putFile(image!!)
+
                 // 가져온 사진을 이미지뷰에 띄우기 위해서는 비트맵으로 변환하는 과정이 필요함
                 try {
                     var bitmap =
