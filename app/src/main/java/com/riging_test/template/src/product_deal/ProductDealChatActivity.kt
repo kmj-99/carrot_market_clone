@@ -3,6 +3,8 @@ package com.riging_test.template.src.product_deal
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.MenuInflater
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,6 +56,24 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
 
         Glide.with(this).load(R.drawable.test_image).centerCrop()
             .into(binding.productDealImageProduct)
+
+        binding.productDealChatEdit.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(count<2){
+                    binding.productDealChatImageSend.setBackgroundResource(R.drawable.select_no_send)
+                }else{
+                    binding.productDealChatImageSend.setBackgroundResource(R.drawable.select_send_icon)
+
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
 
 
         binding.productDealButtonListAction.setOnClickListener {

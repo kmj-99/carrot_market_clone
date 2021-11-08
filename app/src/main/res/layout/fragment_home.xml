@@ -29,7 +29,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:text="소흘읍"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -37,8 +36,9 @@
 
                 <ImageView
                     android:id="@+id/home_icon_bottom_up"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/bottom_icon" />
             </LinearLayout>
 
@@ -53,22 +53,22 @@
 
                 <ImageView
                     android:id="@+id/home_search"
-                    android:layout_width="25dp"
-                    android:layout_height="50dp"
+                    android:layout_width="23dp"
+                    android:layout_height="45dp"
                     android:layout_marginRight="25dp"
                     android:src="@drawable/search_icon_dark" />
 
                 <ImageView
                     android:id="@+id/home_list"
-                    android:layout_width="25dp"
-                    android:layout_height="50dp"
+                    android:layout_width="23dp"
+                    android:layout_height="45dp"
                     android:layout_marginRight="25dp"
                     android:src="@drawable/list_icon" />
 
                 <ImageView
                     android:id="@+id/home_alarm"
-                    android:layout_width="25dp"
-                    android:layout_height="50dp"
+                    android:layout_width="23dp"
+                    android:layout_height="45dp"
                     android:src="@drawable/bell_icon" />
             </LinearLayout>
 
@@ -93,7 +93,8 @@
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_gravity="center_vertical|right"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginRight="20dp"
             >
 
 
@@ -132,7 +133,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"/>
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

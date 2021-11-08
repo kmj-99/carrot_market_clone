@@ -192,7 +192,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
             for(i in 0 until response.result.size) {
                 TestItemList.add(HomeDataClass(R.drawable.test_image,response.result[i].title,"서울",response.result[i].created,
-                                    response.result[i].cost.toString(),1,1,response.result[i].userId,response.result[i].postId))
+                                    "${response.result[i].cost.toString()}원",1,1,response.result[i].userId,response.result[i].postId))
             }
 
             binding.homeRv.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)

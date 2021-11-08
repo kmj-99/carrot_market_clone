@@ -19,8 +19,6 @@ class MyCarrotAdapter(val context: Context,val ItemList:ArrayList<MyCarrotDataCl
 
 
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyCarrotAdapterViewHolder {
         return MyCarrotAdapterViewHolder(LayoutInflater.from(context).inflate(R.layout.rv_activity_my_carrot,parent,false))
     }

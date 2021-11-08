@@ -60,7 +60,7 @@ class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind,
 
         binding.lifeRv1.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         binding.lifeRv1.adapter= LifeKeywordAdapter(requireContext(),TestItemList)
-        for(i in 0..10) {
+        for(i in 0..3) {
             TestItemList2.add(
                 LifePostingDataClass(
                     "기타$i",
@@ -72,6 +72,7 @@ class LifeFragment: BaseFragment<FragmentLifeBinding>(FragmentLifeBinding::bind,
                 )
             )
         }
+
         binding.lifeRv2.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.lifeRv2.adapter=LifePostingAdapter(requireContext(),TestItemList2)
 

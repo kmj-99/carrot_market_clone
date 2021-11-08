@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="@string/SignThird_Text_ToolBar"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
 
@@ -57,10 +57,12 @@
             android:src="@drawable/certification_image"/>
 
         <TextView
+            android:id="@+id/signup_third_text_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/SignThird_Text_Info"/>
+            android:text="@string/SignThird_Text_Info"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
@@ -73,8 +75,8 @@
         android:paddingLeft="10dp"
         android:inputType="number"
         android:maxLength="13"
-        app:layout_constraintWidth_percent="0.92"
-        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintHeight_percent="0.05"
         app:layout_constraintTop_toBottomOf="@id/signup_third_info"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -86,7 +88,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/signup_third_certification_response_shape"
         app:layout_constraintWidth_percent="0.9"
-        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintHeight_percent="0.055"
         app:layout_constraintTop_toBottomOf="@id/signup_third_edit_phone_number"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
@@ -142,7 +144,7 @@
         android:id="@+id/signup_third_certification_insert"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintWidth_percent="0.9"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintTop_toBottomOf="@id/signup_third_info_layout"
@@ -156,7 +158,7 @@
             <EditText
                 android:id="@+id/signup_third_certification_number"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="43dp"
                 android:background="@drawable/signup_third_edit_shape"
                 android:hint="@string/SignThird_Edit_Certification_Insert"
                 android:layout_marginTop="10dp"
@@ -178,7 +180,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/signup_third_certification_confirm"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="47dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/signup_third_certification_response_shape"
                 app:layout_constraintTop_toBottomOf="@id/signup_third_edit_phone_number"

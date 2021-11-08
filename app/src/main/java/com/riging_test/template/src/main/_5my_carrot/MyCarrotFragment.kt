@@ -2,19 +2,15 @@ package com.riging_test.template.src.main._5my_carrot
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseFragment
-import com.riging_test.template.databinding.FragmentHomeBinding
 import com.riging_test.template.databinding.FragmentMyCarrotBinding
 import com.riging_test.template.src.main._5my_carrot.Rv.MyCarrotAdapter
 import com.riging_test.template.src.main._5my_carrot.Rv.MyCarrotDataClass
-import com.riging_test.template.src.main._5my_carrot.Rv.MyCarrotViewType
 import com.riging_test.template.src.my_carrot_sales_history.SalesHistoryActivity
 import com.riging_test.template.src.my_profile.MyProfileActivity
-import kotlinx.android.synthetic.main.fragment_signup_second.*
 
 class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotBinding::bind, R.layout.fragment_my_carrot){
     private var TestList=ArrayList<MyCarrotDataClass>()
@@ -64,31 +60,47 @@ class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotB
 
 
 
-        for(i in 0..5){
-            TestList.add(MyCarrotDataClass(R.drawable.certification_image,"Content1 $i"))
-        }
+        TestList.add(MyCarrotDataClass(R.drawable.my_carrot_location,"내 동네 설정"))
+        TestList.add(MyCarrotDataClass(R.drawable.my_carrot_certification2,"동네 인증하기"))
+        TestList.add(MyCarrotDataClass(R.drawable.my_carrot_keyword,"키워드 알림"))
+        TestList.add(MyCarrotDataClass(R.drawable.my_carrot_bills,"당근가계부"))
+        TestList.add(MyCarrotDataClass(R.drawable.my_carrot_see_all,"모아보기"))
+        TestList.add(MyCarrotDataClass(R.drawable.my_carrot_caterory,"관심 카테고리 설정"))
+
 
         binding.myCarrotRv1.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.myCarrotRv1.adapter=MyCarrotAdapter(requireContext(),TestList)
 
-        for(i in 0..5){
-            TestList2.add(MyCarrotDataClass(R.drawable.carrot_image,"Content2 $i"))
-        }
+
+
+
+        TestList2.add(MyCarrotDataClass(R.drawable.my_carrot_life_posting,"동내생활 글"))
+        TestList2.add(MyCarrotDataClass(R.drawable.my_carrot_comment,"동네생활 댓글"))
+        TestList2.add(MyCarrotDataClass(R.drawable.my_carrot_life_topic_list,"동네생활 주제 목록"))
 
         binding.myCarrotRv2.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.myCarrotRv2.adapter=MyCarrotAdapter(requireContext(),TestList2)
-        for(i in 0..5){
-            TestList3.add(MyCarrotDataClass(R.drawable.document_image,"Content3 $i"))
-        }
+
+
+
+        TestList3.add(MyCarrotDataClass(R.drawable.my_carrot_beads_profile,"비즈프로필 만들기"))
+        TestList3.add(MyCarrotDataClass(R.drawable.my_carrot_promotion,"동내홍보 글"))
+        TestList3.add(MyCarrotDataClass(R.drawable.my_carrot_promotion_around,"지역광고"))
 
         binding.myCarrotRv3.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.myCarrotRv3.adapter=MyCarrotAdapter(requireContext(),TestList3)
-        for(i in 0..5){
-            TestList4.add(MyCarrotDataClass(R.drawable.share_icon,"Content4 $i"))
-        }
+
+
+
+        TestList4.add(MyCarrotDataClass(R.drawable.my_carrot_freinds_invit,"친구초대"))
+        TestList4.add(MyCarrotDataClass(R.drawable.my_carrot_share,"당근마켓 공유"))
+        TestList4.add(MyCarrotDataClass(R.drawable.my_carrot_news,"공지사항"))
+        TestList4.add(MyCarrotDataClass(R.drawable.my_carrot_question,"자주 묻는 질문"))
+
 
         binding.myCarrotRv4.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.myCarrotRv4.adapter=MyCarrotAdapter(requireContext(),TestList4)
+
 
 
         binding.myCarrotLayoutProfile.setOnClickListener {

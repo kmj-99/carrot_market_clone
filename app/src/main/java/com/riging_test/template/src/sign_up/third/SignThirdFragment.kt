@@ -3,10 +3,12 @@ package com.riging_test.template.src.sign_up.third
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Editable
-import android.text.SpannableString
-import android.text.TextWatcher
+import android.text.*
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.View
@@ -31,10 +33,21 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
 
 
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences=requireActivity().getSharedPreferences("profile", Context.MODE_PRIVATE)
         editor=sharedPreferences.edit()
+
+        val textData=binding.signupThirdTextInfo.text
+
+        val spannable=SpannableStringBuilder(textData)
+        val boldSpan=StyleSpan(Typeface.BOLD)
+        spannable.setSpan(boldSpan,24,33,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.signupThirdTextInfo.text=spannable
+
+//StyleSpan(Typeface.BOLD) 24,32
 
         //TextView 밑줄 추가하는 코드
         var content =SpannableString(binding.signupThirdEmailFind.text.toString())

@@ -306,13 +306,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="관심"
-                            android:textSize="9sp"/>
+                            android:textSize="10sp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="2dp"
                             android:text="3"
-                            android:textSize="9sp"/>
+                            android:textSize="10sp"/>
                         <ImageView
                             android:layout_width="3dp"
                             android:layout_height="3dp"
@@ -324,14 +324,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="조회"
-                            android:textSize="9sp"/>
+                            android:textSize="10sp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="2dp"
                             android:text="213"
-                            android:textSize="9sp"/>
+                            android:textSize="10sp"/>
 
 
                     </LinearLayout>

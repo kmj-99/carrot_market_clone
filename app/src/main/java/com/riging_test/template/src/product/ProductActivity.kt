@@ -64,7 +64,7 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
         showCustomToast("$userId $postId")
 
         binding.productTextLocation.text=Current_location
-        binding.productTextTitle.text=Name
+        //binding.productTextTitle.text=Name
         binding.productTextPrice.text=Price
         binding.productTextTime.text=Time
         Glide.with(this).load(image).centerCrop().into(binding.productProductImage)
