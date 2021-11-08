@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_signup_fourth.*
 
 class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignupThirdBinding::bind, R.layout.fragment_signup_third),SignThirdFragmentView {
 
-    private val phoneNumber="01012326955"
+    private var phoneNumber="01012326955"
     private val certificationNum="018099"
     private lateinit var current_location:String
 
@@ -33,7 +33,7 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences=requireActivity().getSharedPreferences("Token", Context.MODE_PRIVATE)
+        sharedPreferences=requireActivity().getSharedPreferences("profile", Context.MODE_PRIVATE)
         editor=sharedPreferences.edit()
 
         //TextView 밑줄 추가하는 코드
@@ -120,11 +120,11 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
             //startActivity(Intent(activity,MainActivity::class.java)) // 토큰이 있을 때
             //requireActivity().finish()
 
-            var phone_number=binding.signupThirdEditPhoneNumber.text.toString()
+            phoneNumber=binding.signupThirdEditPhoneNumber.text.toString()
             var certification_number=binding.signupThirdCertificationNumber.text.toString()
-            phone_number=phone_number.replace(" ","")
+            phoneNumber=phoneNumber.replace(" ","")
 
-            SignThirdService(this).PostCertification(PostSignUpRequest(phoneNumber=phone_number,certificationNum=certification_number))
+            SignThirdService(this).PostCertification(PostSignUpRequest(phoneNumber=phoneNumber,certificationNum=certification_number))
 
         }
     }
@@ -133,6 +133,8 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
 
         if(response.code==1000){
             startActivity(Intent(requireActivity(),MainActivity::class.java))
+            editor.putString("Jwt","${response.result.jwt}")
+            editor.apply()
             Log.d("onPostCertificationSuccess","!")
 
             requireActivity().finish()

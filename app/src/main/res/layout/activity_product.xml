@@ -276,6 +276,7 @@
                             android:text="끌올 "
                             android:textSize="10sp"/>
                         <TextView
+                            android:id="@+id/product_text_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="27초 전"
@@ -497,10 +498,11 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
+            android:id="@+id/product_button_favorite"
             android:layout_width="60dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
-            android:src="@drawable/heart_icon"/>
+            android:src="@drawable/select_no_favorite_icon"/>
 
         <ImageView
             android:layout_width="2dp"

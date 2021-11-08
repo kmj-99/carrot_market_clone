@@ -19,9 +19,13 @@ import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.riging_test.template.R
+import com.riging_test.template.config.ApplicationClass.Companion.editor
+import com.riging_test.template.config.ApplicationClass.Companion.sSharedPreferences
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentSignupFourthBinding
 import com.riging_test.template.src.main.MainActivity
+import com.riging_test.template.src.sign_up.zfourth.models.PostNewSignupRequest
+import com.riging_test.template.src.sign_up.zfourth.models.SignupResponse
 import retrofit2.http.Url
 import java.io.File
 import java.io.FileNotFoundException
@@ -31,7 +35,7 @@ import java.lang.reflect.Type
 import java.util.jar.Manifest
 
 class SignFourthFragment:
-    BaseFragment<FragmentSignupFourthBinding>(FragmentSignupFourthBinding::bind, R.layout.fragment_signup_fourth) {
+    BaseFragment<FragmentSignupFourthBinding>(FragmentSignupFourthBinding::bind, R.layout.fragment_signup_fourth),SignFouthFragmentView {
 
 
     private val REQUEST_CODE=1001
@@ -46,11 +50,15 @@ class SignFourthFragment:
     private lateinit var storageRef:StorageReference
 
 
+
+
+
     private val Test_Image_Url="http://post.phinf.naver.net/MjAyMTA5MDJfMjg3/MDAxNjMwNTYyNjc3OTUx.eUoey7erD2ZlW6TfA5sHseMrfjMhBAMY2cDTbsnjyJYg.I9R1N3Qithxv-x2qjacdRW1Qwixg953FZLlHjASgNcwg.JPEG/I3YZLE8p_1d-lCGeU8Ijzg1Ry9YU.jpg"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         storage= FirebaseStorage.getInstance("gs://riging-751d4.appspot.com")
         storageRef=storage.getReference()
+
 
 
 
@@ -90,6 +98,16 @@ class SignFourthFragment:
         binding.signupFourthButtonNext.setOnClickListener {
             var Main_Intent=Intent(activity,MainActivity::class.java)
             var NickName=binding.signupFourthEditNickname.text.toString()
+            var profile_Image=storageRef.child("profile_image/profile1").toString()
+
+
+            SignFouthService(this)
+            var location=current_location.split(" ")
+            SignFouthService(this).PostSignup(
+                PostNewSignupRequest(city = location[0],district = location[1],
+                townName = location[2],phoneNumber = phoneNumber,nickName = NickName,profile_Image)
+            )
+
 
 
 
@@ -189,5 +207,47 @@ class SignFourthFragment:
         }catch(e:IOException){
             e.printStackTrace()
         }
+    }
+
+    override fun onPostSignupSuccess(response: SignupResponse) {
+        when(response.code){
+            1000 ->{
+                Log.d("test_jwt",response.result.jwt)
+                editor.putString("jwt",response.result.jwt)
+                editor.putInt("userId",response.result.userId)
+                editor.apply()
+            }
+
+            2011 ->{
+                showCustomToast(response.message)
+            }
+
+            2012 ->{
+                showCustomToast(response.message)
+            }
+
+            2013 -> {
+                showCustomToast(response.message)
+
+            }
+
+            2014 -> {
+                showCustomToast(response.message)
+            }
+
+            2019 ->{
+                showCustomToast(response.message)
+            }
+
+            4000 -> {
+                showCustomToast(response.message)
+            }
+
+        }
+
+    }
+
+    override fun onPostSignupFailure(message: String) {
+        showCustomToast(message)
     }
 }

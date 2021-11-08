@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -23,6 +24,7 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
     private var REQUEST_CODE=2222
 
     private var ImageList=ArrayList<PostingImageDataClass>()
+
 
     override fun onStart() {
         super.onStart()
@@ -75,8 +77,24 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
         }
 
         binding.postingButtonFinish.setOnClickListener {
-            PostingService(this).TryPostPoting(PostingRequest(userId = 20,townId = 3919,title="abc",
-            categoryId = 1,cost = 500,content = "abc"))
+            if(binding.postingEditTitle.toString()==null){
+                showCustomToast("제목을 입력하세요")
+            }else if( binding.postingEditPrice.toString()==null){
+                showCustomToast("가격을 입력하세요")
+            }else if(binding.postingEditContent.toString()==null){
+                showCustomToast("내용을 입력하세요")
+            }else {
+                PostingService(this).TryPostPoting(
+                    PostingRequest(
+                        userId = 32,
+                        townId = 1665,
+                        title = binding.postingEditTitle.text.toString(),
+                        categoryId = 1,
+                        cost =binding.postingEditPrice.text.toString().toInt(),
+                        content = binding.postingEditContent.text.toString()
+                    )
+                )
+            }
         }
 
 
@@ -128,7 +146,7 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
         if(response.code==1000) {
             showCustomToast("게시물 추가가 되었습니다.")
         }else{
-            showCustomToast("알수없는 오류가 발생했습니다.")
+            showCustomToast(response.code.toString())
         }
 
     }

@@ -8,6 +8,6 @@ import retrofit2.http.POST
 
 interface PostingInterface {
 
-    @POST("/post")
+    @POST("post")
     fun postTryPosting(@Body parms: PostingRequest): Call<PostingResponse>
 }

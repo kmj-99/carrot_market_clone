@@ -47,7 +47,6 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         var profile_Image=storageRef.child("profile_image/profile1").toString()
 
 
-        showCustomToast(nickName+phoneNumber+location+profile_Image)
 
 
 

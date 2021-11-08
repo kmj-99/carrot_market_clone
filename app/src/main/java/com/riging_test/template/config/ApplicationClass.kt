@@ -18,6 +18,8 @@ class ApplicationClass :Application() {
     companion object{
 
         lateinit var sSharedPreferences:SharedPreferences
+        lateinit var editor:SharedPreferences.Editor
+
 
         val X_ACCESS_TOKEN="X-ACCESS-TOKEN"
 
@@ -28,7 +30,8 @@ class ApplicationClass :Application() {
 
     override fun onCreate() {
         super.onCreate()
-        sSharedPreferences=applicationContext.getSharedPreferences("TEMPLATE_APP", MODE_PRIVATE)
+        sSharedPreferences=applicationContext.getSharedPreferences("profile", MODE_PRIVATE)
+        editor=sSharedPreferences.edit()
 
         initRetrofitInstance()
     }

@@ -20,8 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Template">
         <activity
-            android:name=".src.main.MainActivity"
-
+            android:name=".src.app_start.StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +49,7 @@
 
         <!-- main -->
         <activity
-            android:name=".src.app_start.StartActivity"
+            android:name=".src.main.MainActivity"
 
             />
 

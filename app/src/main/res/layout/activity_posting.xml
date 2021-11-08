@@ -246,7 +246,6 @@
                 android:layout_height="0dp"
                 android:background="@android:color/transparent"
                 android:hint="가격 (선택사항)"
-                android:inputType="number"
                 app:layout_constraintWidth_percent="0.8"
                 app:layout_constraintHeight_percent="0.5"
                 app:layout_constraintRight_toRightOf="parent"

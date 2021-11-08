@@ -20,7 +20,7 @@ class HistoryFragment1: BaseFragment<RvActivitySalesHostoryFragment1Binding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        HistoryFragment1Service(this).TryGetSalesIng(20)
+        HistoryFragment1Service(this).TryGetSalesIng(32)
 
 
 
