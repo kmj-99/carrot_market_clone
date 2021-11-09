@@ -9,10 +9,12 @@ import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentMyCarrotBinding
 import com.riging_test.template.src.main._5my_carrot.Rv.MyCarrotAdapter
 import com.riging_test.template.src.main._5my_carrot.Rv.MyCarrotDataClass
+import com.riging_test.template.src.main._5my_carrot.model.UserInfoResponse
 import com.riging_test.template.src.my_carrot_sales_history.SalesHistoryActivity
+import com.riging_test.template.src.my_favorite.MyFavoriteActivity
 import com.riging_test.template.src.my_profile.MyProfileActivity
 
-class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotBinding::bind, R.layout.fragment_my_carrot){
+class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotBinding::bind, R.layout.fragment_my_carrot),MyCarrotFragmentView{
     private var TestList=ArrayList<MyCarrotDataClass>()
     private var TestList2=ArrayList<MyCarrotDataClass>()
     private var TestList3=ArrayList<MyCarrotDataClass>()
@@ -25,6 +27,9 @@ class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        MyCarrotService(this).TryGetUserInfo(32)
+
 
         arguments.let {
             if(it?.getString("NickName")==null){
@@ -115,5 +120,21 @@ class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotB
             startActivity(Intent(requireActivity(),SalesHistoryActivity::class.java))
         }
 
+        binding.myCarrotImageFavorite.setOnClickListener {
+            startActivity(Intent(requireActivity(),MyFavoriteActivity::class.java))
+        }
+
+    }
+
+    override fun getUserInfoSuccess(response: UserInfoResponse) {
+        if(response.code==1000){
+            binding.myCarrotTextNickName.text=response.result.nickName
+        }else{
+            showCustomToast(response.message)
+        }
+    }
+
+    override fun getUserInfoFailure(message: String) {
+        showCustomToast(message)
     }
 }

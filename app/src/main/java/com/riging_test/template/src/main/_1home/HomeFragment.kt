@@ -137,6 +137,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
                 Product_Intent.putExtra("Location", TestItemList[position].Location.toString())
                 Product_Intent.putExtra("Title", TestItemList[position].Title.toString())
+                Product_Intent.putExtra("Category",TestItemList[position].Category)
+                Product_Intent.putExtra("Content",TestItemList[position].content.toString())
                 Product_Intent.putExtra("Image", TestItemList[position].ImageUrl)
                 Product_Intent.putExtra("Price", TestItemList[position].Price)
                 Product_Intent.putExtra("Time", TestItemList[position].Time)
@@ -227,12 +229,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun TryGetPostListSuccess(response: HomePostListDataClass) {
         if (response.code == 1000) {
             TestItemList.clear()
+
+
             Home_Rv_Adapter.notifyDataSetChanged()
             for (i in 0 until response.result.size) {
                 TestItemList.add(
                     HomeDataClass(
                         TitleImageList[0],
                         response.result[i].title,
+                        response.result[i].categoryId,
+                        response.result[i].content,
                         response.result[i].townName,
                         response.result[i].time,
                         "${response.result[i].cost.toString()}원",
@@ -249,7 +255,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             binding.homeRv.adapter = Home_Rv_Adapter
 
         } else {
-            showCustomToast(response.message)
+            showCustomToast(response.message+"TryGetPostListSuccess")
         }
     }
 
@@ -262,7 +268,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             if (response.code == 1000) {
                 HomeFragmentService(this).TryGetPostList(jwt, 1665, response.result.range, 0)
             } else {
-                showCustomToast(response.message)
+
+                showCustomToast(response.message+"TryGetRangeSuccess")
             }
         }
 

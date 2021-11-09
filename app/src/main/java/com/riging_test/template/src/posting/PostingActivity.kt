@@ -1,6 +1,8 @@
 package com.riging_test.template.src.posting
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -37,6 +39,7 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
     private lateinit var storageRef: StorageReference
     private lateinit var riverRef:StorageReference
     private lateinit var uploadTask:UploadTask
+    private var categoryId=0
 
     override fun onStart() {
         super.onStart()
@@ -74,6 +77,7 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
         })
 
         binding.postingLayoutCategory.setOnClickListener {
+            showListDialog()
 
         }
 
@@ -102,7 +106,7 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
                         userId = 32,
                         townId = 1665,
                         title = binding.postingEditTitle.text.toString(),
-                        categoryId = 1,
+                        categoryId =categoryId ,
                         cost =binding.postingEditPrice.text.toString().toInt(),
                         content = binding.postingEditContent.text.toString()
                     )
@@ -112,6 +116,22 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
         }
 
 
+    }
+
+
+    fun showListDialog(){
+        var category=resources.getStringArray(R.array.categort)
+        var builder=AlertDialog.Builder(this)
+        builder.setItems(category,object:DialogInterface.OnClickListener{
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                categoryId=which
+                binding.postingTextCategory.text=category[which]
+            }
+
+        })
+
+        var alertDialog=builder.create()
+        alertDialog.show()
     }
 
     // 앨범에서 이미지를 가져옴

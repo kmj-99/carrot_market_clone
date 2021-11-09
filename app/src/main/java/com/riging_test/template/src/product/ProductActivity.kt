@@ -9,6 +9,7 @@ import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.riging_test.template.R
@@ -22,9 +23,9 @@ import com.riging_test.template.src.product.models.request.DeleteRequest
 import com.riging_test.template.src.product.models.response.AddResponse
 import com.riging_test.template.src.product.models.response.DeleteResponse
 import com.riging_test.template.src.product.models.response.FavoriteListResponse
-import com.riging_test.template.src.product.rv.MovieItemDecoration
 import com.riging_test.template.src.product.rv.ProductRvAdapter
 import com.riging_test.template.src.product.rv.ProductRvDataClass
+import com.riging_test.template.src.product.view_pager.ProductViewPagerAdapter
 import com.riging_test.template.src.product_deal.ProductDealChatActivity
 
 class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBinding::inflate),ProductActivityView {
@@ -39,6 +40,8 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
 
     private var postId=20
     private var Start=true
+
+    private var ImageList=ArrayList<Int>()
 
     override fun onStart() {
         super.onStart()
@@ -55,23 +58,35 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var category=resources.getStringArray(R.array.categort)
+
 
         val Current_location=intent.getStringExtra("Location")
-        val Name=intent.getStringExtra("Name")
+        val Category=intent.getIntExtra("Category",1)
+        val Content=intent.getStringExtra("Content")
         val image=intent.getIntExtra("Image",R.drawable.test_image)
         val Price=intent.getStringExtra("Price")
         val Time=intent.getStringExtra("Time")
+        val Title=intent.getStringExtra("Title")
         val userId=sSharedPreferences.getInt("userId",1)
         postId=intent.getIntExtra("postId",0)
 
         ProductService(this).TryGetFavoriteList(jwt)
         showCustomToast("$userId $postId")
 
+        binding.productTextTitle.text=Title
+        binding.productTextContent.text=Content
         binding.productTextLocation.text=Current_location
-        //binding.productTextTitle.text=Name
         binding.productTextPrice.text=Price
         binding.productTextTime.text=Time
-        Glide.with(this).load(image).centerCrop().into(binding.productProductImage)
+        binding.productTextCategory.text=category[Category]
+
+        ImageList.add(R.drawable.test_image)
+        ImageList.add(R.drawable.test_image)
+        ImageList.add(R.drawable.test_image)
+
+        binding.productViewPager.adapter=ProductViewPagerAdapter(this,ImageList)
+        binding.productViewPager.orientation= ViewPager2.ORIENTATION_HORIZONTAL
 
 
 
@@ -161,30 +176,37 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
                     when{
                         //collapsing이 안되었을때
                         verticalOffset==0 -> {
-                            binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
-                            binding.productButtonHome.setImageResource(R.drawable.product_home_icon)
-                            binding.productButtonShare.setImageResource(R.drawable.product_share_icon)
+                            Glide.with(applicationContext).load(R.drawable.product_left_icon).centerCrop().into(binding.productButtonBack)
+                            Glide.with(applicationContext).load(R.drawable.product_home_icon).centerCrop().into(binding.productButtonHome)
+                            Glide.with(applicationContext).load(R.drawable.product_share_icon).centerCrop().into(binding.productButtonShare)
+                            //binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
+                            //binding.productButtonHome.setImageResource(R.drawable.product_home_icon)
+                            //binding.productButtonShare.setImageResource(R.drawable.product_share_icon)
                         }
 
                         //완전히 collapsing 되었을때 즉, 레이아웃이 사라질 때
                         Math.abs(verticalOffset) >=appBarLayout.totalScrollRange -> {
 
-                            binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
-                            binding.productButtonHome.setImageResource(R.drawable.product_no_home_icon)
-                            binding.productButtonShare.setImageResource(R.drawable.product_no_share_icon)
+                            Glide.with(applicationContext).load(R.drawable.product_left_icaon).centerCrop().into(binding.productButtonBack)
+                            Glide.with(applicationContext).load(R.drawable.product_no_home_icon).centerCrop().into(binding.productButtonHome)
+                            Glide.with(applicationContext).load(R.drawable.product_no_share_icon).centerCrop().into(binding.productButtonShare)
+
+                            //binding.productButtonBack.setImageResource(R.drawable.product_left_icaon)
+                            //binding.productButtonHome.setImageResource(R.drawable.product_no_home_icon)
+                            //binding.productButtonShare.setImageResource(R.drawable.product_no_share_icon)
 
                         }
 
                         Math.abs(verticalOffset) <=820 ->{
-                            binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
-                            binding.productButtonHome.setImageResource(R.drawable.product_home_icon)
-                            binding.productButtonShare.setImageResource(R.drawable.product_share_icon)
+                            Glide.with(applicationContext).load(R.drawable.product_left_icon).centerCrop().into(binding.productButtonBack)
+                            Glide.with(applicationContext).load(R.drawable.product_home_icon).centerCrop().into(binding.productButtonHome)
+                            Glide.with(applicationContext).load(R.drawable.product_share_icon).centerCrop().into(binding.productButtonShare)
                         }
 
                         Math.abs(verticalOffset) >=820->{
-                            binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
-                            binding.productButtonHome.setImageResource(R.drawable.product_home_icon)
-                            binding.productButtonShare.setImageResource(R.drawable.product_share_icon)
+                            Glide.with(applicationContext).load(R.drawable.product_left_icon).centerCrop().into(binding.productButtonBack)
+                            Glide.with(applicationContext).load(R.drawable.product_home_icon).centerCrop().into(binding.productButtonHome)
+                            Glide.with(applicationContext).load(R.drawable.product_share_icon).centerCrop().into(binding.productButtonShare)
 
                         }
 

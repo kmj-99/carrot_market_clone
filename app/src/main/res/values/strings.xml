@@ -35,4 +35,23 @@
     <string name="SignThird_Text_Certification_Confirm">인증번호 확인</string>
     <!---->
 
+    <string-array name="categort">
+        <item>디지털기기</item>
+        <item>생활가전</item>
+        <item>가구/인테리어</item>
+        <item>유아동</item>
+        <item>생활/가공식품</item>
+        <item>유아도서</item>
+        <item>스포츠/레저</item>
+        <item>여성잡화</item>
+        <item>여성의류</item>
+        <item>남성패션/잡화</item>
+        <item>게임/취미</item>
+        <item>뷰티/미용</item>
+        <item>반려동물용품</item>
+        <item>도서/티켓/음반</item>
+        <item>식물</item>
+        <item>기타 중고물품</item>
+    </string-array>
+
 </resources>

@@ -121,6 +121,11 @@
             android:name=".src.deal_finish.DealFinish"
             />
 
+        <!-- my_favorite-->
+        <activity
+            android:name=".src.my_favorite.MyFavoriteActivity"
+            />
+
         <activity
             android:name=".src.Test_Test"
             />

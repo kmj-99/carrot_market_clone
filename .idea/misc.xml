@@ -40,11 +40,12 @@
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_life_posting.xml" value="0.2" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_life_posting_topics.xml" value="0.176" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_my_favorite.xml" value="0.16909722222222223" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_my_location_setting.xml" value="0.2" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_my_profile.xml" value="0.176" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_posting.xml" value="0.2" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_posting_popup.xml" value="0.16909722222222223" />
-        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_product.xml" value="0.2" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_product.xml" value="0.176" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_product_deal.xml" value="0.176" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_sales_history.xml" value="0.176" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/activity_search.xml" value="0.264" />
@@ -62,6 +63,9 @@
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_image_search.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_life.xml" value="0.2" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_my_carrot.xml" value="0.2" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_my_favorite1.xml" value="0.16909722222222223" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_my_favorite2.xml" value="0.16909722222222223" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_my_favorite3.xml" value="0.16909722222222223" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_search.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_signup_first.xml" value="0.264" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/fragment_signup_fourth.xml" value="0.190234375" />
@@ -83,6 +87,7 @@
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/rv_activity_life_posting_topics.xml" value="0.2" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/rv_activity_my_carrot.xml" value="0.2" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/rv_activity_my_carrot_line.xml" value="0.16909722222222223" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/rv_activity_my_favorite.xml" value="0.16909722222222223" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/rv_activity_my_profile.xml" value="0.2" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/rv_activity_my_profile2.xml" value="0.264" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/rv_activity_posting.xml" value="0.264" />
@@ -113,6 +118,7 @@
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/test_activity_main.xml" value="0.190234375" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/test_test.xml" value="0.264" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/test_tset.xml" value="0.128" />
+        <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/layout/view_pager_product.xml" value="0.16909722222222223" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/menu/bottom_bar_menu.xml" value="0.2" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/menu/home_popup.xml" value="0.1" />
         <entry key="..\:/Users/nex00/AndroidStudioProjects/Riging_Camp/Riging_Test/Template/app/src/main/res/menu/main_bottom_bar_menu.xml" value="0.190234375" />
