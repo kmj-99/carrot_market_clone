@@ -1,7 +1,9 @@
 package com.riging_test.template.src.main._1home
 
+import android.util.Log
 import com.riging_test.template.config.ApplicationClass
 import com.riging_test.template.src.main._1home.models.HomePostListDataClass
+import com.riging_test.template.src.main._1home.models.HomeTitleImageResponse
 import com.riging_test.template.src.main._1home.models.RangeResponse
 import com.riging_test.template.src.sign_up.second.SignupSecondLocationInterace
 import com.riging_test.template.src.sign_up.second.models.LocationResponse
@@ -12,7 +14,7 @@ import retrofit2.Response
 class HomeFragmentService(val view:HomeFragmentView) {
 
 
-    fun TryGetPostList(jwt:String,townId:Int,range:Int){
+    fun TryGetPostList(jwt:String,townId:Int,range:Int,type:Int){
         val postListRetrofitInterface= ApplicationClass.sRetrofit.create(
             HomeFragmentInterface::class.java)
         postListRetrofitInterface.getPostList(jwt,townId,range).enqueue(object:
@@ -24,6 +26,7 @@ class HomeFragmentService(val view:HomeFragmentView) {
                 if(response.body()!=null){
                     view.TryGetPostListSuccess(response.body() as HomePostListDataClass)
                 }
+
 
             }
 
@@ -46,6 +49,7 @@ class HomeFragmentService(val view:HomeFragmentView) {
                 call: Call<RangeResponse>,
                 response: Response<RangeResponse>
             ) {
+
                 if(response.body()!=null){
                     view.TryGetRangeSuccess(response.body() as RangeResponse)
                 }
@@ -60,4 +64,32 @@ class HomeFragmentService(val view:HomeFragmentView) {
         })
 
     }
+
+    fun TryGetTitleImage(postId:Int){
+
+        val getTitleImageRetrofitInterface= ApplicationClass.sRetrofit.create(
+            HomeFragmentTitleImageInterface::class.java)
+
+        getTitleImageRetrofitInterface.getTitleImage(postId).enqueue(object:
+            Callback<HomeTitleImageResponse> {
+            override fun onResponse(
+                call: Call<HomeTitleImageResponse>,
+                response: Response<HomeTitleImageResponse>
+            ) {
+                if(response.body()!=null){
+                    view.TryGetTitleImageSuccess(response.body() as HomeTitleImageResponse)
+                }
+
+            }
+
+            override fun onFailure(call: Call<HomeTitleImageResponse>, t: Throwable) {
+                view.TryGetTitleImageFailure(t.message?:"통신오류")
+
+            }
+
+        })
+
+    }
+
+
 }

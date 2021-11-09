@@ -1,13 +1,16 @@
 package com.riging_test.template.src.product
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuInflater
 import android.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
 import com.riging_test.template.R
 import com.riging_test.template.config.ApplicationClass
 import com.riging_test.template.config.ApplicationClass.Companion.editor
@@ -19,6 +22,7 @@ import com.riging_test.template.src.product.models.request.DeleteRequest
 import com.riging_test.template.src.product.models.response.AddResponse
 import com.riging_test.template.src.product.models.response.DeleteResponse
 import com.riging_test.template.src.product.models.response.FavoriteListResponse
+import com.riging_test.template.src.product.rv.MovieItemDecoration
 import com.riging_test.template.src.product.rv.ProductRvAdapter
 import com.riging_test.template.src.product.rv.ProductRvDataClass
 import com.riging_test.template.src.product_deal.ProductDealChatActivity
@@ -54,7 +58,7 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
 
         val Current_location=intent.getStringExtra("Location")
         val Name=intent.getStringExtra("Name")
-        val image=intent.getIntExtra("Image",R.drawable.carrot_image)
+        val image=intent.getIntExtra("Image",R.drawable.test_image)
         val Price=intent.getStringExtra("Price")
         val Time=intent.getStringExtra("Time")
         val userId=sSharedPreferences.getInt("userId",1)
@@ -78,7 +82,6 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
         }
         binding.productRv1.layoutManager=GridLayoutManager(this,2,LinearLayoutManager.VERTICAL,false)
         binding.productRv1.adapter=ProductRvAdapter(this,TestItemList)
-
 
         for(i in 1..10) {
             TestItemList2.add(ProductRvDataClass(R.drawable.test_image, "Android$i", "$i,200원"))
@@ -147,6 +150,56 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
                 favorite=false
             }
         }
+
+
+
+        binding.AppBarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener{
+
+            override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
+
+                if (appBarLayout != null) {
+                    when{
+                        //collapsing이 안되었을때
+                        verticalOffset==0 -> {
+                            binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
+                            binding.productButtonHome.setImageResource(R.drawable.product_home_icon)
+                            binding.productButtonShare.setImageResource(R.drawable.product_share_icon)
+                        }
+
+                        //완전히 collapsing 되었을때 즉, 레이아웃이 사라질 때
+                        Math.abs(verticalOffset) >=appBarLayout.totalScrollRange -> {
+
+                            binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
+                            binding.productButtonHome.setImageResource(R.drawable.product_no_home_icon)
+                            binding.productButtonShare.setImageResource(R.drawable.product_no_share_icon)
+
+                        }
+
+                        Math.abs(verticalOffset) <=820 ->{
+                            binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
+                            binding.productButtonHome.setImageResource(R.drawable.product_home_icon)
+                            binding.productButtonShare.setImageResource(R.drawable.product_share_icon)
+                        }
+
+                        Math.abs(verticalOffset) >=820->{
+                            binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
+                            binding.productButtonHome.setImageResource(R.drawable.product_home_icon)
+                            binding.productButtonShare.setImageResource(R.drawable.product_share_icon)
+
+                        }
+
+
+                        // collapsing이 진행중일때
+                        else-> {
+
+                        }
+                    }
+                }
+            }
+        })
+
+
+
 
 
     }

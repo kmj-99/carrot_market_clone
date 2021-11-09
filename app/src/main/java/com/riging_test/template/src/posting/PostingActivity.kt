@@ -3,6 +3,7 @@ package com.riging_test.template.src.posting
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
@@ -11,11 +12,16 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import com.riging_test.template.R
 import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityPostingBinding
 import com.riging_test.template.src.posting.Rv.PostingImageAdapter
 import com.riging_test.template.src.posting.Rv.PostingImageDataClass
+import com.riging_test.template.src.posting.models.PostingImageRequest
+import com.riging_test.template.src.posting.models.PostingImageResponse
 import com.riging_test.template.src.posting.models.PostingRequest
 import com.riging_test.template.src.posting.models.PostingResponse
 import com.riging_test.template.src.sign_up.second.SignupRvAdapter
@@ -25,6 +31,12 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
 
     private var ImageList=ArrayList<PostingImageDataClass>()
 
+    private var UriList=ArrayList<Uri>()
+
+    private lateinit var storage: FirebaseStorage
+    private lateinit var storageRef: StorageReference
+    private lateinit var riverRef:StorageReference
+    private lateinit var uploadTask:UploadTask
 
     override fun onStart() {
         super.onStart()
@@ -84,6 +96,7 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
             }else if(binding.postingEditContent.toString()==null){
                 showCustomToast("내용을 입력하세요")
             }else {
+
                 PostingService(this).TryPostPoting(
                     PostingRequest(
                         userId = 32,
@@ -94,6 +107,7 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
                         content = binding.postingEditContent.text.toString()
                     )
                 )
+                finish()
             }
         }
 
@@ -114,8 +128,9 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
             }else{
                 var clipData=data.clipData
 
-                if(clipData!!.itemCount>10){
-                    showCustomToast("사진은 10장까지만 선택 가능합니다.")
+
+                if(clipData!!.itemCount>5){
+                    showCustomToast("사진은 5장까지만 선택 가능합니다.")
                 }else{
                     for(i in 0 until  clipData.itemCount){
                         ImageList.add(PostingImageDataClass(clipData.getItemAt(i).uri))
@@ -144,7 +159,19 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
 
     override fun TryPostPostingSuccess(response: PostingResponse) {
         if(response.code==1000) {
-            showCustomToast("게시물 추가가 되었습니다.")
+            storage= FirebaseStorage.getInstance("gs://riging-751d4.appspot.com")
+            storageRef=storage.getReference()
+            for(i in 0 until  ImageList.size){
+                riverRef=storageRef.child("post_product_images_32/product_image$i")
+                uploadTask=riverRef.putFile(ImageList[i].Image!!)
+                    PostingService(this).TryPostImagePoting(
+                        PostingImageRequest(
+                            postId = response.result.postId,
+                            "${ImageList[i].Image}"
+                        )
+                    )
+            }
+
         }else{
             showCustomToast(response.code.toString())
         }
@@ -154,6 +181,14 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
     override fun TryPostPostingFailue(message: String) {
         showCustomToast(message)
 
+    }
+
+    override fun TryPostingImageSuccess(response: PostingImageResponse) {
+
+    }
+
+    override fun TryPostingIamgeFailue(message: String) {
+        showCustomToast(message)
     }
 
 

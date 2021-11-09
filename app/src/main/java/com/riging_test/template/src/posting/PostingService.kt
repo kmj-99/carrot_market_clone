@@ -1,6 +1,8 @@
 package com.riging_test.template.src.posting
 
 import com.riging_test.template.config.ApplicationClass
+import com.riging_test.template.src.posting.models.PostingImageRequest
+import com.riging_test.template.src.posting.models.PostingImageResponse
 import com.riging_test.template.src.posting.models.PostingRequest
 import com.riging_test.template.src.posting.models.PostingResponse
 import retrofit2.Call
@@ -27,6 +29,33 @@ class PostingService(val view:PostingActivityView) {
 
             override fun onFailure(call: Call<PostingResponse>, t: Throwable) {
                 view.TryPostPostingFailue(t.message?:"통신오류")
+
+            }
+
+        })
+
+    }
+
+
+
+
+    fun TryPostImagePoting(postingImageRequest:PostingImageRequest){
+        val postingImageRetrofitInterface= ApplicationClass.sRetrofit.create(
+            PostingImageInterface::class.java)
+        postingImageRetrofitInterface.postImageTryPosting(postingImageRequest).enqueue(object:
+            Callback<PostingImageResponse> {
+            override fun onResponse(
+                call: Call<PostingImageResponse>,
+                response: Response<PostingImageResponse>
+            ) {
+                if(response.body()!=null){
+                    view.TryPostingImageSuccess(response.body() as PostingImageResponse)
+                }
+
+            }
+
+            override fun onFailure(call: Call<PostingImageResponse>, t: Throwable) {
+                view.TryPostingIamgeFailue(t.message?:"통신오류")
 
             }
 

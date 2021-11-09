@@ -56,31 +56,32 @@
 
                     <ImageView
                         android:id="@+id/product_button_back"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_marginRight="12dp"
-                        android:src="@drawable/left_icon"/>
+                        android:src="@drawable/product_left_icon"/>
 
                     <ImageView
                         android:id="@+id/product_button_home"
-                        android:layout_width="30dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/select_no_home"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/product_home_icon"
                         />
 
                     <ImageView
                         android:id="@+id/product_button_report"
-                        android:layout_width="30dp"
-                        android:layout_height="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@drawable/action_list_icon"
                         android:layout_gravity="right"
                         />
 
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/share_icon"
+                        android:id="@+id/product_button_share"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/product_share_icon"
                         android:layout_marginRight="10dp"
                         android:layout_gravity="right"
                         />

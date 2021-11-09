@@ -4,17 +4,22 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.riging_test.template.R
+import com.riging_test.template.src.main._1home.Rv.HomeAdapter
 import kotlinx.android.synthetic.main.rv_activity_product_deal_join.view.*
 import kotlinx.android.synthetic.main.rv_activity_product_deal_left_chat.view.*
 import kotlinx.android.synthetic.main.rv_activity_product_deal_right_chat.view.*
 import kotlinx.android.synthetic.main.rv_activity_sales_hository.view.*
 import kotlinx.android.synthetic.main.rv_activity_sales_hository2.view.*
+import kotlinx.android.synthetic.main.rv_activity_sales_hostory_fragment1.view.*
 
 class SalesHistoryAdapter(val context: Context, val ItemList:ArrayList<SalesHistoryDataClass>):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private lateinit var itemClickListener: SalesHistoryAdapter.OnItemClickListener
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -39,6 +44,11 @@ class SalesHistoryAdapter(val context: Context, val ItemList:ArrayList<SalesHist
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is Rv1ViewHolder ){
             holder.bind(context,ItemList[position])
+            holder.itemView.sales_history_deal_finish.setOnClickListener {
+
+                itemClickListener.onClick(it,position)
+
+            }
         }else if(holder is Rv2ViewHolder){
             holder.bind(context,ItemList[position])
         }
@@ -102,7 +112,13 @@ class SalesHistoryAdapter(val context: Context, val ItemList:ArrayList<SalesHist
 
     }
 
+    interface OnItemClickListener {
+        fun onClick(v: View, position:Int)
+    }
 
+    fun setItemClickListener(onItemClickListener:OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
 
 }
 

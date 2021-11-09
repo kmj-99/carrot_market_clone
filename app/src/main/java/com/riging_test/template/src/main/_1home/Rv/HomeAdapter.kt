@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.riging_test.template.R
@@ -55,7 +57,9 @@ class HomeAdapter(val context: Context,val ItemList:ArrayList<HomeDataClass>): R
         private var HeartLayout=ItemView.Rv_Home_HeartLayout
 
         fun bind(context:Context,Item:HomeDataClass){
-            Glide.with(context).load(Item.ImageUrl).apply(RequestOptions.bitmapTransform(RoundedCorners(20))).centerCrop().into(Image)
+            var multOption= MultiTransformation(CenterCrop(),RoundedCorners(20))
+
+            Glide.with(context).load(Item.ImageUrl).apply(RequestOptions.bitmapTransform(multOption)).into(Image)
             Name.text=Item.Title
             Location.text=Item.Location
             Time.text=Item.Time.toString()

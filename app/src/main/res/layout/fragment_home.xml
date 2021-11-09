@@ -11,6 +11,7 @@
         android:layout_height="80dp"
         android:gravity="bottom"
         android:background="@color/white"
+        app:elevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,7 +19,8 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/white"
+            app:elevation="0dp">
 
             <LinearLayout
                 android:id="@+id/home_location_add"
@@ -30,14 +32,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="소흘읍"
+                    android:layout_marginLeft="5dp"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="19sp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/home_icon_bottom_up"
-                    android:layout_width="20dp"
-                    android:layout_height="25dp"
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:src="@drawable/bottom_icon" />
             </LinearLayout>
@@ -53,42 +57,56 @@
 
                 <ImageView
                     android:id="@+id/home_search"
-                    android:layout_width="23dp"
+                    android:layout_width="30dp"
                     android:layout_height="45dp"
-                    android:layout_marginRight="25dp"
-                    android:src="@drawable/search_icon_dark" />
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/home_search" />
 
                 <ImageView
                     android:id="@+id/home_list"
-                    android:layout_width="23dp"
+                    android:layout_width="30dp"
                     android:layout_height="45dp"
-                    android:layout_marginRight="25dp"
-                    android:src="@drawable/list_icon" />
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/home_list" />
 
                 <ImageView
                     android:id="@+id/home_alarm"
-                    android:layout_width="23dp"
+                    android:layout_width="35dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/bell_icon" />
+                    android:src="@drawable/home_bell" />
             </LinearLayout>
 
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
+    <ImageView
+        android:id="@+id/home_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/light_light_gray"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintTop_toBottomOf="@+id/home_app_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="1"
         app:layout_constraintWidth_percent="1"
-        app:layout_constraintTop_toBottomOf="@id/home_app_bar"
+        app:layout_constraintTop_toBottomOf="@id/home_line"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/home_Rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"/>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/home_swiper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_Rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="200dp"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="200dp"

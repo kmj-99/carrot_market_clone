@@ -116,6 +116,11 @@
             android:name=".src.my_location_setting.MyLocationSettingAcvitiy"
             />
 
+        <!-- deal_finish-->
+        <activity
+            android:name=".src.deal_finish.DealFinish"
+            />
+
         <activity
             android:name=".src.Test_Test"
             />

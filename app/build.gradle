@@ -92,7 +92,8 @@ dependencies {
     //seek bar open source
     implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
 
-
+    //새로고침을 구현하는 데 필요한 라이브러리
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
 
 }

@@ -8,6 +8,7 @@ data class Result(
     val postId: Int,
     val status: String,
     val title: String,
-    val townId: Int,
+    val time:String,
+    val townName: String,
     val userId: Int
 )

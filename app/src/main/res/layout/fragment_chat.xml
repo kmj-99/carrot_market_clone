@@ -49,7 +49,7 @@
                     android:id="@+id/chat_alarm"
                     android:layout_width="25dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/bell_icon"/>
+                    android:src="@drawable/home_bell"/>
             </LinearLayout>
 
 

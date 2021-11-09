@@ -51,7 +51,7 @@
                     android:layout_width="25dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="25dp"
-                    android:src="@drawable/search_icon_dark"/>
+                    android:src="@drawable/home_search"/>
 
                 <ImageView
                     android:id="@+id/life_favorites"
@@ -63,7 +63,7 @@
                     android:id="@+id/life_alarm"
                     android:layout_width="25dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/bell_icon"/>
+                    android:src="@drawable/home_bell"/>
             </LinearLayout>
 
 
