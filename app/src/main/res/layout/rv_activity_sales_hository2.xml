@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="7dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sales_history_layout_Info"
+        android:id="@+id/sales_history_layout_Info2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent="1"
@@ -19,17 +19,18 @@
             android:id="@+id/Rv_Sales_History_Image2"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="12dp"
             android:src="@drawable/home_bell"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <FrameLayout
-
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginLeft="10dp"
+            android:paddingTop="5dp"
             app:layout_constraintHeight_percent="1"
             app:layout_constraintLeft_toRightOf="@id/Rv_Sales_History_Image2"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,10 +40,10 @@
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 android:orientation="vertical">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/Rv_Sales_History_Name2"
                         android:layout_width="wrap_content"
@@ -57,9 +58,9 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="15dp"
-                        android:src="@drawable/action_list_icon"
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="5dp"
+                        android:src="@drawable/action_list_icon"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -74,7 +75,8 @@
                         android:id="@+id/Rv_Sales_History_Location2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="진접읍"/>
+                        android:text="진접읍"
+                        android:textSize="12sp"/>
                     <ImageView
                         android:layout_width="2dp"
                         android:layout_height="2dp"
@@ -85,14 +87,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="21초전"/>
+                        android:text="21초전"
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal">
-
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="2dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -108,8 +111,7 @@
                         android:id="@+id/Rv_Sales_History_Price2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="7dp"
+                        android:layout_marginLeft="10dp"
                         android:text="30,00원"
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
@@ -124,7 +126,7 @@
                 android:visibility="visible"
                 android:layout_gravity="right|bottom">
                 <LinearLayout
-                    android:id="@+id/Rv_Sales_History_ChatLayout"
+                    android:id="@+id/Rv_Sales_History_ChatLayout2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -141,7 +143,7 @@
                         android:text="2"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/Rv_Sales_History_HeartLayout"
+                    android:id="@+id/Rv_Sales_History_HeartLayout2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -164,28 +166,35 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/sales_history_line"
+        android:id="@+id/sales_history_line2"
         android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="15dp"
         android:background="@color/light_light_gray"
         app:layout_constraintWidth_percent="1"
-        app:layout_constraintTop_toBottomOf="@+id/sales_history_layout_Info"
+        app:layout_constraintTop_toBottomOf="@+id/sales_history_layout_Info2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="0dp"
+    android:layout_height="40dp"
+    app:layout_constraintWidth_percent="1"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/sales_history_line2">
     <TextView
-        android:id="@+id/sales_history_text_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="작성한 후기 보기"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/sales_history_line"
+        android:text="거래후기 보내기"
+        android:textColor="@color/carrot_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

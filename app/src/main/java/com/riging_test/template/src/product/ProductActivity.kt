@@ -145,6 +145,7 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
             ProductDealChat_Intent.putExtra("Price",Price)
             ProductDealChat_Intent.putExtra("NickName",NickName)
             ProductDealChat_Intent.putExtra("Title",Title)
+            ProductDealChat_Intent.putExtra("PostId",postId)
 
 
             startActivity(ProductDealChat_Intent)

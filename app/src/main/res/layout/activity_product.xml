@@ -45,6 +45,7 @@
                     android:layout_height="70dp"
                     android:paddingTop="20dp"
                     app:layout_collapseMode="pin"
+                    app:contentInsetStart="0dp"
                     >
                     <!-- app:layout_collapseMode
                         이 속성은 Toolbar 안에 설정하며,
@@ -53,15 +54,16 @@
 
                     <ImageView
                         android:id="@+id/product_button_back"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="12dp"
                         android:src="@drawable/product_left_icon"/>
 
                     <ImageView
                         android:id="@+id/product_button_home"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@drawable/product_home_icon"
                         />
 
@@ -195,7 +197,8 @@
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="5dp"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="2dp"
                                 android:background="@drawable/smile2_icon"/>
 
                         </LinearLayout>
@@ -207,7 +210,7 @@
                             android:layout_gravity="right"
                             android:layout_marginTop="5dp"
                             android:text="매너온도"
-                            android:textSize="12sp"/>
+                            android:textSize="11sp"/>
 
 
                     </LinearLayout>
@@ -221,7 +224,7 @@
                     android:layout_width="0dp"
                     android:layout_height="2dp"
                     android:background="@color/light_light_gray"
-                    app:layout_constraintWidth_percent="0.91"
+                    app:layout_constraintWidth_percent="0.95"
                     app:layout_constraintTop_toBottomOf="@+id/product_layout_profile"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
@@ -340,7 +343,7 @@
                     android:layout_width="0dp"
                     android:layout_height="2dp"
                     android:background="@color/light_light_gray"
-                    app:layout_constraintWidth_percent="0.91"
+                    app:layout_constraintWidth_percent="0.95"
                     app:layout_constraintTop_toBottomOf="@+id/product_layout_content"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
@@ -367,7 +370,7 @@
                     android:layout_height="2dp"
                     android:layout_marginTop="20dp"
                     android:background="@color/light_light_gray"
-                    app:layout_constraintWidth_percent="0.91"
+                    app:layout_constraintWidth_percent="0.95"
                     app:layout_constraintTop_toBottomOf="@+id/product_text_report"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
@@ -424,7 +427,7 @@
                     android:layout_width="0dp"
                     android:layout_height="2dp"
                     android:background="@color/light_light_gray"
-                    app:layout_constraintWidth_percent="0.91"
+                    app:layout_constraintWidth_percent="0.95"
                     app:layout_constraintTop_toBottomOf="@+id/product_Rv1"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>

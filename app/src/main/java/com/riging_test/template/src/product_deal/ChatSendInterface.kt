@@ -7,7 +7,7 @@ import com.riging_test.template.src.product_deal.models.response.ChatSendRespons
 import retrofit2.Call
 import retrofit2.http.*
 
-interface ProductDealChatSendInterface {
+interface ChatSendInterface {
 
     @POST("chatting/{chattingRoomId}/content")
     fun postSendChat(@Header("X-ACCESS-TOKEN")Jwt:String,

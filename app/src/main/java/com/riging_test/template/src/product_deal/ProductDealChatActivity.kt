@@ -11,21 +11,35 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.riging_test.template.R
+import com.riging_test.template.config.ApplicationClass
+import com.riging_test.template.config.ApplicationClass.Companion.sSharedPreferences
 import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityProductDealBinding
 import com.riging_test.template.src.product_deal.Rv.ProductDealAdapter
 import com.riging_test.template.src.product_deal.Rv.ProductDealDataClass
 import com.riging_test.template.src.product_deal.Rv.ViewType
+import com.riging_test.template.src.product_deal.models.request.ChatAddRequest
+import com.riging_test.template.src.product_deal.models.request.ChatSendRequest
+import com.riging_test.template.src.product_deal.models.response.ChatAddResponse
+import com.riging_test.template.src.product_deal.models.response.ChatSendResponse
 import com.riging_test.template.src.product_deal_time_setting.TimeSettingActivity
+import kotlinx.android.synthetic.main.rv_activity_product_deal_left_chat.view.*
+import kotlinx.android.synthetic.main.rv_activity_product_deal_right_chat.view.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(ActivityProductDealBinding::inflate) {
+class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(ActivityProductDealBinding::inflate),ChatView {
     private var Test_Chat=ViewType().CLIENT_JOIN
 
     private var Test_List=ArrayList<ProductDealDataClass>()
+
+    private var test_jwt="eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjIyLCJpYXQiOjE2MzY1NTE4MjksImV4cCI6MTYzODAyMzA1OH0.LrW57c_Bb_XbfeONdedsKplKAjiUnYKpWz-cCwoIJBc"
+
+    private var ChatRoomId=0
+    private var Count=true
+    private var ChatContent="d"
 
     override fun onStart() {
         super.onStart()
@@ -42,6 +56,7 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
         val NickName=intent.getStringExtra("NickName")
         val Price=intent.getStringExtra("Price")
         val Title=intent.getStringExtra("Title")
+        val postId=intent.getIntExtra("PostId",1)
 
         binding.productDealTextNickname.text=NickName
         binding.productDealTextPrice.text=Price
@@ -136,20 +151,33 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
             var content=binding.productDealChatEdit.text.toString()
             if(Test_Chat==ViewType().CLIENT_JOIN) {
 
+                ChatService(this).TryPostAdd(ChatAddRequest(buyerUserId = sSharedPreferences.getInt("userId",1),postId = postId),20)
                 Test_List.add(ProductDealDataClass(null, CurrentData(), null, ViewType().CLIENT_JOIN))
                 Test_Chat=ViewType().RIGHT_CHAT
             }
 
             when(Test_Chat){
                 ViewType().RIGHT_CHAT -> {
+                    ChatContent=binding.productDealChatEdit.text.toString()
                     binding.productDealChatEdit.text.clear()
                     Test_List.add(ProductDealDataClass(content,Am_Pm+" "+CurrentTime(),null,ViewType().RIGHT_CHAT))
+                    if(!Count) {
+                        ChatService(this).TryPostSend(
+                            test_jwt,
+                            ChatRoomId,
+                            ChatSendRequest(content = ChatContent)
+                        )
+                    }
                     Test_Chat=ViewType().LEFT_CHAT
                 }
 
+
                 ViewType().LEFT_CHAT -> {
+                    ChatContent=binding.productDealChatEdit.text.toString()
                     binding.productDealChatEdit.text.clear()
                     Test_List.add(ProductDealDataClass(content,Am_Pm+" "+CurrentTime(),R.drawable.test_image,ViewType().LEFT_CHAT))
+                    ChatService(this).TryPostSend(test_jwt,ChatRoomId, ChatSendRequest(content=ChatContent))
+
                     Test_Chat=ViewType().RIGHT_CHAT
 
                 }
@@ -181,7 +209,36 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
 
     }
 
+    override fun postAddSuccess(response: ChatAddResponse) {
+        if(response.code==1000){
 
+            ChatRoomId=response.result.chattingRoomId
+            if(Count){
+                ChatService(this).TryPostSend(test_jwt,ChatRoomId, ChatSendRequest(content="안녕하세요"))
+                Count=false
+            }
+            showCustomToast("채팅방이 추가되었습니다.")
+        }else{
+            showCustomToast(response.message+"postAddSuccess")
+        }
+
+    }
+
+    override fun postAddFailure(message: String) {
+        showCustomToast(message+"postAddFailure")
+    }
+
+    override fun postSendSuccess(response: ChatSendResponse) {
+        if(response.code==1000){
+            showCustomToast("전송되었습니다.")
+        }else{
+            showCustomToast(response.message+"postSendSuccess")
+        }
+    }
+
+    override fun postSendFailure(message: String) {
+        showCustomToast(message+"postSendFailure")
+    }
 
 
 }

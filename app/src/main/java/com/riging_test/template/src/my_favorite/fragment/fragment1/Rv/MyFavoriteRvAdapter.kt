@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.riging_test.template.R
 import com.riging_test.template.src.my_carrot_sales_history.Rv.SalesHistoryDataClass
 import kotlinx.android.synthetic.main.rv_activity_my_favorite.view.*
@@ -39,7 +43,8 @@ class MyFavoriteRvAdapter(val context:Context,val ItemList:ArrayList<MyFavoriteR
         private var HeartNumber=ItemView.Rv_My_Favorite_HeartNumber
 
         fun bind(context: Context,Item: MyFavoriteRvDataClass){
-            Glide.with(context).load(Item.Image).into(Image)
+            var multOption= MultiTransformation(CenterCrop(), RoundedCorners(20))
+            Glide.with(context).load(Item.Image).apply(RequestOptions.bitmapTransform(multOption)).into(Image)
             Title.text=Item.Title
             Location.text=Item.Location
             Time.text=Item.Time

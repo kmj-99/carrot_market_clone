@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 interface HistoryFragment2Interface {
 
-    @GET("post/deal-complete/{userId}/sale")
-    fun getSalesFinish(@Path("userId")userId:Int
+    @GET("post/{sellerUserId}/sales/complete")
+    fun getSalesFinish(@Path("sellerUserId")sellerUserId:Int
     ): Call<SalesFinishResponse>
 }

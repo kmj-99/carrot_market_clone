@@ -106,7 +106,8 @@ class SalesHistoryAdapter(val context: Context, val ItemList:ArrayList<SalesHist
 
 
         fun bind(context: Context,Item:SalesHistoryDataClass){
-            Glide.with(context).load(Item.Image).into(Image)
+            var multOption= MultiTransformation(CenterCrop(), RoundedCorners(20))
+            Glide.with(context).load(Item.Image).apply(RequestOptions.bitmapTransform(multOption)).into(Image)
             Title.text=Item.Title
             Location.text=Item.Location
             Time.text=Item.Time

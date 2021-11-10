@@ -168,31 +168,29 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
+        android:layout_height="40dp"
         app:layout_constraintWidth_percent="1"
-        app:layout_constraintHeight_percent="0.23"
         app:layout_constraintTop_toBottomOf="@+id/sales_history_line"
         app:layout_constraintLeft_toLeftOf="parent"
-        >
+        app:layout_constraintRight_toRightOf="parent">
+
         <TextView
-            android:id="@+id/sales_history_text_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="예약중으로 변경"
             android:textStyle="bold"
             android:textColor="@color/black"
-            app:layout_constraintRight_toLeftOf="@+id/sales_history_line2"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintRight_toLeftOf="@+id/sales_history_line_2"/>
+
         <ImageView
-            android:id="@+id/sales_history_line2"
+            android:id="@+id/sales_history_line_2"
             android:layout_width="2dp"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="1"
             android:background="@color/light_light_gray"
+            app:layout_constraintHeight_percent="1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -201,15 +199,20 @@
             android:id="@+id/sales_history_deal_finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
             android:text="거래완료로 변경"
-            android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@+id/sales_history_line2"
+            android:textColor="@color/black"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/sales_history_line_2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
