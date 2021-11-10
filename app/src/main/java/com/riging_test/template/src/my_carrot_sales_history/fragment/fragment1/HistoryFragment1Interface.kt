@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 interface HistoryFragment1Interface {
 
-    @GET("post/sales/{userId}")
+    @GET("post/{userId}/sales")
     fun getSalesIng(@Path("userId")userId:Int
     ): Call<SalesIngResonse>
 }

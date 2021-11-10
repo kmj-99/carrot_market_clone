@@ -101,12 +101,13 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
                 showCustomToast("내용을 입력하세요")
             }else {
 
+                Log.d("certification","${binding.postingEditTitle.text} ${binding.postingEditPrice.text} ${binding.postingEditContent.text}")
                 PostingService(this).TryPostPoting(
                     PostingRequest(
                         userId = 32,
                         townId = 1665,
                         title = binding.postingEditTitle.text.toString(),
-                        categoryId =categoryId ,
+                        categoryId =categoryId+1 ,
                         cost =binding.postingEditPrice.text.toString().toInt(),
                         content = binding.postingEditContent.text.toString()
                     )
@@ -181,7 +182,9 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
         if(response.code==1000) {
             storage= FirebaseStorage.getInstance("gs://riging-751d4.appspot.com")
             storageRef=storage.getReference()
-            for(i in 0 until  ImageList.size){
+
+
+            for(i in 0 until ImageList.size){
                 riverRef=storageRef.child("post_product_images_32/product_image$i")
                 uploadTask=riverRef.putFile(ImageList[i].Image!!)
                     PostingService(this).TryPostImagePoting(
@@ -191,9 +194,10 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
                         )
                     )
             }
+            showCustomToast("게시물이 추가되었습니다.")
 
         }else{
-            showCustomToast(response.code.toString())
+            showCustomToast(response.code.toString()+"TryPostPostingSuccess")
         }
 
     }
@@ -204,7 +208,11 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
     }
 
     override fun TryPostingImageSuccess(response: PostingImageResponse) {
-
+            if(response.code==1000){
+                showCustomToast("이미지 게시 완료")
+            }else{
+                showCustomToast(response.code.toString()+"TryPostingImageSuccess")
+            }
     }
 
     override fun TryPostingIamgeFailue(message: String) {

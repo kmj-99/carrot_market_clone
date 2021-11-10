@@ -4,6 +4,7 @@ import android.util.Log
 import com.riging_test.template.config.ApplicationClass
 import com.riging_test.template.src.main._1home.models.HomePostListDataClass
 import com.riging_test.template.src.main._1home.models.HomeTitleImageResponse
+import com.riging_test.template.src.main._1home.models.PostIdRresponse
 import com.riging_test.template.src.main._1home.models.RangeResponse
 import com.riging_test.template.src.sign_up.second.SignupSecondLocationInterace
 import com.riging_test.template.src.sign_up.second.models.LocationResponse
@@ -14,7 +15,7 @@ import retrofit2.Response
 class HomeFragmentService(val view:HomeFragmentView) {
 
 
-    fun TryGetPostList(jwt:String,townId:Int,range:Int,type:Int){
+    fun TryGetPostList(jwt:String,townId:Int,range:Int){
         val postListRetrofitInterface= ApplicationClass.sRetrofit.create(
             HomeFragmentInterface::class.java)
         postListRetrofitInterface.getPostList(jwt,townId,range).enqueue(object:
@@ -65,7 +66,7 @@ class HomeFragmentService(val view:HomeFragmentView) {
 
     }
 
-    fun TryGetTitleImage(postId:Int){
+    fun TryGetTitleImage(postId:Int,count:Int){
 
         val getTitleImageRetrofitInterface= ApplicationClass.sRetrofit.create(
             HomeFragmentTitleImageInterface::class.java)
@@ -77,13 +78,42 @@ class HomeFragmentService(val view:HomeFragmentView) {
                 response: Response<HomeTitleImageResponse>
             ) {
                 if(response.body()!=null){
-                    view.TryGetTitleImageSuccess(response.body() as HomeTitleImageResponse)
+                    view.TryGetTitleImageSuccess(response.body() as HomeTitleImageResponse,count)
                 }
 
             }
 
             override fun onFailure(call: Call<HomeTitleImageResponse>, t: Throwable) {
                 view.TryGetTitleImageFailure(t.message?:"통신오류")
+
+            }
+
+        })
+
+    }
+
+
+
+
+    fun TryGetPostId(userId:Int){
+
+        val getPostidRetrofitInterface= ApplicationClass.sRetrofit.create(
+            HomeGetPostIdInterface::class.java)
+
+        getPostidRetrofitInterface.getPostId(userId).enqueue(object:
+            Callback<PostIdRresponse> {
+            override fun onResponse(
+                call: Call<PostIdRresponse>,
+                response: Response<PostIdRresponse>
+            ) {
+                if(response.body()!=null){
+                    view.TryGetPostIdSucess(response.body() as PostIdRresponse)
+                }
+
+            }
+
+            override fun onFailure(call: Call<PostIdRresponse>, t: Throwable) {
+                view.TryGetPostFailure(t.message?:"통신오류")
 
             }
 

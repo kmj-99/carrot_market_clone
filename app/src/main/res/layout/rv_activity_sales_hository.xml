@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="7dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,17 +19,18 @@
             android:id="@+id/Rv_Sales_History_Image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="12dp"
             android:src="@drawable/home_bell"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <FrameLayout
-
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginLeft="10dp"
+            android:paddingTop="5dp"
             app:layout_constraintHeight_percent="1"
             app:layout_constraintLeft_toRightOf="@id/Rv_Sales_History_Image"
             app:layout_constraintTop_toTopOf="parent"
@@ -74,7 +75,8 @@
                         android:id="@+id/Rv_Sales_History_Location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="진접읍"/>
+                        android:text="진접읍"
+                        android:textSize="12sp"/>
                     <ImageView
                         android:layout_width="2dp"
                         android:layout_height="2dp"
@@ -85,7 +87,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="21초전"/>
+                        android:text="21초전"
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -154,8 +157,8 @@
     <ImageView
         android:id="@+id/sales_history_line"
         android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="15dp"
         android:background="@color/light_light_gray"
         app:layout_constraintWidth_percent="1"
         app:layout_constraintTop_toBottomOf="@+id/sales_history_layout_Info"
@@ -199,7 +202,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="거래완료"
+            android:text="거래완료로 변경"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@+id/sales_history_line2"

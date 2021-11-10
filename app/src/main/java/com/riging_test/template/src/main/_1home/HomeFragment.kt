@@ -25,6 +25,7 @@ import com.riging_test.template.src.main._1home.Rv.HomeAdapter
 import com.riging_test.template.src.main._1home.Rv.HomeDataClass
 import com.riging_test.template.src.main._1home.models.HomePostListDataClass
 import com.riging_test.template.src.main._1home.models.HomeTitleImageResponse
+import com.riging_test.template.src.main._1home.models.PostIdRresponse
 import com.riging_test.template.src.main._1home.models.RangeResponse
 import com.riging_test.template.src.my_location_setting.MyLocationSettingAcvitiy
 import com.riging_test.template.src.posting.PostingActivity
@@ -34,6 +35,7 @@ import com.riging_test.template.src.sign_up.second.SignupSecondService
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home),HomeFragmentView {
     private var TestItemList = ArrayList<HomeDataClass>()
     private var TitleImageList = ArrayList<String>()
+    private var PostIdList=ArrayList<Int>()
 
     private lateinit var defalt_Location: String
     private lateinit var add_Location: String
@@ -50,7 +52,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        TitleImageList.add("https://modo-phinf.pstatic.net/20170419_207/1492566661261LrFEa_PNG/mosaPDcXf5.png")
 
         var sWipe = binding.homeSwiper
 
@@ -67,13 +68,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         jwt = sSharedPreferences.getString("jwt", "0")!!
         Home_Rv_Adapter = HomeAdapter(requireContext(), TestItemList)
-        HomeFragmentService(this).TryGetRange(jwt)
+
+        HomeFragmentService(this).TryGetPostId(32)
+
+
 
 
 
         sWipe.setOnRefreshListener {
 
-            HomeFragmentService(this).TryGetRange(jwt)
+            HomeFragmentService(this).TryGetPostId(32)
+
 
 
             sWipe.isRefreshing = false
@@ -229,26 +234,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun TryGetPostListSuccess(response: HomePostListDataClass) {
         if (response.code == 1000) {
             TestItemList.clear()
-
-
-            Home_Rv_Adapter.notifyDataSetChanged()
             for (i in 0 until response.result.size) {
-                TestItemList.add(
-                    HomeDataClass(
-                        TitleImageList[0],
-                        response.result[i].title,
-                        response.result[i].categoryId,
-                        response.result[i].content,
-                        response.result[i].townName,
-                        response.result[i].time,
-                        "${response.result[i].cost.toString()}원",
-                        1,
-                        1,
-                        response.result[i].userId,
-                        response.result[i].postId
+                if (i < TitleImageList.size){
+                    Log.d("Title_Test",TitleImageList[i])
+                    TestItemList.add(
+                        HomeDataClass(
+                            TitleImageList[i],
+                            response.result[i].title,
+                            response.result[i].categoryId,
+                            response.result[i].content,
+                            response.result[i].townName,
+                            response.result[i].time,
+                            "${response.result[i].cost.toString()}원",
+                            1,
+                            1,
+                            response.result[i].userId,
+                            response.result[i].postId
+                        )
                     )
-                )
             }
+            }
+            Thread.sleep(1000)
+
+
             binding.homeRv.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
@@ -266,7 +274,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         override fun TryGetRangeSuccess(response: RangeResponse) {
             if (response.code == 1000) {
-                HomeFragmentService(this).TryGetPostList(jwt, 1665, response.result.range, 0)
+                HomeFragmentService(this).TryGetPostList(jwt, 1665, response.result.range)
             } else {
 
                 showCustomToast(response.message+"TryGetRangeSuccess")
@@ -278,15 +286,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         }
 
 
-        override fun TryGetTitleImageSuccess(response: HomeTitleImageResponse) {
+        override fun TryGetTitleImageSuccess(response: HomeTitleImageResponse,count:Int) {
             if (response.code == 1000) {
+                Log.d("Title_iamge_size",response.result.image)
                 TitleImageList.add(response.result.image)
-                Log.d("Range", TitleImageList.size.toString())
 
             } else {
-                TitleImageList.add("https://modo-phinf.pstatic.net/20170419_207/1492566661261LrFEa_PNG/mosaPDcXf5.png")
-                showCustomToast(response.message)
+                Log.d("Title_iamge_size","null")
 
+            }
+            if(count==PostIdList.size-1){
+                HomeFragmentService(this).TryGetRange(jwt)
             }
 
         }
@@ -294,6 +304,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         override fun TryGetTitleImageFailure(message: String) {
             showCustomToast(message)
         }
+
+    override fun TryGetPostIdSucess(response: PostIdRresponse) {
+        if(response.code==1000){
+            for(i in 0 until response.result.size){
+                PostIdList.add(response.result[i].postId)
+
+            }
+
+            for (i in 0 until PostIdList.size) {
+                Thread.sleep(100)
+                HomeFragmentService(this).TryGetTitleImage(PostIdList[i],i)
+            }
+
+
+
+        }else{
+            showCustomToast(response.message+"TryGetPostIdSucess")
+        }
+    }
+
+    override fun TryGetPostIdFailure(message: String) {
+        showCustomToast(message)
+    }
 
 
 }

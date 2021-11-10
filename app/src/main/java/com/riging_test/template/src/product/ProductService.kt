@@ -6,6 +6,7 @@ import com.riging_test.template.src.product.models.request.DeleteRequest
 import com.riging_test.template.src.product.models.response.AddResponse
 import com.riging_test.template.src.product.models.response.DeleteResponse
 import com.riging_test.template.src.product.models.response.FavoriteListResponse
+import com.riging_test.template.src.product.models.response.ImageListResponse
 import com.riging_test.template.src.sign_up.second.SignupSecondLocationInterace
 import com.riging_test.template.src.sign_up.second.models.LocationResponse
 import retrofit2.Call
@@ -89,5 +90,32 @@ class ProductService(val view:ProductActivityView){
         })
 
     }
+
+
+
+    fun GetImageList(postId:Int){
+        val getImageListInterface= ApplicationClass.sRetrofit.create(
+            ProductImageListInterface::class.java)
+        getImageListInterface.getImageList(postId).enqueue(object:
+            Callback<ImageListResponse> {
+            override fun onResponse(
+                call: Call<ImageListResponse>,
+                response: Response<ImageListResponse>
+            ) {
+                if(response.body()!=null){
+                    view.TryGetImageListSuccess(response.body() as ImageListResponse)
+                }
+
+            }
+
+            override fun onFailure(call: Call<ImageListResponse>, t: Throwable) {
+                view.TryGetImageListFailue(t.message?:"통신오류")
+
+            }
+
+        })
+
+    }
+
 
 }

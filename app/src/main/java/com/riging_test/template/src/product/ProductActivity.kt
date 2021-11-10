@@ -23,6 +23,7 @@ import com.riging_test.template.src.product.models.request.DeleteRequest
 import com.riging_test.template.src.product.models.response.AddResponse
 import com.riging_test.template.src.product.models.response.DeleteResponse
 import com.riging_test.template.src.product.models.response.FavoriteListResponse
+import com.riging_test.template.src.product.models.response.ImageListResponse
 import com.riging_test.template.src.product.rv.ProductRvAdapter
 import com.riging_test.template.src.product.rv.ProductRvDataClass
 import com.riging_test.template.src.product.view_pager.ProductViewPagerAdapter
@@ -41,7 +42,7 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
     private var postId=20
     private var Start=true
 
-    private var ImageList=ArrayList<Int>()
+    private var ImageList=ArrayList<String>()
 
     override fun onStart() {
         super.onStart()
@@ -71,6 +72,8 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
         val userId=sSharedPreferences.getInt("userId",1)
         postId=intent.getIntExtra("postId",0)
 
+        ProductService(this).GetImageList(postId)
+
         ProductService(this).TryGetFavoriteList(jwt)
         showCustomToast("$userId $postId")
 
@@ -81,12 +84,7 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
         binding.productTextTime.text=Time
         binding.productTextCategory.text=category[Category]
 
-        ImageList.add(R.drawable.test_image)
-        ImageList.add(R.drawable.test_image)
-        ImageList.add(R.drawable.test_image)
 
-        binding.productViewPager.adapter=ProductViewPagerAdapter(this,ImageList)
-        binding.productViewPager.orientation= ViewPager2.ORIENTATION_HORIZONTAL
 
 
 
@@ -142,9 +140,11 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
 
             val Price=binding.productTextPrice.text
             val NickName=binding.productTextNickname.text
+            val Title=binding.productTextTitle.text
 
             ProductDealChat_Intent.putExtra("Price",Price)
             ProductDealChat_Intent.putExtra("NickName",NickName)
+            ProductDealChat_Intent.putExtra("Title",Title)
 
 
             startActivity(ProductDealChat_Intent)
@@ -296,6 +296,24 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
 
     override fun TryGetFavoriteFailue(message: String) {
         showCustomToast(message)
+    }
+
+    override fun TryGetImageListSuccess(response: ImageListResponse) {
+        if(response.code==1000){
+            for(i in 0 until response.result.size){
+                Log.d("Image_List",response.result[i].image)
+                ImageList.add(response.result[i].image)
+            }
+            binding.productViewPager.adapter=ProductViewPagerAdapter(this,ImageList)
+            binding.productViewPager.orientation= ViewPager2.ORIENTATION_HORIZONTAL
+
+
+        }
+
+    }
+
+    override fun TryGetImageListFailue(message: String) {
+        showCustomToast(message+"TryGetImageListFailue")
     }
 
 

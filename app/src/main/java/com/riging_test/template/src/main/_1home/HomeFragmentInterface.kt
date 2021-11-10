@@ -7,8 +7,7 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface HomeFragmentInterface {
-
-    @GET("post/inquire-use-address")
+    @GET("post")
     fun getPostList(@Header("X-ACCESS-TOKEN")Jwt:String,
                     @Query("townId")townId:Int,
                     @Query("range")range:Int

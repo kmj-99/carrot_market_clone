@@ -5,6 +5,7 @@
     android:background="@color/light_light_gray"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sales_history_fragment1_Rv"
         android:layout_width="0dp"

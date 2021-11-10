@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.riging_test.template.R
 import com.riging_test.template.src.main._1home.Rv.HomeAdapter
 import kotlinx.android.synthetic.main.rv_activity_product_deal_join.view.*
@@ -76,7 +80,9 @@ class SalesHistoryAdapter(val context: Context, val ItemList:ArrayList<SalesHist
         private var HeartNumber=ItemView.Rv_Sales_History_HeartNumber
 
         fun bind(context: Context,Item:SalesHistoryDataClass){
-            Glide.with(context).load(Item.Image).into(Image)
+
+            var multOption= MultiTransformation(CenterCrop(), RoundedCorners(20))
+            Glide.with(context).load(Item.Image).apply(RequestOptions.bitmapTransform(multOption)).into(Image)
             Title.text=Item.Title
             Location.text=Item.Location
             Time.text=Item.Time

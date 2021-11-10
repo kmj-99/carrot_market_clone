@@ -78,7 +78,6 @@ class SalesHistoryActivity: BaseActivity<ActivitySalesHistoryBinding>(ActivitySa
             //뷰페이저가 변할때마다 탭 레이아웃의 포지션이 바뀌도록 설정
             override fun onPageSelected(position: Int) {
                 binding.salesHistoryTabLayout.setScrollPosition(position,0f,true)
-                showCustomToast("$position")
             }
 
             override fun onPageScrollStateChanged(@ViewPager2.ScrollState state: Int) {}

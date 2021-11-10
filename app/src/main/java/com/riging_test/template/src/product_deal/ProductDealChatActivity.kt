@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MenuInflater
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,9 +41,11 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
 
         val NickName=intent.getStringExtra("NickName")
         val Price=intent.getStringExtra("Price")
+        val Title=intent.getStringExtra("Title")
 
         binding.productDealTextNickname.text=NickName
         binding.productDealTextPrice.text=Price
+        binding.productDealTextTitle.text=Title
 
 
 
@@ -57,15 +60,20 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
         Glide.with(this).load(R.drawable.test_image).centerCrop()
             .into(binding.productDealImageProduct)
 
+        var view=this
         binding.productDealChatEdit.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(count<2){
-                    binding.productDealChatImageSend.setBackgroundResource(R.drawable.select_no_send)
+                Log.d("Edit_Text",count.toString())
+                if(count<1){
+                    Glide.with(view).load(R.drawable.select_no_send).into(binding.productDealChatImageSend)
+                    //binding.productDealChatImageSend.setBackgroundResource(R.drawable.select_no_send)
                 }else{
-                    binding.productDealChatImageSend.setBackgroundResource(R.drawable.select_send_icon)
+                    Glide.with(view).load(R.drawable.select_send_icon).into(binding.productDealChatImageSend)
+
+                    //binding.productDealChatImageSend.setBackgroundResource(R.drawable.select_send_icon)
 
                 }
             }
@@ -131,7 +139,6 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
                 Test_List.add(ProductDealDataClass(null, CurrentData(), null, ViewType().CLIENT_JOIN))
                 Test_Chat=ViewType().RIGHT_CHAT
             }
-
 
             when(Test_Chat){
                 ViewType().RIGHT_CHAT -> {
