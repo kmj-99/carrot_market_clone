@@ -22,6 +22,11 @@ class MyLocationSettingAcvitiy: BaseActivity<ActivityMyLocationSettingBinding>
     private var range=0
     private var view=this
 
+    override fun onStart() {
+        super.onStart()
+        StatusColor()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

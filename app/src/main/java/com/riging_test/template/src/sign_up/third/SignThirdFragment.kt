@@ -13,6 +13,7 @@ import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.View
 import com.riging_test.template.R
+import com.riging_test.template.config.ApplicationClass.Companion.editor
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentSignupThirdBinding
 import com.riging_test.template.src.main.MainActivity
@@ -27,8 +28,7 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
     private val certificationNum="018099"
     private lateinit var current_location:String
 
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var editor:SharedPreferences.Editor
+
     private var signFourthFragment=SignFourthFragment()
 
 
@@ -37,8 +37,7 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences=requireActivity().getSharedPreferences("profile", Context.MODE_PRIVATE)
-        editor=sharedPreferences.edit()
+
 
         val textData=binding.signupThirdTextInfo.text
 
@@ -152,7 +151,6 @@ class SignThirdFragment: BaseFragment<FragmentSignupThirdBinding>(FragmentSignup
 
             requireActivity().finish()
 
-            //인증이 안 된 핸드폰번호면 서버에서 jwt를 보내줌 그래서 그걸 저장
         }else if(response.code==2020){
 
             var bundle=Bundle()

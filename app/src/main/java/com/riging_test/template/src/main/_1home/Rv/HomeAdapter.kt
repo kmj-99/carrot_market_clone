@@ -57,7 +57,7 @@ class HomeAdapter(val context: Context,val ItemList:ArrayList<HomeDataClass>): R
         private var HeartLayout=ItemView.Rv_Home_HeartLayout
 
         fun bind(context:Context,Item:HomeDataClass){
-            var multOption= MultiTransformation(CenterCrop(),RoundedCorners(20))
+            var multOption= MultiTransformation(CenterCrop(),RoundedCorners(15))
 
             Glide.with(context).load(Item.ImageUrl).apply(RequestOptions.bitmapTransform(multOption)).into(Image)
             Name.text=Item.Title

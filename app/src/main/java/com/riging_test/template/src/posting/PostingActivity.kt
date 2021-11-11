@@ -18,6 +18,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.riging_test.template.R
+import com.riging_test.template.config.ApplicationClass
+import com.riging_test.template.config.ApplicationClass.Companion.sSharedPreferences
 import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityPostingBinding
 import com.riging_test.template.src.posting.Rv.PostingImageAdapter
@@ -34,6 +36,9 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
     private var ImageList=ArrayList<PostingImageDataClass>()
 
     private var UriList=ArrayList<Uri>()
+
+    private val userId=sSharedPreferences.getInt("userId",1)
+    private val townId= sSharedPreferences.getInt("townId",1)
 
     private lateinit var storage: FirebaseStorage
     private lateinit var storageRef: StorageReference
@@ -104,8 +109,8 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
                 Log.d("certification","${binding.postingEditTitle.text} ${binding.postingEditPrice.text} ${binding.postingEditContent.text}")
                 PostingService(this).TryPostPoting(
                     PostingRequest(
-                        userId = 32,
-                        townId = 1665,
+                        userId = userId,
+                        townId = townId,
                         title = binding.postingEditTitle.text.toString(),
                         categoryId =categoryId+1 ,
                         cost =binding.postingEditPrice.text.toString().toInt(),
@@ -218,6 +223,26 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
     override fun TryPostingIamgeFailue(message: String) {
         showCustomToast(message)
     }
+
+
+    fun PriceTextParsing(text:String): String {
+        var t_stringBuilder = StringBuilder()
+        var textList=text.split("")
+        if(textList.size==4){
+            for(i in 0 until textList.size){
+                if(i ==0){
+                    t_stringBuilder.append(textList[i])
+                    t_stringBuilder.append(",")
+                }else{
+                    t_stringBuilder.append(textList[i])
+                }
+            }
+            return t_stringBuilder.toString()
+        }
+        return text
+
+    }
+
 
 
 }

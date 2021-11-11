@@ -10,6 +10,10 @@ import android.view.MenuInflater
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.riging_test.template.R
 import com.riging_test.template.config.ApplicationClass
 import com.riging_test.template.config.ApplicationClass.Companion.sSharedPreferences
@@ -35,7 +39,9 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
 
     private var Test_List=ArrayList<ProductDealDataClass>()
 
-    private var test_jwt="eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjIyLCJpYXQiOjE2MzY1NTE4MjksImV4cCI6MTYzODAyMzA1OH0.LrW57c_Bb_XbfeONdedsKplKAjiUnYKpWz-cCwoIJBc"
+    private val jwt= sSharedPreferences.getString("jwt","1")!!
+    private val userId= sSharedPreferences.getInt("userId",1)
+
 
     private var ChatRoomId=0
     private var Count=true
@@ -71,8 +77,8 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
         }else{
             Am_Pm="오후"
         }
-
-        Glide.with(this).load(R.drawable.test_image).centerCrop()
+        var multOption= MultiTransformation(CenterCrop(), RoundedCorners(15))
+        Glide.with(this).load(R.drawable.test_image).apply(RequestOptions.bitmapTransform(multOption))
             .into(binding.productDealImageProduct)
 
         var view=this
@@ -151,7 +157,7 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
             var content=binding.productDealChatEdit.text.toString()
             if(Test_Chat==ViewType().CLIENT_JOIN) {
 
-                ChatService(this).TryPostAdd(ChatAddRequest(buyerUserId = sSharedPreferences.getInt("userId",1),postId = postId),20)
+                ChatService(this).TryPostAdd(ChatAddRequest(buyerUserId = userId,postId = postId),22)
                 Test_List.add(ProductDealDataClass(null, CurrentData(), null, ViewType().CLIENT_JOIN))
                 Test_Chat=ViewType().RIGHT_CHAT
             }
@@ -163,7 +169,7 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
                     Test_List.add(ProductDealDataClass(content,Am_Pm+" "+CurrentTime(),null,ViewType().RIGHT_CHAT))
                     if(!Count) {
                         ChatService(this).TryPostSend(
-                            test_jwt,
+                            jwt,
                             ChatRoomId,
                             ChatSendRequest(content = ChatContent)
                         )
@@ -176,7 +182,7 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
                     ChatContent=binding.productDealChatEdit.text.toString()
                     binding.productDealChatEdit.text.clear()
                     Test_List.add(ProductDealDataClass(content,Am_Pm+" "+CurrentTime(),R.drawable.test_image,ViewType().LEFT_CHAT))
-                    ChatService(this).TryPostSend(test_jwt,ChatRoomId, ChatSendRequest(content=ChatContent))
+                    ChatService(this).TryPostSend(jwt,ChatRoomId, ChatSendRequest(content=ChatContent))
 
                     Test_Chat=ViewType().RIGHT_CHAT
 
@@ -214,7 +220,7 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
 
             ChatRoomId=response.result.chattingRoomId
             if(Count){
-                ChatService(this).TryPostSend(test_jwt,ChatRoomId, ChatSendRequest(content="안녕하세요"))
+                ChatService(this).TryPostSend(jwt,ChatRoomId, ChatSendRequest(content="안녕하세요"))
                 Count=false
             }
             showCustomToast("채팅방이 추가되었습니다.")

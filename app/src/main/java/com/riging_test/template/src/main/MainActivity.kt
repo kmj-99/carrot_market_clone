@@ -41,10 +41,6 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         storage= FirebaseStorage.getInstance("gs://riging-751d4.appspot.com")
         storageRef=storage.getReference()
 
-        var nickName=intent.getStringExtra("NickName")
-        var phoneNumber=intent.getStringExtra("PhoneNumber")
-        var location=intent.getStringExtra("Location")
-        var profile_Image=storageRef.child("profile_image/profile1").toString()
 
 
 
@@ -66,11 +62,11 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
                             .replace(R.id.main_container, HomeFragment())
                             .commitAllowingStateLoss()
 
-                        item.setIcon(R.drawable.main_select_1)
-                        menu.findItem(R.id.menu_main_button_life).setIcon(R.drawable.main_select_no_2)
-                        menu.findItem(R.id.menu_main_button_around).setIcon(R.drawable.main_select_no_3)
-                        menu.findItem(R.id.menu_main_button_chat).setIcon(R.drawable.main_select_no_4)
-                        menu.findItem(R.id.menu_main_button_my_carrot).setIcon(R.drawable.main_select_no_5)
+                        item.setIcon(R.drawable.main_select_1_shape)
+                        menu.findItem(R.id.menu_main_button_life).setIcon(R.drawable.main_select_no_2_shape)
+                        menu.findItem(R.id.menu_main_button_around).setIcon(R.drawable.main_select_no_3_shape)
+                        menu.findItem(R.id.menu_main_button_chat).setIcon(R.drawable.main_select_no_4_shape)
+                        menu.findItem(R.id.menu_main_button_my_carrot).setIcon(R.drawable.main_select_no_5_shape)
 
 
                         return@OnNavigationItemSelectedListener true
@@ -89,12 +85,12 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
                             .replace(R.id.main_container, LifeFragment())
                             .commitAllowingStateLoss()
 
-                        item.setIcon(R.drawable.main_select_2)
+                        item.setIcon(R.drawable.main_select_2_shape)
 
-                        menu.findItem(R.id.menu_main_button_home).setIcon(R.drawable.main_select_no_1)
-                        menu.findItem(R.id.menu_main_button_around).setIcon(R.drawable.main_select_no_3)
-                        menu.findItem(R.id.menu_main_button_chat).setIcon(R.drawable.main_select_no_4)
-                        menu.findItem(R.id.menu_main_button_my_carrot).setIcon(R.drawable.main_select_no_5)
+                        menu.findItem(R.id.menu_main_button_home).setIcon(R.drawable.main_select_no_1_shape)
+                        menu.findItem(R.id.menu_main_button_around).setIcon(R.drawable.main_select_no_3_shape)
+                        menu.findItem(R.id.menu_main_button_chat).setIcon(R.drawable.main_select_no_4_shape)
+                        menu.findItem(R.id.menu_main_button_my_carrot).setIcon(R.drawable.main_select_no_5_shape)
 
                         return@OnNavigationItemSelectedListener true
 
@@ -106,12 +102,12 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
                             .replace(R.id.main_container, AroundFragment())
                             .commitAllowingStateLoss()
 
-                        item.setIcon(R.drawable.main_select_3)
+                        item.setIcon(R.drawable.main_select_3_shape)
 
-                        menu.findItem(R.id.menu_main_button_home).setIcon(R.drawable.main_select_no_1)
-                        menu.findItem(R.id.menu_main_button_life).setIcon(R.drawable.main_select_no_2)
-                        menu.findItem(R.id.menu_main_button_chat).setIcon(R.drawable.main_select_no_4)
-                        menu.findItem(R.id.menu_main_button_my_carrot).setIcon(R.drawable.main_select_no_5)
+                        menu.findItem(R.id.menu_main_button_home).setIcon(R.drawable.main_select_no_1_shape)
+                        menu.findItem(R.id.menu_main_button_life).setIcon(R.drawable.main_select_no_2_shape)
+                        menu.findItem(R.id.menu_main_button_chat).setIcon(R.drawable.main_select_no_4_shape)
+                        menu.findItem(R.id.menu_main_button_my_carrot).setIcon(R.drawable.main_select_no_5_shape)
 
                         return@OnNavigationItemSelectedListener true
 
@@ -122,12 +118,12 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
                             .replace(R.id.main_container, ChatFragment())
                             .commitAllowingStateLoss()
 
-                        item.setIcon(R.drawable.main_select_4)
+                        item.setIcon(R.drawable.main_select_4_shape)
 
-                        menu.findItem(R.id.menu_main_button_home).setIcon(R.drawable.main_select_no_1)
-                        menu.findItem(R.id.menu_main_button_life).setIcon(R.drawable.main_select_no_2)
-                        menu.findItem(R.id.menu_main_button_around).setIcon(R.drawable.main_select_no_3)
-                        menu.findItem(R.id.menu_main_button_my_carrot).setIcon(R.drawable.main_select_no_5)
+                        menu.findItem(R.id.menu_main_button_home).setIcon(R.drawable.main_select_no_1_shape)
+                        menu.findItem(R.id.menu_main_button_life).setIcon(R.drawable.main_select_no_2_shape)
+                        menu.findItem(R.id.menu_main_button_around).setIcon(R.drawable.main_select_no_3_shape)
+                        menu.findItem(R.id.menu_main_button_my_carrot).setIcon(R.drawable.main_select_no_5_shape)
 
                         return@OnNavigationItemSelectedListener true
 
@@ -136,10 +132,7 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
                     R.id.menu_main_button_my_carrot -> {
                         if(send) {
                             var bundle = Bundle()
-                            bundle.putString("NickName", nickName)
-                            bundle.putString("PhoneNumber", phoneNumber)
-                            bundle.putString("Location", location)
-                            bundle.putString("ProfileImage", profile_Image)
+
 
                             myCarrotFragment = MyCarrotFragment()
                             myCarrotFragment.arguments = bundle
@@ -150,12 +143,12 @@ class MainActivity :BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
                             .replace(R.id.main_container, myCarrotFragment)
                             .commitAllowingStateLoss()
 
-                        item.setIcon(R.drawable.main_select_5)
+                        item.setIcon(R.drawable.main_select_5_shape)
 
-                        menu.findItem(R.id.menu_main_button_home).setIcon(R.drawable.main_select_no_1)
-                        menu.findItem(R.id.menu_main_button_life).setIcon(R.drawable.main_select_no_2)
-                        menu.findItem(R.id.menu_main_button_around).setIcon(R.drawable.main_select_no_3)
-                        menu.findItem(R.id.menu_main_button_chat).setIcon(R.drawable.main_select_no_4)
+                        menu.findItem(R.id.menu_main_button_home).setIcon(R.drawable.main_select_no_1_shape)
+                        menu.findItem(R.id.menu_main_button_life).setIcon(R.drawable.main_select_no_2_shape)
+                        menu.findItem(R.id.menu_main_button_around).setIcon(R.drawable.main_select_no_3_shape)
+                        menu.findItem(R.id.menu_main_button_chat).setIcon(R.drawable.main_select_no_4_shape)
 
                         return@OnNavigationItemSelectedListener true
 

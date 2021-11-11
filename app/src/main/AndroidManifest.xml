@@ -21,6 +21,7 @@
         android:theme="@style/Theme.Template">
         <activity
             android:name=".src.app_start.StartActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -124,6 +125,11 @@
         <!-- my_favorite-->
         <activity
             android:name=".src.my_favorite.MyFavoriteActivity"
+            />
+
+        <!-- chat_list -->
+        <activity
+            android:name=".src.chat_list.ChatList"
             />
 
         <activity

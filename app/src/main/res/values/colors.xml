@@ -10,6 +10,7 @@
     <color name="carrot_color">#FFFE7E35</color>
     <color name="light_gray">#FFDDDEE0</color>
     <color name="light_light_gray">#F2F3F7</color>
+    <color name="light_light_light_gray">#FFD1D2D6</color>
     <color name="dark_gray">#FF4D515A</color>
     <color name="dark_dark_gray">#FF414C54</color>
     <color name="gray">#6D6E70</color>

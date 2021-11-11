@@ -1,41 +1,51 @@
 package com.riging_test.template.src.app_start
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
+import com.riging_test.template.config.ApplicationClass
 import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityStartBinding
+import com.riging_test.template.src.app_start.models.CertificationReponse
+import com.riging_test.template.src.main.MainActivity
 import com.riging_test.template.src.sign_up.SignActivity
 
-class StartActivity : BaseActivity<ActivityStartBinding>(ActivityStartBinding::inflate) {
-    private lateinit var sharedPreferences: SharedPreferences
+class StartActivity : BaseActivity<ActivityStartBinding>(ActivityStartBinding::inflate),AppStartFragmentView {
+
+    private var jwt= ApplicationClass.sSharedPreferences.getString("jwt","null")!!
+
 
     override fun onStart() {
         super.onStart()
-
         StatusColor()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences=getSharedPreferences("login", MODE_PRIVATE)
+        if(jwt!="null"){
+            AppStartService(this).TryGetCertification(jwt)
+
+        }else{
+            startActivity(Intent(this,SignActivity::class.java))
+        }
+
+    }
 
 
-
-        Thread {
-            Thread.sleep(3000)
-            var Main_Intent = Intent(applicationContext, SignActivity::class.java)
-
-            startActivity(Main_Intent)
+    override fun getCertificationSuccess(response: CertificationReponse) {
+        if(response.code==1000){
+            showCustomToast("인증이 되었습니다.")
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }.start()
+        }else{
+            showCustomToast("인증이 안되었습니다.")
+            startActivity(Intent(this,SignActivity::class.java))
+
+        }
 
     }
 
-    override fun onResume() {
-        super.onResume()
-
-
+    override fun getCertificationFailure(message: String) {
 
     }
+
 }

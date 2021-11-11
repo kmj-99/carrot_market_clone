@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.riging_test.template.R
+import com.riging_test.template.config.ApplicationClass.Companion.sSharedPreferences
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentMyCarrotBinding
 import com.riging_test.template.src.main._5my_carrot.Rv.MyCarrotAdapter
@@ -20,48 +21,18 @@ class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotB
     private var TestList3=ArrayList<MyCarrotDataClass>()
     private var TestList4=ArrayList<MyCarrotDataClass>()
 
+    private val userId=sSharedPreferences.getInt("userId",1)
+    private val location=sSharedPreferences.getString("Location","서울")
+
     private lateinit var nickName:String
-    private lateinit var phoneNumber:String
-    private lateinit var location:String
-    private lateinit var profileImage:String
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        MyCarrotService(this).TryGetUserInfo(32)
+        MyCarrotService(this).TryGetUserInfo(userId)
 
 
-        arguments.let {
-            if(it?.getString("NickName")==null){
-                nickName="김민중"
-            }else{
-                nickName=it.getString("NickName")!!
-            }
-
-            if(it?.getString("PhoneNumber")==null){
-                phoneNumber="00000000"
-            }else{
-                phoneNumber=it.getString("PhoneNumber")!!
-            }
-
-            if(it?.getString("Location")==null){
-                location="경기도 포천시 소흘읍 송우리"
-            }else{
-                location=it.getString("Location")!!
-            }
-
-            if(it?.getString("ProfileImage")==null){
-                profileImage="ds"
-            }else{
-                profileImage=it.getString("ProfileImage")!!
-
-            }
-        }
-
-        var location_List=location.split(" ")
-        binding.myCarrotTextNickName.text=nickName
-        binding.myCarrotTextLocation.text=location_List[2]
-        showCustomToast(nickName+phoneNumber+location+profileImage)
 
 
 
@@ -128,6 +99,7 @@ class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotB
 
     override fun getUserInfoSuccess(response: UserInfoResponse) {
         if(response.code==1000){
+            binding.myCarrotTextLocation.text=location
             binding.myCarrotTextNickName.text=response.result.nickName
         }else{
             showCustomToast(response.message)

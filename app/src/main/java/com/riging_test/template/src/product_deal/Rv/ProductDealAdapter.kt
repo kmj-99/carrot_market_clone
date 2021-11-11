@@ -72,6 +72,8 @@ class ProductDealAdapter(val context: Context,val ItemList:ArrayList<ProductDeal
         private var Time=ItemView.Rv_Product_Deal_Left_Text_Time
 
         fun bind(context:Context,Item:ProductDealDataClass){
+
+
             Glide.with(context).load(Item.Image).into(Image)
             Content.text=Item.content
             Time.text=Item.CurrentTime

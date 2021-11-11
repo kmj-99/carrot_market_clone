@@ -17,6 +17,8 @@ import com.naver.maps.map.MapFragment
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
 import com.riging_test.template.R
+import com.riging_test.template.config.ApplicationClass
+import com.riging_test.template.config.ApplicationClass.Companion.editor
 import com.riging_test.template.config.BaseFragment
 import com.riging_test.template.databinding.FragmentSignupSecondBinding
 import com.riging_test.template.src.sign_up.second.models.AroundLocationResponse
@@ -41,11 +43,8 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
     private val Test_output="json"
     private val Test_orders="legalcode"
 
-    //private val Jwt="eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjIxLCJpYXQiOjE2MzU5NTUyMDQsImV4cCI6MTYzNzQyNjQzM30.ZLVXRR6MZO3d9P0oyWMXJnPhdQ-H9xyGHwfCsgT-vZI"
     private var TownId=0
     private var PasingNumber=0
-
-    private lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var Rv:View
     private lateinit var Rv_Adapter:SignupRvAdapter
@@ -55,7 +54,6 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
         super.onViewCreated(view, savedInstanceState)
         //binding.searchImageSearch.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY
 
-        sharedPreferences=requireActivity().getSharedPreferences("Token", MODE_PRIVATE)
 
 
 
@@ -179,6 +177,8 @@ class SignupSecondFragment: BaseFragment<FragmentSignupSecondBinding>(FragmentSi
     override fun TryGetTownIdSuccss(response: ArroundLocationTownId) {
         Log.d("TownId",response.result.toString())
         TownId=response.result
+        editor.putInt("townId",TownId)
+        editor.apply()
         SignupSecondService(this).tryGetAroundLocation(response.result)
 
     }

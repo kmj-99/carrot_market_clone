@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuInflater
 import android.widget.PopupMenu
+import androidx.annotation.Px
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,7 +36,9 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
     private var PostIdList=ArrayList<Int>()
     private var WishIdList=ArrayList<Int>()
 
-    private var jwt=sSharedPreferences.getString("jwt","w")!!
+    private val jwt=sSharedPreferences.getString("jwt","w")!!
+    private val userId=sSharedPreferences.getInt("userId",1)
+
 
     private var favorite=false
 
@@ -69,20 +72,20 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
         val Price=intent.getStringExtra("Price")
         val Time=intent.getStringExtra("Time")
         val Title=intent.getStringExtra("Title")
-        val userId=sSharedPreferences.getInt("userId",1)
         postId=intent.getIntExtra("postId",0)
 
         ProductService(this).GetImageList(postId)
 
         ProductService(this).TryGetFavoriteList(jwt)
-        showCustomToast("$userId $postId")
 
         binding.productTextTitle.text=Title
         binding.productTextContent.text=Content
         binding.productTextLocation.text=Current_location
         binding.productTextPrice.text=Price
         binding.productTextTime.text=Time
-        binding.productTextCategory.text=category[Category]
+        Log.d("Cateogry_numner",Category.toString())
+        binding.productTextCategory.text=category[Category-1]
+
 
 
 
@@ -258,7 +261,6 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
 
     override fun TryGetFavoriteSuccess(response: FavoriteListResponse) {
         if(response.code==1000){
-            showCustomToast(response.result.size.toString())
             PostIdList.clear()
             WishIdList.clear()
             for(i in 0 until  response.result.size){
@@ -305,8 +307,37 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
                 Log.d("Image_List",response.result[i].image)
                 ImageList.add(response.result[i].image)
             }
-            binding.productViewPager.adapter=ProductViewPagerAdapter(this,ImageList)
-            binding.productViewPager.orientation= ViewPager2.ORIENTATION_HORIZONTAL
+            var viewPager=binding.productViewPager
+            viewPager.adapter=ProductViewPagerAdapter(this,ImageList)
+            viewPager.orientation= ViewPager2.ORIENTATION_HORIZONTAL
+
+
+            viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+
+                override fun onPageScrolled(
+                    position: Int, positionOffset: Float,
+                    @Px positionOffsetPixels: Int
+                ) {
+                }
+                //뷰페이저가 변할때마다 탭 레이아웃의 포지션이 바뀌도록 설정
+                override fun onPageSelected(position: Int) {
+                    when(position){
+                        0 -> {
+                            binding.productImageIndex1.setImageResource(R.color.dark_gray)
+                            binding.productImageIndex2.setImageResource(R.color.light_gray)
+                        }
+                        1 -> {
+                            binding.productImageIndex1.setImageResource(R.color.light_gray)
+                            binding.productImageIndex2.setImageResource(R.color.dark_gray)
+                        }
+                    }
+
+                }
+
+                override fun onPageScrollStateChanged(@ViewPager2.ScrollState state: Int) {}
+
+            })
+
 
 
         }

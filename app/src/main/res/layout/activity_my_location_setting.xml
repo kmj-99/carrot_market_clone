@@ -121,35 +121,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             >
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_location_setting_button_shape"
-                android:paddingHorizontal="10dp"
-                >
-
-                <TextView
-                    android:id="@+id/my_location_setting_text_name2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="소흘읍"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-                <ImageView
-                    android:id="@+id/my_location_setting_button_delete2"
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/my_location_setting_select_x_icon"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>
 
@@ -222,7 +193,7 @@
         app:isb_show_tick_marks_type="none"
         app:isb_tick_marks_size="13dp"
         app:isb_show_tick_texts="true"
-        app:isb_tick_texts_size="15sp"
+        app:isb_tick_texts_size="0sp"
         app:isb_tick_texts_color="@color/black"
         app:isb_thumb_color="@color/white"
         app:isb_thumb_size="20dp"

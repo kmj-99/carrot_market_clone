@@ -1,8 +1,6 @@
 package com.riging_test.template.src.main._5my_carrot
 
 import com.riging_test.template.config.ApplicationClass
-import com.riging_test.template.src.main._1home.HomeFragmentInterface
-import com.riging_test.template.src.main._1home.models.HomePostListDataClass
 import com.riging_test.template.src.main._5my_carrot.model.UserInfoResponse
 import retrofit2.Call
 import retrofit2.Callback

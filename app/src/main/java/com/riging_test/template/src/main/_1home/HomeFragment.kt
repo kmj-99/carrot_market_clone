@@ -10,6 +10,7 @@ import android.view.View
 import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.PopupMenu
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.MultiTransformation
@@ -45,7 +46,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     private var Close = true
     private var Icon_Dowun = true
 
-    private lateinit var jwt: String
+    private var jwt=sSharedPreferences.getString("jwt", "0")!!
+    private var userId=sSharedPreferences.getInt("userId",1)
     private var paising_numner = 0
 
 
@@ -66,10 +68,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         var icon_up = AnimationUtils.loadAnimation(requireContext(), R.anim.icon_rotate_up)
 
 
-        jwt = sSharedPreferences.getString("jwt", "0")!!
+
+
         Home_Rv_Adapter = HomeAdapter(requireContext(), TestItemList)
 
-        HomeFragmentService(this).TryGetPostId(32)
+        HomeFragmentService(this).TryGetPostId(userId)
 
 
 
@@ -77,7 +80,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         sWipe.setOnRefreshListener {
 
-            HomeFragmentService(this).TryGetPostId(32)
+            HomeFragmentService(this).TryGetPostId(userId)
 
 
 
@@ -104,6 +107,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         binding.homeButtonPlus.setOnClickListener {
 
             if (Close) {
+                binding.homeButtonPlus.background=R.color.white.toDrawable()
                 binding.homeButtonPlus.setBackgroundColor(resources.getColor(R.color.white))
                 binding.homeButtonMarketing.startAnimation(fab_open)
                 binding.homeButtonPosting.startAnimation(fab_open)
@@ -222,13 +226,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
     }
 
-    fun dialog() {
-        var dialog = Dialog(requireActivity())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-        dialog.setContentView(R.layout.activity_home_float_button_bacground)
-        dialog.show()
-    }
 
 
     override fun TryGetPostListSuccess(response: HomePostListDataClass) {
@@ -273,7 +271,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         }
 
         override fun TryGetRangeSuccess(response: RangeResponse) {
-            if (response.code == 1000) {
+            if (response.code == 1000) { // 1665 -> sSharefrepernece()
                 HomeFragmentService(this).TryGetPostList(jwt, 1665, response.result.range)
             } else {
 
@@ -293,7 +291,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
             } else {
                 Log.d("Title_iamge_size","null")
-
+                //포스팅이 많아지면 이 코드는 지워야함 안 지우면 이미지사진들이 지 멋대로 들어가 있음
             }
             if(count==PostIdList.size-1){
                 HomeFragmentService(this).TryGetRange(jwt)
@@ -309,7 +307,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         if(response.code==1000){
             for(i in 0 until response.result.size){
                 PostIdList.add(response.result[i].postId)
-
             }
 
             for (i in 0 until PostIdList.size) {

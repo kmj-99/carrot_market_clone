@@ -8,7 +8,7 @@ interface HistoryFragment2View {
     fun TryGetSalesFinishSuccess(response:SalesFinishResponse)
     fun TryGetSalesFinishFailue(message:String)
 
-    fun TryGetSalesFinishImageSuccess(response:ImageResponse)
+    fun TryGetSalesFinishImageSuccess(response:ImageResponse,count:Int)
     fun TryGetSalesFinishImageFauiue(message: String)
 
 }

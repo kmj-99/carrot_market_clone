@@ -32,12 +32,44 @@
                 >
 
 
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/product_view_pager"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:src="@drawable/test_image"/>
+                    android:layout_height="400dp">
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/product_view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:src="@drawable/test_image"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/product_image_index1"
+                            android:layout_width="10dp"
+                            android:layout_height="20dp"
+                            android:src="@color/dark_dark_gray"/>
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/product_image_index2"
+                            android:layout_width="10dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@color/light_gray"/>
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/activity_main_ToolBar"
@@ -118,7 +150,7 @@
                         android:id="@+id/product_image_profile"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="15dp"
                         android:src="@drawable/test_image"
                         app:layout_constraintWidth_percent="0.1"
                         app:layout_constraintHeight_percent="1"
@@ -141,14 +173,16 @@
                            android:id="@+id/product_text_nickname"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
+                           android:layout_marginTop="5dp"
                            android:text="써니"
+                           android:textSize="13sp"
                            android:textColor="@color/black"
                            android:textStyle="bold"/>
                        <TextView
                            android:id="@+id/product_text_location"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:layout_marginTop="3dp"
+                           android:layout_marginTop="2dp"
                            android:text="옥정동"
                            android:textSize="10sp"/>
 

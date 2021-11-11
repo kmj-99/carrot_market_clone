@@ -30,7 +30,7 @@
                 android:id="@+id/layout1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
                 app:layout_constraintLeft_toRightOf="@+id/image1"
                 app:layout_constraintTop_toTopOf="parent"

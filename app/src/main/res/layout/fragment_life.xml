@@ -103,18 +103,17 @@
 
 
     </androidx.core.widget.NestedScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/life_Button_writing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/carrot_color"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_gravity="right"
-        android:clickable="true"
         android:layout_marginBottom="200dp"
-        app:srcCompat="@drawable/pen_icon"
+        android:backgroundTint="@color/carrot_color"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

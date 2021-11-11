@@ -100,13 +100,8 @@ class SignFourthFragment:
                 PostNewSignupRequest(city = location[0],district = location[1],
                 townName = location[2],phoneNumber = phoneNumber,nickName = NickName,profile_Image)
             )
-
-
-
-
-            Main_Intent.putExtra("NickName",NickName)
-            Main_Intent.putExtra("PhoneNumber",phoneNumber)
-            Main_Intent.putExtra("Location",current_location)
+            editor.putString("Location",location[2])
+            editor.apply()
 
             startActivity(Main_Intent)
             requireActivity().finish()
@@ -203,39 +198,13 @@ class SignFourthFragment:
     }
 
     override fun onPostSignupSuccess(response: SignupResponse) {
-        when(response.code){
-            1000 ->{
-                Log.d("test_jwt",response.result.jwt)
-                editor.putString("jwt",response.result.jwt)
-                editor.putInt("userId",response.result.userId)
-                editor.apply()
-            }
-
-            2011 ->{
-                showCustomToast(response.message)
-            }
-
-            2012 ->{
-                showCustomToast(response.message)
-            }
-
-            2013 -> {
-                showCustomToast(response.message)
-
-            }
-
-            2014 -> {
-                showCustomToast(response.message)
-            }
-
-            2019 ->{
-                showCustomToast(response.message)
-            }
-
-            4000 -> {
-                showCustomToast(response.message)
-            }
-
+        if(response.code==1000) {
+            Log.d("test_jwt", response.result.jwt)
+            editor.putString("jwt", response.result.jwt)
+            editor.putInt("userId", response.result.userId)
+            editor.apply()
+        }else{
+            showCustomToast(response.message+"onPostSignupSuccess")
         }
 
     }

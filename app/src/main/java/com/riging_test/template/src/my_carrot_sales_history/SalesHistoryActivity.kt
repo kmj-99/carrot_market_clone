@@ -86,7 +86,5 @@ class SalesHistoryActivity: BaseActivity<ActivitySalesHistoryBinding>(ActivitySa
 
 
 
-
-
     }
 }

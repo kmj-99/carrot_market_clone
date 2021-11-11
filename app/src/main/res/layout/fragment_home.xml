@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="소흘읍"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="4dp"
                     android:textColor="@color/black"
                     android:textSize="19sp"
                     android:textStyle="bold" />
@@ -124,7 +124,8 @@
                 android:layout_marginBottom="15dp"
                 android:backgroundTint="@color/carrot_color"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/document_icon"
+                app:tint="@null"
+                app:srcCompat="@drawable/home_floating_marketing"
                 app:layout_constraintBottom_toTopOf="@+id/home_button_posting"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
@@ -136,7 +137,8 @@
                 android:layout_marginBottom="15dp"
                 android:backgroundTint="@color/carrot_color"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/pen_icon"
+                app:tint="@null"
+                app:srcCompat="@drawable/home_floating_pen"
                 app:layout_constraintBottom_toTopOf="@+id/home_button_plus"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
@@ -147,7 +149,9 @@
                 android:layout_gravity="right|center_vertical"
                 android:clickable="true"
                 android:backgroundTint="@color/carrot_color"
-                app:srcCompat="@drawable/plus22"
+                app:tint="@null"
+                app:srcCompat="@drawable/plus_33"
+                app:fabSize="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"/>

@@ -6,13 +6,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sales_history_fragment1_Rv"
+    <FrameLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="1"
         app:layout_constraintHeight_percent="1"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sales_history_fragment1_Rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <TextView
+            android:id="@+id/sales_history_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="판매중인 게시글이 없어요"
+            android:textSize="18sp"
+            android:textColor="@color/light_light_light_gray"
+            android:layout_marginBottom="100dp"
+
+            />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

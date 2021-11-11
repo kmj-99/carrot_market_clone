@@ -19,6 +19,7 @@ class ChatListAdapter(val context: Context,val ItemList:ArrayList<ChatListDataCl
     }
 
     override fun onBindViewHolder(holder: ChatListViewHolder, position: Int) {
+        holder.bind(context,ItemList[position])
     }
 
     override fun getItemCount(): Int {
@@ -30,7 +31,7 @@ class ChatListAdapter(val context: Context,val ItemList:ArrayList<ChatListDataCl
     inner class ChatListViewHolder(ItemView: View):RecyclerView.ViewHolder(ItemView){
         private var User_Image=ItemView.Rv_Chat_Image_User
         private var Product_Image=ItemView.Rv_Chat_Image_Product
-        private var NickName=ItemView.Rv_life_nickname
+        private var NickName=ItemView.Rv_Chat_Text_Title
         private var Content=ItemView.Rv_Chat_Text_Content
         private var Current_Location=ItemView.Rv_Chat_Text_Location
         private var Date=ItemView.Rv_Chat_Text_Date

@@ -39,7 +39,7 @@ class HistoryFragment2Service(val view:HistoryFragment2View) {
 
 
 
-    fun TryGetSalesFinishImage(postId: Int){
+    fun TryGetSalesFinishImage(postId: Int,count:Int){
         val salesImageRetrofitInterface= ApplicationClass.sRetrofit.create(
             HistoryFragment2ImageInterface::class.java)
         salesImageRetrofitInterface.getTitleImage(postId).enqueue(object:
@@ -49,7 +49,7 @@ class HistoryFragment2Service(val view:HistoryFragment2View) {
                 response: Response<ImageResponse>
             ) {
                 if(response.body()!=null){
-                    view.TryGetSalesFinishImageSuccess(response.body() as ImageResponse)
+                    view.TryGetSalesFinishImageSuccess(response.body() as ImageResponse,count)
                 }
 
             }

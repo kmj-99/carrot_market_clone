@@ -1,6 +1,7 @@
 package com.riging_test.template.src.my_carrot_sales_history.fragment.fragment1
 
 import com.riging_test.template.config.ApplicationClass
+import com.riging_test.template.src.my_carrot_sales_history.fragment.fragment1.models.ProductChangeFinishResponse
 import com.riging_test.template.src.my_carrot_sales_history.fragment.fragment1.models.SalesIngResonse
 import com.riging_test.template.src.my_carrot_sales_history.fragment.fragment1.models.TitleImageResponse
 import com.riging_test.template.src.posting.PostingInterface
@@ -55,6 +56,33 @@ class HistoryFragment1Service(val view:HistoryFragment1View) {
 
             override fun onFailure(call: Call<TitleImageResponse>, t: Throwable) {
                 view.TryGetSalesIngFailue(t.message?:"통신오류")
+
+            }
+
+        })
+
+    }
+
+
+
+
+    fun TryPatchChangeFinish(jwt:String,postId:Int,buyerId:Int){
+        val changeFinishRetrofitInterface= ApplicationClass.sRetrofit.create(
+            HistoryFragment1FinishInterface::class.java)
+        changeFinishRetrofitInterface.pathChangeFinish(jwt,postId,buyerId).enqueue(object:
+            Callback<ProductChangeFinishResponse> {
+            override fun onResponse(
+                call: Call<ProductChangeFinishResponse>,
+                response: Response<ProductChangeFinishResponse>
+            ) {
+                if(response.body()!=null){
+                    view.TryPatchChangeFinishSuccess(response.body() as ProductChangeFinishResponse)
+                }
+
+            }
+
+            override fun onFailure(call: Call<ProductChangeFinishResponse>, t: Throwable) {
+                view.TryPatchChangeFinishFaiue(t.message?:"통신오류")
 
             }
 
