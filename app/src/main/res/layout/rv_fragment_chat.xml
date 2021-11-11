@@ -100,7 +100,7 @@
     <ImageView
         android:id="@+id/Rv_Chat_Image_Product"
         android:layout_width="40dp"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:src="@drawable/test_image"
         android:layout_marginRight="15dp"
         app:layout_constraintRight_toRightOf="parent"

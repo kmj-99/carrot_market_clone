@@ -90,30 +90,32 @@
                         android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="12dp"
-                        android:src="@drawable/product_left_icon"/>
+                        android:src="@drawable/home_callapsing_left"/>
 
                     <ImageView
                         android:id="@+id/product_button_home"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/product_home_icon"
+                        android:src="@drawable/home_callapsing_home"
                         />
 
                     <ImageView
                         android:id="@+id/product_button_report"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/action_list_icon"
+                        android:layout_width="27dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/home_callasing_list"
                         android:layout_gravity="right"
                         />
 
 
                     <ImageView
                         android:id="@+id/product_button_share"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/product_share_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/home_callapsing_share"
                         android:layout_marginRight="10dp"
+                        android:layout_marginBottom="11dp"
                         android:layout_gravity="right"
                         />
 
@@ -415,7 +417,7 @@
                     android:layout_height="0dp"
                     android:orientation="horizontal"
                     android:layout_marginLeft="25dp"
-
+                    android:layout_marginTop="10dp"
                     app:layout_constraintHeight_percent="0.03"
                     app:layout_constraintWidth_percent="1"
                     app:layout_constraintTop_toBottomOf="@+id/product_line3"
@@ -451,6 +453,7 @@
                     android:id="@+id/product_Rv1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintWidth_percent="1"
                     app:layout_constraintTop_toBottomOf="@+id/product_layout_seller_products"
                     app:layout_constraintLeft_toLeftOf="parent"

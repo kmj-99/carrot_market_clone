@@ -25,21 +25,29 @@ class TimeSettingActivity: BaseActivity<ActivityTimeSettingBinding>(ActivityTime
 
         var date=CurrentData()
         var date_List=date.split(" ")
-
-
+        var Year=""
+        var Month=""
+        var Day =""
+        var Hour=""
+        var Minute=""
 
         binding.timeSettingLayoutTimeSetting.setOnClickListener {
 
-
             val listener=DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                 showCustomToast("$year $month $dayOfMonth")
+                Year=year.toString()
+                Month=(month+1).toString()
+                Day=dayOfMonth.toString()
                 time_dialog.show()
             }
 
             val time_listner=TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                Hour=hourOfDay.toString()
+                Minute=minute.toString()
+                binding.timeSettingTextAppointmentTimeSetting.text=Month+"월"+" "+Day+"일" +"(수)"+" 오후 "+Hour+":"+Minute
+
                 showCustomToast("$hourOfDay $minute")
             }
-
 
 
             time_dialog=TimePickerDialog(this,R.style.MyTimePickerStyle,time_listner,10,12,false)
@@ -56,8 +64,11 @@ class TimeSettingActivity: BaseActivity<ActivityTimeSettingBinding>(ActivityTime
 
 
 
+        }
 
-
+        binding.timeSettingButton.setOnClickListener {
+            showCustomToast("시간설정이 완료되었습니다.")
+            finish()
         }
 
 

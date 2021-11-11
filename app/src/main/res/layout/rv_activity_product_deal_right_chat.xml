@@ -22,7 +22,7 @@
         android:layout_marginRight="15dp"
         android:text="갤럭시 워치 너무너무 좋아요"
         android:textSize="17sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintRight_toLeftOf="@id/Rv_Product_Deal_Right_Image"
         app:layout_constraintBottom_toBottomOf="parent"/>
     <TextView

@@ -68,18 +68,26 @@ class PostingActivity: BaseActivity<ActivityPostingBinding>(ActivityPostingBindi
                 if(start>0){
                     Glide.with(applicationContext).load(R.drawable.select_won).into(binding.postingImageEditText)
                     Glide.with(applicationContext).load(R.drawable.select_check).into(binding.postingImageCheck)
+                    binding.postingTextProposePrice.setTextColor(resources.getColor(R.color.black))
                 }else{
                     Glide.with(applicationContext).load(R.drawable.select_no_won).into(binding.postingImageEditText)
                     Glide.with(applicationContext).load(R.drawable.select_no_check).into(binding.postingImageCheck)
+                    binding.postingTextProposePrice.setTextColor(resources.getColor(R.color.light_light_light_gray))
+
                 }
 
             }
 
             //Text 입력이 모두 끝났을 때
             override fun afterTextChanged(s: Editable?) {
+
+
             }
 
         })
+
+
+
 
         binding.postingLayoutCategory.setOnClickListener {
             showListDialog()

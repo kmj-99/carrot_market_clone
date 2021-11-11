@@ -1,21 +1,17 @@
 package com.riging_test.template.src.product
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuInflater
 import android.widget.PopupMenu
 import androidx.annotation.Px
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.riging_test.template.R
-import com.riging_test.template.config.ApplicationClass
-import com.riging_test.template.config.ApplicationClass.Companion.editor
 import com.riging_test.template.config.ApplicationClass.Companion.sSharedPreferences
 import com.riging_test.template.config.BaseActivity
 import com.riging_test.template.databinding.ActivityProductBinding
@@ -93,15 +89,20 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
 
 
 
-        for(i in 1..4) {
-            TestItemList.add(ProductRvDataClass(R.drawable.test_image, "Rocky$i", "$i,000원"))
-        }
+            TestItemList.add(ProductRvDataClass(R.drawable.dumy1, "전기 자전거", "10,0000원"))
+            TestItemList.add(ProductRvDataClass(R.drawable.dumy2, "하얀 신발", "30,000원"))
+            TestItemList.add(ProductRvDataClass(R.drawable.dumy3, "최신 마우스", "25,000원"))
+            TestItemList.add(ProductRvDataClass(R.drawable.dumy4 ,"수동 자전거", "55,000원"))
+
+
         binding.productRv1.layoutManager=GridLayoutManager(this,2,LinearLayoutManager.VERTICAL,false)
         binding.productRv1.adapter=ProductRvAdapter(this,TestItemList)
 
-        for(i in 1..10) {
-            TestItemList2.add(ProductRvDataClass(R.drawable.test_image, "Android$i", "$i,200원"))
-        }
+
+        TestItemList2.add(ProductRvDataClass(R.drawable.n_dumy1, "롱패딩", "35,000원"))
+        TestItemList2.add(ProductRvDataClass(R.drawable.n_dumy2, "그레이 슬랙스", "24,000원"))
+        TestItemList2.add(ProductRvDataClass(R.drawable.n_dumy3, "검정 자켓", "41,000원"))
+        TestItemList2.add(ProductRvDataClass(R.drawable.n_dumy4, "플라스틱 의자", "10,000원"))
 
         binding.productRv2.layoutManager=GridLayoutManager(this,2,LinearLayoutManager.VERTICAL,false)
         binding.productRv2.adapter=ProductRvAdapter(this,TestItemList2)
@@ -180,37 +181,37 @@ class ProductActivity:BaseActivity<ActivityProductBinding>(ActivityProductBindin
                     when{
                         //collapsing이 안되었을때
                         verticalOffset==0 -> {
-                            Glide.with(applicationContext).load(R.drawable.product_left_icon).centerCrop().into(binding.productButtonBack)
-                            Glide.with(applicationContext).load(R.drawable.product_home_icon).centerCrop().into(binding.productButtonHome)
-                            Glide.with(applicationContext).load(R.drawable.product_share_icon).centerCrop().into(binding.productButtonShare)
-                            //binding.productButtonBack.setImageResource(R.drawable.product_left_icon)
-                            //binding.productButtonHome.setImageResource(R.drawable.product_home_icon)
-                            //binding.productButtonShare.setImageResource(R.drawable.product_share_icon)
+                            Glide.with(applicationContext).load(R.drawable.home_callapsing_left).into(binding.productButtonBack)
+                            Glide.with(applicationContext).load(R.drawable.home_callapsing_home).into(binding.productButtonHome)
+                            Glide.with(applicationContext).load(R.drawable.home_callapsing_share).into(binding.productButtonShare)
+                            Glide.with(applicationContext).load(R.drawable.home_callasing_list).into(binding.productButtonReport)
+
+
                         }
 
                         //완전히 collapsing 되었을때 즉, 레이아웃이 사라질 때
                         Math.abs(verticalOffset) >=appBarLayout.totalScrollRange -> {
 
-                            Glide.with(applicationContext).load(R.drawable.product_left_icaon).centerCrop().into(binding.productButtonBack)
-                            Glide.with(applicationContext).load(R.drawable.product_no_home_icon).centerCrop().into(binding.productButtonHome)
-                            Glide.with(applicationContext).load(R.drawable.product_no_share_icon).centerCrop().into(binding.productButtonShare)
+                            Glide.with(applicationContext).load(R.drawable.home_callasing_left2).into(binding.productButtonBack)
+                            Glide.with(applicationContext).load(R.drawable.home_callasing_home2).into(binding.productButtonHome)
+                            Glide.with(applicationContext).load(R.drawable.home_callasing_share2).into(binding.productButtonShare)
+                            Glide.with(applicationContext).load(R.drawable.home_callasing_list2).into(binding.productButtonReport)
 
-                            //binding.productButtonBack.setImageResource(R.drawable.product_left_icaon)
-                            //binding.productButtonHome.setImageResource(R.drawable.product_no_home_icon)
-                            //binding.productButtonShare.setImageResource(R.drawable.product_no_share_icon)
 
                         }
 
                         Math.abs(verticalOffset) <=820 ->{
-                            Glide.with(applicationContext).load(R.drawable.product_left_icon).centerCrop().into(binding.productButtonBack)
-                            Glide.with(applicationContext).load(R.drawable.product_home_icon).centerCrop().into(binding.productButtonHome)
-                            Glide.with(applicationContext).load(R.drawable.product_share_icon).centerCrop().into(binding.productButtonShare)
+                            Glide.with(applicationContext).load(R.drawable.home_callapsing_left).into(binding.productButtonBack)
+                            Glide.with(applicationContext).load(R.drawable.home_callapsing_home).into(binding.productButtonHome)
+                            Glide.with(applicationContext).load(R.drawable.home_callapsing_share).into(binding.productButtonShare)
+                            Glide.with(applicationContext).load(R.drawable.home_callasing_list).into(binding.productButtonReport)
                         }
 
                         Math.abs(verticalOffset) >=820->{
-                            Glide.with(applicationContext).load(R.drawable.product_left_icon).centerCrop().into(binding.productButtonBack)
-                            Glide.with(applicationContext).load(R.drawable.product_home_icon).centerCrop().into(binding.productButtonHome)
-                            Glide.with(applicationContext).load(R.drawable.product_share_icon).centerCrop().into(binding.productButtonShare)
+                            Glide.with(applicationContext).load(R.drawable.home_callapsing_left).into(binding.productButtonBack)
+                            Glide.with(applicationContext).load(R.drawable.home_callapsing_home).into(binding.productButtonHome)
+                            Glide.with(applicationContext).load(R.drawable.home_callapsing_share).into(binding.productButtonShare)
+                            Glide.with(applicationContext).load(R.drawable.home_callasing_list).into(binding.productButtonReport)
 
                         }
 

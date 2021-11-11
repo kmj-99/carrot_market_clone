@@ -1,7 +1,6 @@
 package com.riging_test.template.src.main._1home
 
 import android.app.Application
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -32,6 +31,8 @@ import com.riging_test.template.src.my_location_setting.MyLocationSettingAcvitiy
 import com.riging_test.template.src.posting.PostingActivity
 import com.riging_test.template.src.search.SearchActivity
 import com.riging_test.template.src.sign_up.second.SignupSecondService
+import kotlin.random.Random
+
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home),HomeFragmentView {
     private var TestItemList = ArrayList<HomeDataClass>()
@@ -57,7 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         var sWipe = binding.homeSwiper
 
-        defalt_Location = "서울"
+        defalt_Location = "소흘읍"
         add_Location = "내 동네 설정"
 
         var fab_open = AnimationUtils.loadAnimation(requireContext(), R.anim.fab_open)
@@ -232,6 +233,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun TryGetPostListSuccess(response: HomePostListDataClass) {
         if (response.code == 1000) {
             TestItemList.clear()
+            val range=(1..10)
             for (i in 0 until response.result.size) {
                 if (i < TitleImageList.size){
                     Log.d("Title_Test",TitleImageList[i])
@@ -243,9 +245,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
                             response.result[i].content,
                             response.result[i].townName,
                             response.result[i].time,
-                            "${response.result[i].cost.toString()}원",
-                            1,
-                            1,
+                            "${response.result[i].cost}원",
+                            range.random(),
+                            range.random(),
                             response.result[i].userId,
                             response.result[i].postId
                         )
@@ -272,7 +274,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         override fun TryGetRangeSuccess(response: RangeResponse) {
             if (response.code == 1000) { // 1665 -> sSharefrepernece()
-                HomeFragmentService(this).TryGetPostList(jwt, 1665, response.result.range)
+                HomeFragmentService(this).TryGetPostList(jwt, sSharedPreferences.getInt("townId",1665), response.result.range)
             } else {
 
                 showCustomToast(response.message+"TryGetRangeSuccess")

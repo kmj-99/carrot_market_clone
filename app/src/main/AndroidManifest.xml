@@ -71,6 +71,7 @@
         <!-- product -->
         <activity
             android:name=".src.product.ProductActivity"
+
             />
 
         <!-- product_deal -->

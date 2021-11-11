@@ -7,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.riging_test.template.R
 import kotlinx.android.synthetic.main.rv_fragment_chat.view.*
 import kotlinx.android.synthetic.main.rv_fragment_life2.view.*
@@ -38,8 +42,10 @@ class ChatListAdapter(val context: Context,val ItemList:ArrayList<ChatListDataCl
 
 
         fun bind(context:Context,Item:ChatListDataClass){
+            var multOption= MultiTransformation(CenterCrop(), RoundedCorners(15))
+
             Glide.with(context).load(Item.UserImage).into(User_Image)
-            Glide.with(context).load(Item.ProductImage).centerCrop().into(Product_Image)
+            Glide.with(context).load(Item.ProductImage).apply(RequestOptions.bitmapTransform(multOption)).into(Product_Image)
 
             NickName.text=Item.NickName
             Content.text=Item.Content

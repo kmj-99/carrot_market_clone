@@ -129,6 +129,7 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
                     }
 
                     R.id.product_deal_popup_exit -> {
+                        finish()
                         showCustomToast("채팅방 나가기")
                     }
 
@@ -157,7 +158,7 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
             var content=binding.productDealChatEdit.text.toString()
             if(Test_Chat==ViewType().CLIENT_JOIN) {
 
-                ChatService(this).TryPostAdd(ChatAddRequest(buyerUserId = userId,postId = postId),22)
+                //ChatService(this).TryPostAdd(ChatAddRequest(buyerUserId = userId,postId = postId),22)
                 Test_List.add(ProductDealDataClass(null, CurrentData(), null, ViewType().CLIENT_JOIN))
                 Test_Chat=ViewType().RIGHT_CHAT
             }
@@ -168,11 +169,11 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
                     binding.productDealChatEdit.text.clear()
                     Test_List.add(ProductDealDataClass(content,Am_Pm+" "+CurrentTime(),null,ViewType().RIGHT_CHAT))
                     if(!Count) {
-                        ChatService(this).TryPostSend(
-                            jwt,
-                            ChatRoomId,
-                            ChatSendRequest(content = ChatContent)
-                        )
+                        //ChatService(this).TryPostSend(
+                        //    jwt,
+                        //    ChatRoomId,
+                        //    ChatSendRequest(content = ChatContent)
+                        //)
                     }
                     Test_Chat=ViewType().LEFT_CHAT
                 }
@@ -182,7 +183,7 @@ class ProductDealChatActivity: BaseActivity<ActivityProductDealBinding>(Activity
                     ChatContent=binding.productDealChatEdit.text.toString()
                     binding.productDealChatEdit.text.clear()
                     Test_List.add(ProductDealDataClass(content,Am_Pm+" "+CurrentTime(),R.drawable.test_image,ViewType().LEFT_CHAT))
-                    ChatService(this).TryPostSend(jwt,ChatRoomId, ChatSendRequest(content=ChatContent))
+                    //ChatService(this).TryPostSend(jwt,ChatRoomId, ChatSendRequest(content=ChatContent))
 
                     Test_Chat=ViewType().RIGHT_CHAT
 

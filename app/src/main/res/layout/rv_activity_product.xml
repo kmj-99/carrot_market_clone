@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="170dp"
+    android:layout_height="200dp"
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
     android:gravity="center_horizontal"
@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/Rv_Product_Image"
         android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_height="130dp"
         android:paddingHorizontal="15dp"
         android:src="@drawable/test_image"
         app:layout_constraintBottom_toTopOf="@id/Rv_Product_Name"
@@ -26,6 +26,7 @@
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"
         android:layout_gravity="left"
+        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/Rv_Product_Image"
         app:layout_constraintBottom_toTopOf="@id/Rv_Product_Price"
         app:layout_constraintRight_toRightOf="parent"

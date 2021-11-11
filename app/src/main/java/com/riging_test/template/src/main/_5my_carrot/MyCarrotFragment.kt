@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.riging_test.template.R
 import com.riging_test.template.config.ApplicationClass.Companion.sSharedPreferences
 import com.riging_test.template.config.BaseFragment
@@ -30,7 +31,10 @@ class MyCarrotFragment : BaseFragment<FragmentMyCarrotBinding>(FragmentMyCarrotB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        Glide.with(this).load("https://i3.ruliweb.com/img/20/12/29/176aa05f32c12c205.jpeg").into(binding.myCarrotImageProfile)
         MyCarrotService(this).TryGetUserInfo(userId)
+
 
 
 
