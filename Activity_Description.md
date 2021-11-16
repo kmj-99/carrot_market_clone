@@ -10,6 +10,7 @@
 #### main안에 1home,4chat,5my_carrot 프래그먼트가 존재
 
 ![home](https://user-images.githubusercontent.com/76093968/141957675-eca2f4a7-bbb4-4146-89e6-f49eacd5d2e9.jpg) 
+![_4chat](https://user-images.githubusercontent.com/76093968/141963168-5500e516-f557-4b5c-87f9-77aad38e2985.jpg)
 ![_5my_carrot](https://user-images.githubusercontent.com/76093968/141960114-06c3aaa1-9593-4221-8049-76ae794a9966.jpg)
 
 
@@ -34,6 +35,13 @@
 
 ![product](https://user-images.githubusercontent.com/76093968/141961310-455ff38f-75f7-43c1-abf8-a1172cf281bb.jpg)  
 
+
 #### product_deal_time_setting
-![product_deal_time_setting](https://user-images.githubusercontent.com/76093968/141962207-34d21e45-ab6d-4717-b994-cb590e30ad7f.jpg)
+![product_deal_time_setting](https://user-images.githubusercontent.com/76093968/141962207-34d21e45-ab6d-4717-b994-cb590e30ad7f.jpg)  
+
+
+
+#### product_deal
+
+![product_deal](https://user-images.githubusercontent.com/76093968/141962697-087b2e85-5c7e-4977-a53c-4766c2256ff3.jpg)
 
