@@ -29,7 +29,9 @@
 
 #### my_carrot_sales_history 안에 fragment1,fragment2 프래그먼트가 존재
 
-![fragment1](https://user-images.githubusercontent.com/76093968/141961056-3a2e0e1d-b85a-46a3-929d-c033c86d2e94.jpg)  
+![fragment1](https://user-images.githubusercontent.com/76093968/141961056-3a2e0e1d-b85a-46a3-929d-c033c86d2e94.jpg)
+![fragment2](https://user-images.githubusercontent.com/76093968/141963966-fea1ed30-8b91-4892-8175-59fa6823d7f1.jpg)
+
 
 #### product 
 
@@ -43,5 +45,13 @@
 
 #### product_deal
 
-![product_deal](https://user-images.githubusercontent.com/76093968/141962697-087b2e85-5c7e-4977-a53c-4766c2256ff3.jpg)
+![product_deal](https://user-images.githubusercontent.com/76093968/141962697-087b2e85-5c7e-4977-a53c-4766c2256ff3.jpg)  
+
+#### deal_finish
+
+![deal_finish](https://user-images.githubusercontent.com/76093968/141963431-19e2459a-e985-41c4-931e-2c4c12a98602.jpg)  
+
+#### chat_list
+
+![chat_list](https://user-images.githubusercontent.com/76093968/141963783-1055460b-6023-48c7-a981-7a498c54c9c1.jpg)
 
