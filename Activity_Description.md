@@ -32,4 +32,8 @@
 
 #### product 
 
-![product](https://user-images.githubusercontent.com/76093968/141961310-455ff38f-75f7-43c1-abf8-a1172cf281bb.jpg)
+![product](https://user-images.githubusercontent.com/76093968/141961310-455ff38f-75f7-43c1-abf8-a1172cf281bb.jpg)  
+
+#### product_deal_time_setting
+![product_deal_time_setting](https://user-images.githubusercontent.com/76093968/141962207-34d21e45-ab6d-4717-b994-cb590e30ad7f.jpg)
+
