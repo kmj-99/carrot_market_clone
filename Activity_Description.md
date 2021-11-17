@@ -19,7 +19,7 @@
 
 ![home_category](https://user-images.githubusercontent.com/76093968/141959426-b1d44d1f-46a3-40fb-b62e-81420c5352c3.jpg)  
 
-#### my_favorite fragment1 프래그먼트가 존재
+#### my_favorite 안에 fragment1 프래그먼트가 존재
 
 ![fragment1](https://user-images.githubusercontent.com/76093968/141960351-5e1b4e37-71a5-450d-be19-e8e91873a5fe.jpg)  
 
