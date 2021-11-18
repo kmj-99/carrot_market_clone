@@ -19,7 +19,9 @@
 #### 협업한 백엔드 개발자가 만든 Api
 - 당근마켓의 메인기능은 이 api를 이용 
 
-## 6. Result
+## 6. Used Design Pattern
+- MVP Pattern  
+## 7. Result
 #### Layout
 - 회원가입 , 홈 화면 , 채팅 화면 , 나의 당근페이지까지 레이아웃 완성(자세한 내용은 Activity_Description.md 참고 )
 #### 6-1. 주요기능
