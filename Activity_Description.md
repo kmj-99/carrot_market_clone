@@ -28,7 +28,7 @@
 ![posting](https://user-images.githubusercontent.com/76093968/141960739-fe203eda-8463-4538-9702-027b37ae2534.jpg)
 
 #### my_carrot_sales_history 안에 fragment1,fragment2 프래그먼트가 존재
-
+ 
 ![fragment1](https://user-images.githubusercontent.com/76093968/141961056-3a2e0e1d-b85a-46a3-929d-c033c86d2e94.jpg)
 ![fragment2](https://user-images.githubusercontent.com/76093968/141963966-fea1ed30-8b91-4892-8175-59fa6823d7f1.jpg)
 
