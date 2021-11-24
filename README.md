@@ -26,6 +26,7 @@
 ## 7. Result
 #### Layout
 - 회원가입 , 홈 화면 , 채팅 화면 , 나의 당근페이지까지 레이아웃 완성(자세한 내용은 Activity_Description.md 참고 )
+- 구현한 레이아웃 정리 : https://github.com/kmj-99/carrot_market_clone/blob/main/Activity_Description.md 
 #### 6-1. 주요기능
 ##### 1. 거래기능
   - 게시글 추가
