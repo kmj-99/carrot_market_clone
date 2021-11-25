@@ -6,7 +6,7 @@
 - 2주(10/30 ~ 11/12)
 ## 3. Environment
 #### FrameWork
-- Android Studio
+- Android Studio 
 #### language
 - Kotlin
 
