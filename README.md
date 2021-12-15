@@ -10,7 +10,7 @@
 #### language
 - Kotlin
 
-## 4. Used Library,Dependencies in Android Studio
+## 4. Used Library in Android Studio
 - Glide , Retrofit , Okhttp , Gson , Firebase , Naver Maps SDK , Circleimageview , Indicatorseekbar , Swiperefreshlayout
 
 ## 5. Used Api
